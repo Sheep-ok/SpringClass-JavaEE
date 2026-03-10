@@ -1,0 +1,28 @@
+package com.example.attendance;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+public class AttendanceSystemApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(AttendanceSystemApplication.class, args);
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "欢迎来到班级考勤管理系统！";
+    }
+
+    // 新增的/about接口
+    @GetMapping("/about")
+    public String about() {
+        // 请替换成你的真实名字和专业
+        String name = "张三";
+        String major = "计算机科学与技术";
+        return String.format("姓名：%s，专业：%s", name, major);
+    }
+}
