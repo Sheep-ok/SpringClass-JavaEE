@@ -20,9 +20,8 @@ public class AttendanceSystemApplication {
     // 新增的/about接口
     @GetMapping("/about")
     public String about() {
-        // 请替换成你的真实名字和专业
-        String name = "张三";
-        String major = "计算机科学与技术";
+        String name = "杨茜";
+        String major = "人工智能";
         return String.format("姓名：%s，专业：%s", name, major);
     }
 }
