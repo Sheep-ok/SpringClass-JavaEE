@@ -1,8 +1,10 @@
 package com.example.attendance.controller;
 
 import com.example.attendance.entity.AttendanceRecord;
-import com.example.attendance.entity.Result;
+import com.example.attendance.util.Result;
 import com.example.attendance.entity.Student;
+import com.example.attendance.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
+@RequestMapping("/studnet")
 public class StudentController
 {
 
@@ -58,5 +61,18 @@ public class StudentController
         String result = String.format("更新学生[%s]在[%s]的考勤状态为：%s",
                 record.getStudentId(), record.getDate(), record.getStatus());
         return Result.success(result);
+    }
+
+    @Autowired
+    private StudentService studentService;
+
+    @PostMapping("/create")
+    public Result<String> create(@RequestBody Student student) {
+        return Result.success(studentService.createStudent(student));
+    }
+
+    @GetMapping("/{id}")
+    public Result<Student> getById(@PathVariable String id) {
+        return Result.success(studentService.getStudentById(id));
     }
 }
