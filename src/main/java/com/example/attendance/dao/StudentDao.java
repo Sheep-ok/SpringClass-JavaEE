@@ -9,18 +9,34 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class StudentDao
-{
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+public class StudentDao {
 
-    public void insert(Student student) {
-        String sql = "INSERT INTO student (student_id, name, class_name) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, student.getStudentId(), student.getName(), student.getClassName());
+    private final JdbcTemplate jdbcTemplate;
+
+    public StudentDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
+    // 插入学生（SQL Server）
+    public void insert(Student student) {
+        String sql = """
+            INSERT INTO student (student_id, student_name, class_name)
+            VALUES (?, ?, ?)
+        """;
+        jdbcTemplate.update(sql,
+                student.getStudentId(),
+                student.getName(),
+                student.getClassName()
+        );
+    }
+
+    // 根据ID查询
     public Student findById(String studentId) {
         String sql = "SELECT * FROM student WHERE student_id = ?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Student.class), studentId);
+        return jdbcTemplate.queryForObject(
+                sql,
+                BeanPropertyRowMapper.newInstance(Student.class),
+                studentId
+        );
     }
 }
