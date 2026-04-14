@@ -1,31 +1,38 @@
 package com.example.attendance.service.impl;
 
-import com.example.attendance.dao.StudentDao;
 import com.example.attendance.entity.Student;
+import com.example.attendance.repository.StudentRepository;
 import com.example.attendance.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service // 标记为Service层组件，由Spring管理
+@Service
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired // 自动注入Dao层依赖
-    private StudentDao studentDao;
+    private final StudentRepository studentRepository;
 
-    @Override
-    public String createStudent(Student student) {
-        // 业务校验：姓名不能为空
-        if (student.getName() == null || student.getName().isEmpty()) {
-            throw new RuntimeException("姓名不能为空");
-        }
-        // 调用Dao层执行数据库操作
-        studentDao.insert(student);
-        return "创建成功";
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     @Override
-    public Student getStudentById(String studentId) {
-        // 调用Dao层查询数据
-        return studentDao.findById(studentId);
+    public String createStudent(Student student) {
+        studentRepository.save(student);
+        return "学生创建成功";
+    }
+
+    @Override
+    public Student getStudentById(String id) {
+        return studentRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    @Override
+    public List<Student> getStudentsByClassName(String className) {
+        return studentRepository.findByClassName(className);
     }
 }

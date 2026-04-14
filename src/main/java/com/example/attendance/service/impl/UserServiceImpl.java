@@ -1,51 +1,52 @@
 package com.example.attendance.service.impl;
 
-import com.example.attendance.dao.UserDao;
 import com.example.attendance.entity.User;
+import com.example.attendance.repository.UserRepository;
 import com.example.attendance.service.UserService;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    private final UserRepository userRepository;
+
+    // 构造注入（推荐，避免@Autowired）
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public void addUser(User user) {
-        // 校验：用户名非空
-        if (user.getUsername() == null || user.getUsername().isBlank()) {
-            throw new RuntimeException("用户名不能为空");
-        }
-        userDao.insert(user);
+        // 新增时自动设置创建时间
+        user.setCreateTime(LocalDateTime.now());
+        userRepository.save(user);
     }
 
     @Override
     public User getUserById(Long id) {
-        return userDao.findById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return userDao.findByUsername(username);
+        return userRepository.findByUsername(username).orElse(null);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public void updateUser(User user) {
-        userDao.update(user);
+        // 更新时保留原创建时间，JPA自动覆盖
+        userRepository.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-        userDao.deleteById(id);
+        userRepository.deleteById(id);
     }
 }
