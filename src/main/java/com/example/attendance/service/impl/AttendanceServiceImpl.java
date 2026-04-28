@@ -3,9 +3,14 @@ package com.example.attendance.service.impl;
 import com.example.attendance.entity.Attendance;
 import com.example.attendance.repository.AttendanceRepository;
 import com.example.attendance.service.AttendanceService;
+import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
+
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -17,42 +22,37 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public String addAttendance(Attendance attendance) {
-        // 自动设置创建时间
-        attendance.setCreateTime(LocalDateTime.now());
-        attendanceRepository.save(attendance);
-        return "考勤记录添加成功";
+    public Page<Attendance> getAttendancePage(Pageable pageable) {
+        return attendanceRepository.findAll(pageable);
     }
 
     @Override
-    public Attendance getAttendanceById(Long id) {
-        return attendanceRepository.findById(id).orElse(null);
+    public Page<Attendance> getAttendancePageByStudentId(String studentId, Pageable pageable) {
+        return attendanceRepository.findByStudentId(studentId, pageable);
     }
 
+    // AttendanceServiceImpl 实现
     @Override
-    public List<Attendance> getByStudentId(String studentId) {
-        return attendanceRepository.findByStudentId(studentId);
-    }
+    public Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, Pageable pageable) {
+        return attendanceRepository.findAll((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
 
-    @Override
-    public List<Attendance> getByCourseId(String courseId) {
-        return attendanceRepository.findByCourseId(courseId);
-    }
+            // 学号条件
+            if (studentId != null && !studentId.isBlank()) {
+                predicates.add(cb.equal(root.get("studentId"), studentId));
+            }
 
-    @Override
-    public List<Attendance> getAllAttendance() {
-        return attendanceRepository.findAll();
-    }
+            // 课程ID条件
+            if (courseId != null && !courseId.isBlank()) {
+                predicates.add(cb.equal(root.get("courseId"), courseId));
+            }
 
-    @Override
-    public String updateAttendance(Attendance attendance) {
-        attendanceRepository.save(attendance);
-        return "考勤记录更新成功";
-    }
+            // 状态条件
+            if (studentStatus != null) {
+                predicates.add(cb.equal(root.get("studentStatus"), studentStatus));
+            }
 
-    @Override
-    public String deleteAttendance(Long id) {
-        attendanceRepository.deleteById(id);
-        return "考勤记录删除成功";
+            return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));
+        }, pageable);
     }
 }

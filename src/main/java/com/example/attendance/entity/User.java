@@ -6,12 +6,13 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "user") // 对应数据库user表
+@Table(name = "my_user") // 对应数据库user表
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 必须生成 getter/setter
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
 
@@ -26,4 +27,12 @@ public class User {
 
     @Column(name = "create_time")
     private LocalDateTime createTime;
+
+    // 3. 新增：保存前自动设置时间
+    @PrePersist
+    public void prePersist() {
+        if (this.createTime == null) {
+            this.createTime = LocalDateTime.now();
+        }
+    }
 }

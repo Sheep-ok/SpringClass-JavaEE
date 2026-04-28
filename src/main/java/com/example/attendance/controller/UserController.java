@@ -27,6 +27,7 @@ public class UserController {
      * 方式：POST
      * 输入：username, userpassword, realName, userrole
      */
+
     @PostMapping("/add")
     public Result<String> addUser(@RequestBody User user) {
         userService.addUser(user);
@@ -38,6 +39,7 @@ public class UserController {
      * 方式：GET
      * 输入示例：/user/1
      */
+
     @GetMapping("/{id}")
     public Result<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
@@ -49,6 +51,7 @@ public class UserController {
      * 请求方式：GET
      * 输入示例：/user/username/admin
      */
+
     @GetMapping("/username/{username}")
     public Result<User> getUserByUsername(@PathVariable String username) {
         User user = userService.getUserByUsername(username);
@@ -60,6 +63,7 @@ public class UserController {
      * 请求方式：GET
      * 无输入
      */
+
     @GetMapping("/list")
     public Result<List<User>> getAllUsers() {
         List<User> list = userService.getAllUsers();
@@ -71,6 +75,7 @@ public class UserController {
      * 请求方式：PUT
      * 输入：id, userpassword, realName, userrole
      */
+
     @PutMapping("/update")
     public Result<String> updateUser(@RequestBody User user) {
         userService.updateUser(user);
@@ -82,9 +87,11 @@ public class UserController {
      * 方式：DELETE
      * 输入示例：/user/1
      */
+
     @DeleteMapping("/{id}")
     public Result<String> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return Result.success("用户删除成功！");
     }
+
 }

@@ -19,4 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // 4. 统计某角色用户数量
     long countByUserrole(String userrole);
+
+    boolean existsByUsername(String username);
 }

@@ -1,28 +1,13 @@
 package com.example.attendance.service;
 
 import com.example.attendance.entity.Attendance;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface AttendanceService {
+    Page<Attendance> getAttendancePage(Pageable pageable);
+    Page<Attendance> getAttendancePageByStudentId(String studentId, Pageable pageable);
+    // AttendanceService 接口
+    Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, Pageable pageable);
 
-    // 新增考勤
-    String addAttendance(Attendance attendance);
-
-    // 根据ID查询考勤
-    Attendance getAttendanceById(Long id);
-
-    // 根据学号查询考勤
-    List<Attendance> getByStudentId(String studentId);
-
-    // 根据课程ID查询考勤
-    List<Attendance> getByCourseId(String courseId);
-
-    // 查询所有考勤
-    List<Attendance> getAllAttendance();
-
-    // 更新考勤
-    String updateAttendance(Attendance attendance);
-
-    // 删除考勤
-    String deleteAttendance(Long id);
 }
