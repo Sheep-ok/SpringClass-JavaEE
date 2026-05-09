@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 考勤管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .register-header h1 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .register-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .form-group .hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        .form-options {
+            margin-bottom: 25px;
+        }
+
+        .form-options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .form-options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            accent-color: #667eea;
+        }
+
+        .form-options a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .form-options a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .login-link p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert.error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .alert.success {
+            background-color: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-strength .bar {
+            flex: 1;
+            height: 4px;
+            background: #eee;
+            border-radius: 2px;
+            margin-right: 8px;
+            overflow: hidden;
+        }
+
+        .password-strength .bar div {
+            height: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .password-strength .text {
+            font-size: 12px;
+            color: #888;
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="alert" id="alert"></div>
+        
+        <div class="register-header">
+            <h1>考勤管理系统</h1>
+            <p>创建您的账号</p>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" placeholder="请输入用户名（3-20个字符）" required>
+                <div class="hint">用户名长度3-20个字符，支持字母、数字和下划线</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" placeholder="请输入密码（6-20个字符）" required>
+                <div class="password-strength">
+                    <div class="bar"><div id="strengthBar"></div></div>
+                    <span class="text" id="strengthText">弱</span>
+                </div>
+                <div class="hint">密码长度6-20个字符，建议包含字母和数字</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">确认密码</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" required>
+            </div>
+
+            <div class="form-group">
+                <label for="realName">真实姓名</label>
+                <input type="text" id="realName" name="realName" placeholder="请输入真实姓名" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">角色</label>
+                <select id="role" name="role" required>
+                    <option value="">请选择角色</option>
+                    <option value="STUDENT">学生</option>
+                    <option value="TEACHER">教师</option>
+                    <option value="ADMIN">管理员</option>
+                </select>
+            </div>
+
+            <div class="form-options">
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    我已阅读并同意<a href="#" target="_blank">《用户服务协议》</a>和<a href="#" target="_blank">《隐私政策》</a>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="registerBtn">
+                <span class="loading" id="loading" style="display: none;"></span>
+                注 册
+            </button>
+        </form>
+
+        <div class="login-link">
+            <p>已有账号？ <a href="/">立即登录</a></p>
+        </div>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const alertDiv = document.getElementById('alert');
+        const registerBtn = document.getElementById('registerBtn');
+        const loading = document.getElementById('loading');
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+
+        function showAlert(message, type) {
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function checkPasswordStrength(password) {
+            let score = 0;
+            if (password.length >= 6) score++;
+            if (password.length >= 10) score++;
+            if (/[a-z]/.test(password)) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/[0-9]/.test(password)) score++;
+            if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+            const texts = ['弱', '较弱', '中等', '较强', '强', '非常强'];
+            const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#10b981', '#06b6d4'];
+            
+            const index = Math.min(score, 5);
+            strengthBar.style.width = `${(index + 1) * 20}%`;
+            strengthBar.style.backgroundColor = colors[index];
+            strengthText.textContent = texts[index];
+            strengthText.style.color = colors[index];
+        }
+
+        passwordInput.addEventListener('input', (e) => {
+            checkPasswordStrength(e.target.value);
+        });
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+            const realName = document.getElementById('realName').value.trim();
+            const role = document.getElementById('role').value;
+
+            if (!username) {
+                showAlert('请输入用户名', 'error');
+                return;
+            }
+
+            if (username.length < 3 || username.length > 20) {
+                showAlert('用户名长度必须在3-20个字符之间', 'error');
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                showAlert('用户名只能包含字母、数字和下划线', 'error');
+                return;
+            }
+
+            if (!password) {
+                showAlert('请输入密码', 'error');
+                return;
+            }
+
+            if (password.length < 6 || password.length > 20) {
+                showAlert('密码长度必须在6-20个字符之间', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('两次输入的密码不一致', 'error');
+                return;
+            }
+
+            if (!realName) {
+                showAlert('请输入真实姓名', 'error');
+                return;
+            }
+
+            if (!role) {
+                showAlert('请选择角色', 'error');
+                return;
+            }
+
+            registerBtn.disabled = true;
+            loading.style.display = 'inline-block';
+            registerBtn.textContent = '注册中...';
+
+            try {
+                const response = await fetch('/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        userpassword: password,
+                        realName: realName,
+                        userrole: role
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    showAlert(result.data, 'success');
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1500);
+                } else {
+                    showAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showAlert('注册失败，请稍后重试', 'error');
+            } finally {
+                registerBtn.disabled = false;
+                loading.style.display = 'none';
+                registerBtn.textContent = '注 册';
+            }
+        });
+    </script>
+</body>
+</html>

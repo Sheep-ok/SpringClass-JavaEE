@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考勤管理系统 - 首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header .role-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .header .username {
+            font-size: 16px;
+        }
+
+        .header .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .header .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .welcome-section h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-card .icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .stat-card .icon.users {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .stat-card .icon.attendance {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .stat-card .icon.absent {
+            background: #fef3c7;
+            color: #f59e0b;
+        }
+
+        .stat-card .icon.percentage {
+            background: #fce7f3;
+            color: #db2777;
+        }
+
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .section-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-card-header h3 {
+            color: #333;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .section-card-header .action-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .section-card-header .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .course-table th,
+        .course-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-table th {
+            background: #f8f9fa;
+            color: #666;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .course-table td {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .course-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-badge.active {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-badge.inactive {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .rate-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .rate-bar .fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-btn .icon {
+            font-size: 24px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header h3 {
+            color: #333;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .modal-header .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-header .close-btn:hover {
+            color: #333;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #667eea;
+        }
+
+        .course-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+        }
+
+        .course-item .info h4 {
+            color: #333;
+            margin: 0 0 5px 0;
+        }
+
+        .course-item .info p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .course-item .select-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .course-item .select-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .course-item .selected-badge {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert.error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .alert.success {
+            background-color: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .course-table {
+                font-size: 12px;
+            }
+
+            .course-table th,
+            .course-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>考勤管理系统</h1>
+        <div class="user-info">
+            <span class="role-badge" id="roleBadge">角色</span>
+            <span class="username" id="username">欢迎回来</span>
+            <button class="logout-btn" id="logoutBtn">退出登录</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h2 id="welcomeTitle">欢迎使用考勤管理系统</h2>
+            <p id="welcomeDesc">正在加载...</p>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="icon attendance">✅</div>
+                <div class="value" id="statPresent">-</div>
+                <div class="label">出勤次数</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon absent">❌</div>
+                <div class="value" id="statAbsent">-</div>
+                <div class="label">缺勤次数</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon percentage">📊</div>
+                <div class="value" id="statRate">-</div>
+                <div class="label">出勤率</div>
+            </div>
+        </div>
+
+        <div class="section-card" id="courseSection">
+            <div class="section-card-header">
+                <h3 id="courseSectionTitle">我的课程</h3>
+                <button class="action-btn" id="selectCourseBtn" style="display: none;">
+                    📚 选课
+                </button>
+            </div>
+            <div id="courseList">
+                <div class="loading">正在加载课程信息...</div>
+            </div>
+        </div>
+
+        <div class="section-card" id="attendanceSection" style="display: none;">
+            <h3>考勤统计</h3>
+            <div id="attendanceStats">
+                <div class="loading">正在加载考勤统计...</div>
+            </div>
+        </div>
+
+        <div class="section-card" id="actionSection">
+            <h3>快捷操作</h3>
+            <div class="quick-actions" id="quickActions">
+                <button class="action-btn" onclick="location.reload()">
+                    <span class="icon">🔄</span>
+                    <span>刷新数据</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="selectCourseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>选择课程</h3>
+                <button class="close-btn" id="closeModalBtn">×</button>
+            </div>
+            <div class="alert" id="modalAlert"></div>
+            <div class="search-box">
+                <input type="text" id="searchCourse" placeholder="搜索课程名称...">
+            </div>
+            <div class="course-list" id="availableCourses">
+                <div class="loading">正在加载可选课程...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const roleNames = {
+            'STUDENT': '学生',
+            'TEACHER': '教师',
+            'ADMIN': '管理员'
+        };
+
+        const roleDescs = {
+            'STUDENT': '在这里您可以查看自己的课程表和考勤记录',
+            'TEACHER': '在这里您可以管理自己的课程和查看学生出勤情况',
+            'ADMIN': '在这里您可以管理系统中的所有课程、学生和考勤数据'
+        };
+
+        let currentUserRole = '';
+        let currentUsername = '';
+        let selectedCourseIds = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            currentUsername = localStorage.getItem('username');
+            currentUserRole = userData.userrole;
+
+            if (!currentUsername) {
+                window.location.href = '/';
+                return;
+            }
+
+            document.getElementById('username').textContent = currentUsername;
+            document.getElementById('roleBadge').textContent = roleNames[currentUserRole] || '未知';
+
+            loadData(currentUsername, currentUserRole);
+
+            document.getElementById('selectCourseBtn').addEventListener('click', openSelectCourseModal);
+            document.getElementById('closeModalBtn').addEventListener('click', closeSelectCourseModal);
+            document.getElementById('searchCourse').addEventListener('input', filterCourses);
+
+            document.getElementById('selectCourseModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('selectCourseModal')) {
+                    closeSelectCourseModal();
+                }
+            });
+        });
+
+        async function loadData(username, role) {
+            try {
+                const response = await fetch(`/api/courses?username=${encodeURIComponent(username)}`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    updateUI(result.data);
+                } else {
+                    showError(result.msg);
+                }
+            } catch (error) {
+                showError('加载数据失败，请稍后重试');
+            }
+        }
+
+        function updateUI(data) {
+            const role = data.role;
+
+            document.getElementById('welcomeTitle').textContent = `欢迎，${data.userName || '用户'}`;
+            document.getElementById('welcomeDesc').textContent = roleDescs[role] || '';
+
+            if (data.attendanceStats && data.attendanceStats.length > 0) {
+                const stats = data.attendanceStats[0];
+                document.getElementById('statPresent').textContent = stats.present || 0;
+                document.getElementById('statAbsent').textContent = stats.absent || 0;
+                document.getElementById('statRate').textContent = (stats.rate || '0') + '%';
+            }
+
+            selectedCourseIds = (data.courses || []).map(c => c.courseId);
+
+            let courseSectionTitle = '我的课程';
+            if (role === 'STUDENT') {
+                courseSectionTitle = `我的选课 (${selectedCourseIds.length}门)`;
+                document.getElementById('selectCourseBtn').style.display = 'block';
+            } else if (role === 'TEACHER') {
+                courseSectionTitle = `教师课程表 (${data.teacherName || ''})`;
+            } else if (role === 'ADMIN') {
+                courseSectionTitle = '全部课程';
+            }
+            document.getElementById('courseSectionTitle').textContent = courseSectionTitle;
+
+            renderCourses(data.courses || [], role);
+
+            if (role === 'TEACHER' || role === 'ADMIN') {
+                document.getElementById('attendanceSection').style.display = 'block';
+                renderAttendanceStats(data.attendanceStats || []);
+                renderQuickActions(role);
+            } else {
+                renderQuickActions(role);
+            }
+        }
+
+        function renderCourses(courses, role) {
+            const container = document.getElementById('courseList');
+
+            if (courses.length === 0) {
+                if (role === 'STUDENT') {
+                    container.innerHTML = '<div class="no-data">暂无选课记录，点击上方"选课"按钮选择课程</div>';
+                } else {
+                    container.innerHTML = '<div class="no-data">暂无课程信息</div>';
+                }
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>课程编号</th>
+                            <th>课程名称</th>
+                            <th>${role === 'STUDENT' ? '授课教师' : '班级'}</th>
+                            <th>上课时间</th>
+                            <th>上课地点</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            courses.forEach(course => {
+                const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                const weekDay = course.weekDay ? weekDays[course.weekDay] : '-';
+
+                tableHTML += `
+                    <tr>
+                        <td>${course.courseId || '-'}</td>
+                        <td>${course.courseName || '-'}</td>
+                        <td>${role === 'STUDENT' ? (course.teacherName || '-') : (course.className || '-')}</td>
+                        <td>${weekDay} ${course.timeSlot || '-'}</td>
+                        <td>${course.location || '-'}</td>
+                        <td><span class="status-badge active">已选</span></td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+            container.innerHTML = tableHTML;
+        }
+
+        function renderAttendanceStats(stats) {
+            const container = document.getElementById('attendanceStats');
+
+            if (stats.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无考勤统计</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>课程名称</th>
+                            <th>总考勤次数</th>
+                            <th>出勤人数</th>
+                            <th>缺勤人数</th>
+                            <th>出勤率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            stats.forEach(stat => {
+                const rate = parseFloat(stat.rate || 0);
+
+                tableHTML += `
+                    <tr>
+                        <td>${stat.courseName || '-'}</td>
+                        <td>${stat.total || 0}</td>
+                        <td style="color: #16a34a;">${stat.present || 0}</td>
+                        <td style="color: #dc2626;">${stat.absent || 0}</td>
+                        <td>
+                            ${rate}%
+                            <div class="rate-bar">
+                                <div class="fill" style="width: ${rate}%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+            container.innerHTML = tableHTML;
+        }
+
+        function renderQuickActions(role) {
+            const container = document.getElementById('quickActions');
+
+            let actions = [];
+
+            if (role === 'STUDENT') {
+                actions = [
+                    { icon: '📋', text: '我的考勤', action: 'showAttendance' },
+                    { icon: '📅', text: '考勤日历', action: 'showCalendar' },
+                    { icon: '👤', text: '个人信息', action: 'showProfile' }
+                ];
+            } else if (role === 'TEACHER') {
+                actions = [
+                    { icon: '📝', text: '添加考勤', action: 'addAttendance' },
+                    { icon: '📋', text: '考勤记录', action: 'showAttendance' },
+                    { icon: '👥', text: '学生管理', action: 'manageStudents' },
+                    { icon: '📊', text: '统计报表', action: 'showReports' }
+                ];
+            } else if (role === 'ADMIN') {
+                actions = [
+                    { icon: '👥', text: '用户管理', action: 'manageUsers' },
+                    { icon: '📚', text: '课程管理', action: 'manageCourses' },
+                    { icon: '📝', text: '考勤管理', action: 'manageAttendance' },
+                    { icon: '📊', text: '数据统计', action: 'showReports' },
+                    { icon: '⚙️', text: '系统设置', action: 'showSettings' }
+                ];
+            }
+
+            container.innerHTML = actions.map(action => `
+                <button class="action-btn" onclick="${action.action}()">
+                    <span class="icon">${action.icon}</span>
+                    <span>${action.text}</span>
+                </button>
+            `).join('');
+        }
+
+        function showError(message) {
+            document.getElementById('welcomeDesc').textContent = message;
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('username');
+            localStorage.removeItem('userData');
+            window.location.href = '/';
+        });
+
+        function openSelectCourseModal() {
+            document.getElementById('selectCourseModal').classList.add('show');
+            loadAvailableCourses();
+        }
+
+        function closeSelectCourseModal() {
+            document.getElementById('selectCourseModal').classList.remove('show');
+            document.getElementById('searchCourse').value = '';
+            document.getElementById('modalAlert').style.display = 'none';
+        }
+
+        async function loadAvailableCourses() {
+            try {
+                const response = await fetch('/api/courses/all');
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderAvailableCourses(result.data);
+                } else {
+                    document.getElementById('availableCourses').innerHTML = '<div class="no-data">加载课程失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('availableCourses').innerHTML = '<div class="no-data">加载课程失败</div>';
+            }
+        }
+
+        function renderAvailableCourses(courses) {
+            const container = document.getElementById('availableCourses');
+
+            if (courses.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无可选课程</div>';
+                return;
+            }
+
+            container.innerHTML = courses.map(course => {
+                const isSelected = selectedCourseIds.includes(course.courseId);
+                const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                const weekDay = course.weekDay ? weekDays[course.weekDay] : '-';
+
+                return `
+                    <div class="course-item">
+                        <div class="info">
+                            <h4>${course.courseName}</h4>
+                            <p>${course.courseId} | ${course.teacherName || '未知教师'} | ${weekDay} ${course.timeSlot || ''} | ${course.location || ''}</p>
+                        </div>
+                        ${isSelected ? 
+                            '<span class="selected-badge">✓ 已选</span>' : 
+                            `<button class="select-btn" onclick="selectCourse('${course.courseId}', '${course.courseName}', '${course.className || ''}')">选课</button>`
+                        }
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterCourses() {
+            const searchText = document.getElementById('searchCourse').value.toLowerCase();
+            const courseItems = document.querySelectorAll('.course-item');
+
+            courseItems.forEach(item => {
+                const courseName = item.querySelector('h4').textContent.toLowerCase();
+                const courseInfo = item.querySelector('p').textContent.toLowerCase();
+                
+                if (courseName.includes(searchText) || courseInfo.includes(searchText)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        async function selectCourse(courseId, courseName, className) {
+            const modalAlert = document.getElementById('modalAlert');
+
+            try {
+                const response = await fetch('/api/course-selection', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentId: currentUsername,
+                        studentName: currentUsername,
+                        courseId: courseId,
+                        courseName: courseName,
+                        className: className,
+                        status: 1
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    modalAlert.textContent = result.data;
+                    modalAlert.className = 'alert success';
+                    modalAlert.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        modalAlert.style.display = 'none';
+                        closeSelectCourseModal();
+                        loadData(currentUsername, currentUserRole);
+                    }, 1500);
+                } else {
+                    modalAlert.textContent = result.msg;
+                    modalAlert.className = 'alert error';
+                    modalAlert.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        modalAlert.style.display = 'none';
+                    }, 3000);
+                }
+            } catch (error) {
+                modalAlert.textContent = '选课失败，请稍后重试';
+                modalAlert.className = 'alert error';
+                modalAlert.style.display = 'block';
+                
+                setTimeout(() => {
+                    modalAlert.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        function showAttendance() {
+            alert('考勤记录功能开发中');
+        }
+
+        function showCalendar() {
+            alert('考勤日历功能开发中');
+        }
+
+        function showProfile() {
+            alert('个人信息功能开发中');
+        }
+
+        function addAttendance() {
+            alert('添加考勤功能开发中');
+        }
+
+        function manageStudents() {
+            alert('学生管理功能开发中');
+        }
+
+        function showReports() {
+            alert('统计报表功能开发中');
+        }
+
+        function manageUsers() {
+            alert('用户管理功能开发中');
+        }
+
+        function manageCourses() {
+            alert('课程管理功能开发中');
+        }
+
+        function manageAttendance() {
+            alert('考勤管理功能开发中');
+        }
+
+        function showSettings() {
+            alert('系统设置功能开发中');
+        }
+    </script>
+</body>
+</html>
