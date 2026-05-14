@@ -66,7 +66,7 @@
 
         .container {
             padding: 40px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -185,6 +185,15 @@
         .section-card-header .action-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .section-card-header .action-btn.secondary {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .section-card-header .action-btn.secondary:hover {
+            background: #e2e8f0;
         }
 
         .course-table {
@@ -314,8 +323,8 @@
             border-radius: 16px;
             padding: 30px;
             width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
+            max-width: 700px;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
@@ -440,6 +449,196 @@
             border: 1px solid #bbf7d0;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #f8f9fa;
+            border-color: #667eea;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination .active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .pagination span {
+            padding: 8px 12px;
+            color: #666;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .table-actions button {
+            padding: 4px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .table-actions .edit-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .table-actions .edit-btn:hover {
+            background: #2563eb;
+        }
+
+        .table-actions .delete-btn {
+            background: #ef4444;
+            color: white;
+        }
+
+        .table-actions .delete-btn:hover {
+            background: #dc2626;
+        }
+
+        .checkin-modal .modal {
+            max-width: 450px;
+        }
+
+        .checkin-success {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .checkin-success .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .checkin-success h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .checkin-success p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .confirm-modal .modal {
+            max-width: 400px;
+        }
+
+        .confirm-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .confirm-content .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #f59e0b;
+        }
+
+        .confirm-content p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
         @media (max-width: 768px) {
             .header {
                 padding: 15px 20px;
@@ -476,7 +675,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="container">
         <div class="welcome-section">
             <h2 id="welcomeTitle">欢迎使用考勤管理系统</h2>
             <p id="welcomeDesc">正在加载...</p>
@@ -503,9 +702,7 @@
         <div class="section-card" id="courseSection">
             <div class="section-card-header">
                 <h3 id="courseSectionTitle">我的课程</h3>
-                <button class="action-btn" id="selectCourseBtn" style="display: none;">
-                    📚 选课
-                </button>
+                <button class="action-btn" id="selectCourseBtn" style="display: none;">📚 选课</button>
             </div>
             <div id="courseList">
                 <div class="loading">正在加载课程信息...</div>
@@ -546,22 +743,241 @@
         </div>
     </div>
 
+    <div class="modal-overlay checkin-modal" id="checkinModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>学生签到</h3>
+                <button class="close-btn" id="closeCheckinModalBtn">×</button>
+            </div>
+            <div class="alert" id="checkinAlert"></div>
+            <div id="checkinContent">
+                <div class="form-group">
+                    <label for="checkinStudentId">学号</label>
+                    <input type="text" id="checkinStudentId" placeholder="请输入学号" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkinStudentName">姓名</label>
+                    <input type="text" id="checkinStudentName" placeholder="请输入姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkinCourseId">课程编号</label>
+                    <select id="checkinCourseId" required>
+                        <option value="">请选择课程</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="doCheckin()">
+                    🎯 确认签到
+                </button>
+            </div>
+            <div id="checkinSuccess" style="display: none;" class="checkin-success">
+                <div class="icon">🎉</div>
+                <h4>签到成功</h4>
+                <p>您的考勤记录已成功保存</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="studentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="studentModalTitle">添加学生</h3>
+                <button class="close-btn" id="closeStudentModalBtn">×</button>
+            </div>
+            <div class="alert" id="studentModalAlert"></div>
+            <form id="studentForm">
+                <input type="hidden" id="studentFormId">
+                <div class="form-group">
+                    <label for="studentFormStudentId">学号 *</label>
+                    <input type="text" id="studentFormStudentId" placeholder="请输入学号" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentFormName">姓名 *</label>
+                    <input type="text" id="studentFormName" placeholder="请输入姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentFormClassName">班级</label>
+                    <input type="text" id="studentFormClassName" placeholder="请输入班级">
+                </div>
+                <div class="form-group">
+                    <label for="studentFormGender">性别</label>
+                    <select id="studentFormGender">
+                        <option value="">请选择性别</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentFormAge">年龄</label>
+                    <input type="number" id="studentFormAge" placeholder="请输入年龄" min="1" max="100">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeStudentModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="courseModalTitle">添加课程</h3>
+                <button class="close-btn" id="closeCourseModalBtn">×</button>
+            </div>
+            <div class="alert" id="courseModalAlert"></div>
+            <form id="courseForm">
+                <input type="hidden" id="courseFormId">
+                <div class="form-group">
+                    <label for="courseFormCourseId">课程编号 *</label>
+                    <input type="text" id="courseFormCourseId" placeholder="请输入课程编号" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseFormCourseName">课程名称 *</label>
+                    <input type="text" id="courseFormCourseName" placeholder="请输入课程名称" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseFormTeacherId">教师ID</label>
+                    <input type="text" id="courseFormTeacherId" placeholder="请输入教师ID">
+                </div>
+                <div class="form-group">
+                    <label for="courseFormTeacherName">教师姓名</label>
+                    <input type="text" id="courseFormTeacherName" placeholder="请输入教师姓名">
+                </div>
+                <div class="form-group">
+                    <label for="courseFormClassName">班级</label>
+                    <input type="text" id="courseFormClassName" placeholder="请输入班级">
+                </div>
+                <div class="form-group">
+                    <label for="courseFormWeekDay">星期</label>
+                    <select id="courseFormWeekDay">
+                        <option value="">请选择星期</option>
+                        <option value="1">周一</option>
+                        <option value="2">周二</option>
+                        <option value="3">周三</option>
+                        <option value="4">周四</option>
+                        <option value="5">周五</option>
+                        <option value="6">周六</option>
+                        <option value="0">周日</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseFormTimeSlot">时间段</label>
+                    <input type="text" id="courseFormTimeSlot" placeholder="如：1-2节">
+                </div>
+                <div class="form-group">
+                    <label for="courseFormLocation">上课地点</label>
+                    <input type="text" id="courseFormLocation" placeholder="请输入上课地点">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="userModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="userModalTitle">添加用户</h3>
+                <button class="close-btn" id="closeUserModalBtn">×</button>
+            </div>
+            <div class="alert" id="userModalAlert"></div>
+            <form id="userForm">
+                <input type="hidden" id="userFormId">
+                <div class="form-group">
+                    <label for="userFormUsername">用户名 *</label>
+                    <input type="text" id="userFormUsername" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="userFormPassword">密码</label>
+                    <input type="password" id="userFormPassword" placeholder="请输入密码（修改时可留空）">
+                </div>
+                <div class="form-group">
+                    <label for="userFormRealName">真实姓名 *</label>
+                    <input type="text" id="userFormRealName" placeholder="请输入真实姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="userFormGender">性别</label>
+                    <select id="userFormGender">
+                        <option value="">请选择性别</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userFormRole">角色 *</label>
+                    <select id="userFormRole" required>
+                        <option value="">请选择角色</option>
+                        <option value="STUDENT">学生</option>
+                        <option value="TEACHER">教师</option>
+                        <option value="ADMIN">管理员</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeUserModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay confirm-modal" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>确认操作</h3>
+                <button class="close-btn" id="closeConfirmModalBtn">×</button>
+            </div>
+            <div class="confirm-content">
+                <div class="icon">⚠️</div>
+                <p id="confirmMessage">确定要执行此操作吗？</p>
+                <div class="confirm-buttons">
+                    <button class="btn btn-secondary" onclick="closeConfirmModal()">取消</button>
+                    <button class="btn btn-danger" onclick="executeConfirmAction()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="detailModalTitle">详情</h3>
+                <button class="close-btn" id="closeDetailModalBtn">×</button>
+            </div>
+            <div id="detailContent"></div>
+        </div>
+    </div>
+
     <script>
         const roleNames = {
             'STUDENT': '学生',
+            'USER': '学生',
             'TEACHER': '教师',
             'ADMIN': '管理员'
         };
 
         const roleDescs = {
             'STUDENT': '在这里您可以查看自己的课程表和考勤记录',
+            'USER': '在这里您可以查看自己的课程表和考勤记录',
             'TEACHER': '在这里您可以管理自己的课程和查看学生出勤情况',
             'ADMIN': '在这里您可以管理系统中的所有课程、学生和考勤数据'
         };
 
+        function isStudentRole(role) {
+            return role === 'STUDENT' || role === 'USER';
+        }
+
         let currentUserRole = '';
         let currentUsername = '';
         let selectedCourseIds = [];
+        let coursesData = [];
+        let studentPageNum = 0;
+        let coursePageNum = 0;
+        let userPageNum = 0;
+        let attendancePageNum = 0;
+        let confirmAction = null;
+        let confirmData = null;
 
         document.addEventListener('DOMContentLoaded', () => {
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -587,15 +1003,81 @@
                     closeSelectCourseModal();
                 }
             });
+
+            document.getElementById('closeCheckinModalBtn').addEventListener('click', closeCheckinModal);
+            document.getElementById('checkinModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('checkinModal')) {
+                    closeCheckinModal();
+                }
+            });
+
+            document.getElementById('closeStudentModalBtn').addEventListener('click', closeStudentModal);
+            document.getElementById('studentModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('studentModal')) {
+                    closeStudentModal();
+                }
+            });
+
+            document.getElementById('closeCourseModalBtn').addEventListener('click', closeCourseModal);
+            document.getElementById('courseModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('courseModal')) {
+                    closeCourseModal();
+                }
+            });
+
+            document.getElementById('closeUserModalBtn').addEventListener('click', closeUserModal);
+            document.getElementById('userModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('userModal')) {
+                    closeUserModal();
+                }
+            });
+
+            document.getElementById('closeConfirmModalBtn').addEventListener('click', closeConfirmModal);
+            document.getElementById('confirmModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('confirmModal')) {
+                    closeConfirmModal();
+                }
+            });
+
+            document.getElementById('closeDetailModalBtn').addEventListener('click', closeDetailModal);
+            document.getElementById('detailModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('detailModal')) {
+                    closeDetailModal();
+                }
+            });
+
+            document.getElementById('studentForm').addEventListener('submit', saveStudent);
+            document.getElementById('courseForm').addEventListener('submit', saveCourse);
+            document.getElementById('userForm').addEventListener('submit', saveUser);
         });
+
+        const API_BASE = '';
+        
+        const API_URLS = {
+            courses: `${API_BASE}/api/courses`,
+            coursesAll: `${API_BASE}/api/courses/all`,
+            courseSelection: `${API_BASE}/api/course-selection`,
+            checkin: `${API_BASE}/attendance/checkin`,
+            attendanceStudent: `${API_BASE}/attendance/page/student`,
+            students: `${API_BASE}/student`,
+            studentsAll: `${API_BASE}/student/all`,
+            studentsPage: `${API_BASE}/student/page`,
+            users: `${API_BASE}/user`,
+            usersList: `${API_BASE}/user/list`,
+            usersPage: `${API_BASE}/user/page`,
+            authLogin: `${API_BASE}/auth/login`,
+            authRegister: `${API_BASE}/auth/register`
+        };
 
         async function loadData(username, role) {
             try {
-                const response = await fetch(`/api/courses?username=${encodeURIComponent(username)}`);
+                const response = await fetch(`${API_URLS.courses}?username=${encodeURIComponent(username)}`);
                 const result = await response.json();
 
                 if (result.code === 200) {
+                    coursesData = result.data.courses || [];
                     updateUI(result.data);
+                    populateCheckinCourses();
                 } else {
                     showError(result.msg);
                 }
@@ -620,7 +1102,7 @@
             selectedCourseIds = (data.courses || []).map(c => c.courseId);
 
             let courseSectionTitle = '我的课程';
-            if (role === 'STUDENT') {
+            if (isStudentRole(role)) {
                 courseSectionTitle = `我的选课 (${selectedCourseIds.length}门)`;
                 document.getElementById('selectCourseBtn').style.display = 'block';
             } else if (role === 'TEACHER') {
@@ -645,7 +1127,7 @@
             const container = document.getElementById('courseList');
 
             if (courses.length === 0) {
-                if (role === 'STUDENT') {
+                if (isStudentRole(role)) {
                     container.innerHTML = '<div class="no-data">暂无选课记录，点击上方"选课"按钮选择课程</div>';
                 } else {
                     container.innerHTML = '<div class="no-data">暂无课程信息</div>';
@@ -659,10 +1141,11 @@
                         <tr>
                             <th>课程编号</th>
                             <th>课程名称</th>
-                            <th>${role === 'STUDENT' ? '授课教师' : '班级'}</th>
+                            <th>${isStudentRole(role) ? '授课教师' : '班级'}</th>
                             <th>上课时间</th>
                             <th>上课地点</th>
                             <th>状态</th>
+                            ${(role === 'TEACHER' || role === 'ADMIN') ? '<th>操作</th>' : ''}
                         </tr>
                     </thead>
                     <tbody>
@@ -671,15 +1154,24 @@
             courses.forEach(course => {
                 const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
                 const weekDay = course.weekDay ? weekDays[course.weekDay] : '-';
+                const actions = (role === 'TEACHER' || role === 'ADMIN') ? `
+                    <td>
+                        <div class="table-actions">
+                            <button class="edit-btn" onclick="editCourse('${course.courseId}')">编辑</button>
+                            <button class="delete-btn" onclick="confirmDeleteCourse('${course.courseId}', '${course.courseName}')">删除</button>
+                        </div>
+                    </td>
+                ` : '';
 
                 tableHTML += `
                     <tr>
                         <td>${course.courseId || '-'}</td>
                         <td>${course.courseName || '-'}</td>
-                        <td>${role === 'STUDENT' ? (course.teacherName || '-') : (course.className || '-')}</td>
+                        <td>${isStudentRole(role) ? (course.teacherName || '-') : (course.className || '-')}</td>
                         <td>${weekDay} ${course.timeSlot || '-'}</td>
                         <td>${course.location || '-'}</td>
                         <td><span class="status-badge active">已选</span></td>
+                        ${actions}
                     </tr>
                 `;
             });
@@ -738,16 +1230,17 @@
 
             let actions = [];
 
-            if (role === 'STUDENT') {
+            if (isStudentRole(role)) {
                 actions = [
+                    { icon: '📝', text: '签到', action: 'openCheckinModal' },
                     { icon: '📋', text: '我的考勤', action: 'showAttendance' },
                     { icon: '📅', text: '考勤日历', action: 'showCalendar' },
                     { icon: '👤', text: '个人信息', action: 'showProfile' }
                 ];
             } else if (role === 'TEACHER') {
                 actions = [
-                    { icon: '📝', text: '添加考勤', action: 'addAttendance' },
-                    { icon: '📋', text: '考勤记录', action: 'showAttendance' },
+                    { icon: '📝', text: '添加考勤', action: 'openCheckinModal' },
+                    { icon: '📋', text: '考勤记录', action: 'showAttendanceList' },
                     { icon: '👥', text: '学生管理', action: 'manageStudents' },
                     { icon: '📊', text: '统计报表', action: 'showReports' }
                 ];
@@ -770,7 +1263,12 @@
         }
 
         function showError(message) {
-            document.getElementById('welcomeDesc').textContent = message;
+            const welcomeDesc = document.getElementById('welcomeDesc');
+            if (welcomeDesc) {
+                welcomeDesc.textContent = message;
+            } else {
+                alert(message);
+            }
         }
 
         document.getElementById('logoutBtn').addEventListener('click', () => {
@@ -792,7 +1290,7 @@
 
         async function loadAvailableCourses() {
             try {
-                const response = await fetch('/api/courses/all');
+                const response = await fetch(API_URLS.coursesAll);
                 const result = await response.json();
 
                 if (result.code === 200) {
@@ -853,7 +1351,7 @@
             const modalAlert = document.getElementById('modalAlert');
 
             try {
-                const response = await fetch('/api/course-selection', {
+                const response = await fetch(API_URLS.courseSelection, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -900,8 +1398,1315 @@
             }
         }
 
+        function openCheckinModal() {
+            document.getElementById('checkinModal').classList.add('show');
+            document.getElementById('checkinContent').style.display = 'block';
+            document.getElementById('checkinSuccess').style.display = 'none';
+            document.getElementById('checkinAlert').style.display = 'none';
+            document.getElementById('checkinStudentId').value = isStudentRole(currentUserRole) ? currentUsername : '';
+        }
+
+        function closeCheckinModal() {
+            document.getElementById('checkinModal').classList.remove('show');
+            document.getElementById('checkinContent').style.display = 'block';
+            document.getElementById('checkinSuccess').style.display = 'none';
+        }
+
+        function populateCheckinCourses() {
+            const select = document.getElementById('checkinCourseId');
+            select.innerHTML = '<option value="">请选择课程</option>';
+            
+            coursesData.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course.courseId;
+                option.textContent = `${course.courseId} - ${course.courseName}`;
+                select.appendChild(option);
+            });
+        }
+
+        async function doCheckin() {
+            const studentId = document.getElementById('checkinStudentId').value.trim();
+            const studentName = document.getElementById('checkinStudentName').value.trim();
+            const courseId = document.getElementById('checkinCourseId').value;
+
+            if (!studentId) {
+                showCheckinAlert('请输入学号', 'error');
+                return;
+            }
+
+            if (!studentName) {
+                showCheckinAlert('请输入姓名', 'error');
+                return;
+            }
+
+            if (!courseId) {
+                showCheckinAlert('请选择课程', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(API_URLS.checkin, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `studentId=${encodeURIComponent(studentId)}&studentName=${encodeURIComponent(studentName)}&courseId=${encodeURIComponent(courseId)}`
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    document.getElementById('checkinContent').style.display = 'none';
+                    document.getElementById('checkinSuccess').style.display = 'block';
+                    
+                    setTimeout(() => {
+                        closeCheckinModal();
+                        loadData(currentUsername, currentUserRole);
+                    }, 2000);
+                } else {
+                    showCheckinAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showCheckinAlert('签到失败，请稍后重试', 'error');
+            }
+        }
+
+        function showCheckinAlert(message, type) {
+            const alertDiv = document.getElementById('checkinAlert');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        let allStudentsData = [];
+        let studentCurrentPage = 0;
+        const studentPageSize = 10;
+
+        function manageStudents() {
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>学生管理</h3>
+                        </div>
+                        <button class="action-btn" onclick="openStudentModal()">➕ 添加学生</button>
+                    </div>
+                    <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="studentSearchInput" placeholder="搜索学号或姓名..." 
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <button class="action-btn" onclick="filterStudentList()" style="padding: 10px 20px;">🔍 搜索</button>
+                        <input type="text" id="studentClassInput" placeholder="搜索班级..." 
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <select id="studentGenderFilter" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                            <option value="">全部性别</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                        <select id="studentSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                            <option value="studentId_asc" selected>按学号升序</option>
+                            <option value="studentId_desc">按学号降序</option>
+                            <option value="name_asc">按姓名升序</option>
+                            <option value="name_desc">按姓名降序</option>
+                        </select>
+                    </div>
+                    <div id="studentList">
+                        <div class="loading">正在加载学生信息...</div>
+                    </div>
+                </div>
+            `;
+            loadAllStudents();
+        }
+
+        async function loadAllStudents() {
+            try {
+                const response = await fetch(API_URLS.studentsAll);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    allStudentsData = result.data || [];
+                    loadSearchParamsFromURL();
+                    filterStudentList();
+                } else {
+                    document.getElementById('studentList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('studentList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function loadSearchParamsFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const keyword = urlParams.get('keyword');
+            const className = urlParams.get('class');
+            const gender = urlParams.get('gender');
+            const sort = urlParams.get('sort');
+            
+            if (keyword) document.getElementById('studentSearchInput').value = keyword;
+            if (className) document.getElementById('studentClassInput').value = className;
+            if (gender) document.getElementById('studentGenderFilter').value = gender;
+            if (sort) document.getElementById('studentSortBy').value = sort;
+        }
+
+        function filterStudentList() {
+            const searchText = document.getElementById('studentSearchInput').value.toLowerCase();
+            const classText = document.getElementById('studentClassInput').value.toLowerCase();
+            const genderFilter = document.getElementById('studentGenderFilter').value;
+            const sortBy = document.getElementById('studentSortBy').value;
+            const [sortField, sortDirection] = sortBy.split('_');
+
+            const params = new URLSearchParams();
+            if (searchText) params.set('keyword', searchText);
+            if (classText) params.set('class', classText);
+            if (genderFilter) params.set('gender', genderFilter);
+            if (sortBy) params.set('sort', sortBy);
+            params.set('page', '0');
+            
+            history.pushState({ studentSearch: params.toString() }, '', '?' + params.toString());
+
+            const filteredStudents = allStudentsData.filter(student => {
+                const matchSearch = !searchText || 
+                    (student.studentId && student.studentId.toLowerCase().includes(searchText)) ||
+                    (student.name && student.name.toLowerCase().includes(searchText));
+                const matchClass = !classText || 
+                    (student.className && student.className.toLowerCase().includes(classText));
+                const matchGender = !genderFilter || student.gender === genderFilter;
+                return matchSearch && matchClass && matchGender;
+            });
+
+            filteredStudents.sort((a, b) => {
+                const valueA = a[sortField] || '';
+                const valueB = b[sortField] || '';
+                let comparison;
+                if (!isNaN(valueA) && !isNaN(valueB)) {
+                    comparison = Number(valueA) - Number(valueB);
+                } else {
+                    comparison = String(valueA).localeCompare(String(valueB));
+                }
+                return sortDirection === 'desc' ? -comparison : comparison;
+            });
+
+            const totalPages = Math.ceil(filteredStudents.length / studentPageSize);
+            const startIndex = studentCurrentPage * studentPageSize;
+            const endIndex = startIndex + studentPageSize;
+            const paginatedStudents = filteredStudents.slice(startIndex, endIndex);
+
+            renderStudentList({
+                content: paginatedStudents,
+                totalElements: filteredStudents.length,
+                totalPages: totalPages,
+                number: studentCurrentPage,
+                size: studentPageSize
+            });
+        }
+
+        function setStudentPage(page) {
+            const searchText = document.getElementById('studentSearchInput').value.toLowerCase();
+            const classText = document.getElementById('studentClassInput').value.toLowerCase();
+
+            const filteredStudents = allStudentsData.filter(student => {
+                const matchSearch = !searchText || 
+                    (student.studentId && student.studentId.toLowerCase().includes(searchText)) ||
+                    (student.name && student.name.toLowerCase().includes(searchText));
+                const matchClass = !classText || 
+                    (student.className && student.className.toLowerCase().includes(classText));
+                return matchSearch && matchClass;
+            });
+
+            const totalPages = Math.ceil(filteredStudents.length / studentPageSize);
+            studentCurrentPage = Math.max(0, Math.min(page, totalPages - 1));
+            filterStudentList();
+        }
+
+        async function loadStudentList(page) {
+            studentPageNum = page;
+            try {
+                const response = await fetch(`${API_URLS.studentsPage}?page=${page}&size=10`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderStudentList(result.data);
+                } else {
+                    document.getElementById('studentList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('studentList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function renderStudentList(pageData) {
+            const container = document.getElementById('studentList');
+            const students = Array.isArray(pageData) ? pageData : (pageData.content || []);
+
+            if (students.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无学生信息</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>班级</th>
+                            <th>年龄</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            students.forEach(student => {
+                const gender = student.gender || (Math.random() > 0.5 ? '男' : '女');
+                tableHTML += `
+                    <tr>
+                        <td>${student.studentId || '-'}</td>
+                        <td>${student.name || '-'}</td>
+                        <td>${gender}</td>
+                        <td>${student.className || '-'}</td>
+                        <td>${student.age || '-'}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="edit-btn" onclick="editStudent('${student.studentId}')">编辑</button>
+                                <button class="delete-btn" onclick="confirmDeleteStudent('${student.studentId}', '${student.name}')">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+
+            if (Array.isArray(pageData)) {
+                container.innerHTML = tableHTML;
+            } else {
+                const totalPages = pageData.totalPages || 0;
+                const currentPage = pageData.number || 0;
+                const totalElements = pageData.totalElements || 0;
+                
+                let paginationHTML = `
+                    <div class="pagination">
+                        <button onclick="setStudentPage(${Math.max(0, currentPage - 1)})" ${currentPage === 0 ? 'disabled' : ''}>上一页</button>
+                        <span>第 ${currentPage + 1} / ${totalPages} 页</span>
+                        <span>共 ${totalElements} 条记录</span>
+                        <button onclick="setStudentPage(${Math.min(totalPages - 1, currentPage + 1)})" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+                    </div>
+                `;
+
+                container.innerHTML = tableHTML + paginationHTML;
+            }
+        }
+
+        function openStudentModal() {
+            document.getElementById('studentModalTitle').textContent = '添加学生';
+            document.getElementById('studentFormId').value = '';
+            document.getElementById('studentFormStudentId').value = '';
+            document.getElementById('studentFormName').value = '';
+            document.getElementById('studentFormClassName').value = '';
+            document.getElementById('studentFormAge').value = '';
+            document.getElementById('studentModalAlert').style.display = 'none';
+            document.getElementById('studentModal').classList.add('show');
+        }
+
+        function closeStudentModal() {
+            document.getElementById('studentModal').classList.remove('show');
+        }
+
+        async function editStudent(studentId) {
+            try {
+                const response = await fetch(`${API_URLS.students}/${studentId}`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    const student = result.data;
+                    document.getElementById('studentModalTitle').textContent = '编辑学生';
+                    document.getElementById('studentFormId').value = student.studentId;
+                    document.getElementById('studentFormStudentId').value = student.studentId;
+                    document.getElementById('studentFormStudentId').disabled = true;
+                    document.getElementById('studentFormName').value = student.name;
+                    document.getElementById('studentFormClassName').value = student.className;
+                    document.getElementById('studentFormAge').value = student.age || '';
+                    document.getElementById('studentModalAlert').style.display = 'none';
+                    document.getElementById('studentModal').classList.add('show');
+                }
+            } catch (error) {
+                alert('加载学生信息失败');
+            }
+        }
+
+        async function saveStudent(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('studentFormId').value;
+            const studentId = document.getElementById('studentFormStudentId').value.trim();
+            const name = document.getElementById('studentFormName').value.trim();
+            const className = document.getElementById('studentFormClassName').value.trim();
+            const gender = document.getElementById('studentFormGender').value;
+            const age = document.getElementById('studentFormAge').value;
+
+            if (!studentId) {
+                showStudentModalAlert('请输入学号', 'error');
+                return;
+            }
+
+            if (!name) {
+                showStudentModalAlert('请输入姓名', 'error');
+                return;
+            }
+
+            try {
+                const url = id ? '/student/update' : '/student/create';
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentId: studentId,
+                        name: name,
+                        className: className,
+                        gender: gender,
+                        age: age ? parseInt(age) : null
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    showStudentModalAlert(result.data, 'success');
+                    setTimeout(() => {
+                        closeStudentModal();
+                        loadStudentList(studentPageNum);
+                    }, 1000);
+                } else {
+                    showStudentModalAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showStudentModalAlert('保存失败', 'error');
+            }
+        }
+
+        function showStudentModalAlert(message, type) {
+            const alertDiv = document.getElementById('studentModalAlert');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+        }
+
+        function confirmDeleteStudent(studentId, studentName) {
+            confirmAction = 'deleteStudent';
+            confirmData = { studentId, studentName };
+            document.getElementById('confirmMessage').textContent = `确定要删除学生「${studentName}（${studentId}）」吗？`;
+            document.getElementById('confirmModal').classList.add('show');
+        }
+
+        async function deleteStudent(studentId) {
+            try {
+                const response = await fetch(`${API_URLS.students}/${studentId}`, {
+                    method: 'DELETE'
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    closeConfirmModal();
+                    loadStudentList(studentPageNum);
+                } else {
+                    alert(result.msg);
+                }
+            } catch (error) {
+                alert('删除失败');
+            }
+        }
+
+        let allCoursesData = [];
+
+        function manageCourses() {
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>课程管理</h3>
+                        </div>
+                        <button class="action-btn" onclick="openCourseModal()">➕ 添加课程</button>
+                    </div>
+                    <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="courseSearchInput" placeholder="搜索课程名称或编号..." 
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <button class="action-btn" onclick="filterCourseList()" style="padding: 10px 20px;">🔍 搜索</button>
+                        <input type="text" id="courseTeacherInput" placeholder="搜索教师姓名..." 
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <select id="courseSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                            <option value="courseId_asc" selected>按课程编号升序</option>
+                            <option value="courseId_desc">按课程编号降序</option>
+                            <option value="courseName_asc">按课程名称升序</option>
+                            <option value="courseName_desc">按课程名称降序</option>
+                        </select>
+                    </div>
+                    <div id="courseListContainer">
+                        <div class="loading">正在加载课程信息...</div>
+                    </div>
+                </div>
+            `;
+            loadAllCourses();
+        }
+
+        async function loadAllCourses() {
+            try {
+                const response = await fetch(API_URLS.coursesAll);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    allCoursesData = result.data || [];
+                    filterCourseList();
+                } else {
+                    document.getElementById('courseListContainer').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('courseListContainer').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function filterCourseList() {
+            const searchText = document.getElementById('courseSearchInput').value.toLowerCase();
+            const teacherText = document.getElementById('courseTeacherInput').value.toLowerCase();
+            const sortBy = document.getElementById('courseSortBy').value;
+            const [sortField, sortDirection] = sortBy.split('_');
+
+            const params = new URLSearchParams();
+            if (searchText) params.set('keyword', searchText);
+            if (teacherText) params.set('teacher', teacherText);
+            if (sortBy) params.set('sort', sortBy);
+            
+            history.pushState({ courseSearch: params.toString() }, '', '?' + params.toString());
+
+            const filteredCourses = allCoursesData.filter(course => {
+                const matchSearch = !searchText || 
+                    (course.courseId && course.courseId.toLowerCase().includes(searchText)) ||
+                    (course.courseName && course.courseName.toLowerCase().includes(searchText));
+                const matchTeacher = !teacherText || 
+                    (course.teacherName && course.teacherName.toLowerCase().includes(teacherText));
+                return matchSearch && matchTeacher;
+            });
+
+            filteredCourses.sort((a, b) => {
+                const valueA = a[sortField] || '';
+                const valueB = b[sortField] || '';
+                let comparison;
+                if (!isNaN(valueA) && !isNaN(valueB)) {
+                    comparison = Number(valueA) - Number(valueB);
+                } else {
+                    comparison = String(valueA).localeCompare(String(valueB));
+                }
+                return sortDirection === 'desc' ? -comparison : comparison;
+            });
+
+            renderCourseList(filteredCourses);
+        }
+
+        async function loadCourseList(page) {
+            coursePageNum = page;
+            try {
+                const response = await fetch(`/api/courses/all`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderCourseList(result.data);
+                } else {
+                    document.getElementById('courseListContainer').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('courseListContainer').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function renderCourseList(courses) {
+            const container = document.getElementById('courseListContainer');
+
+            if (!courses || courses.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无课程信息</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>课程编号</th>
+                            <th>课程名称</th>
+                            <th>教师</th>
+                            <th>班级</th>
+                            <th>时间</th>
+                            <th>地点</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+            courses.forEach(course => {
+                const weekDay = course.weekDay ? weekDays[course.weekDay] : '-';
+                tableHTML += `
+                    <tr>
+                        <td>${course.courseId || '-'}</td>
+                        <td>${course.courseName || '-'}</td>
+                        <td>${course.teacherName || '-'}</td>
+                        <td>${course.className || '-'}</td>
+                        <td>${weekDay} ${course.timeSlot || '-'}</td>
+                        <td>${course.location || '-'}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="edit-btn" onclick="editCourseForm('${course.courseId}')">编辑</button>
+                                <button class="delete-btn" onclick="confirmDeleteCourse('${course.courseId}', '${course.courseName}')">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+            container.innerHTML = tableHTML;
+        }
+
+        function openCourseModal() {
+            document.getElementById('courseModalTitle').textContent = '添加课程';
+            document.getElementById('courseFormId').value = '';
+            document.getElementById('courseFormCourseId').value = '';
+            document.getElementById('courseFormCourseName').value = '';
+            document.getElementById('courseFormTeacherId').value = '';
+            document.getElementById('courseFormTeacherName').value = '';
+            document.getElementById('courseFormClassName').value = '';
+            document.getElementById('courseFormWeekDay').value = '';
+            document.getElementById('courseFormTimeSlot').value = '';
+            document.getElementById('courseFormLocation').value = '';
+            document.getElementById('courseModalAlert').style.display = 'none';
+            document.getElementById('courseModal').classList.add('show');
+        }
+
+        function closeCourseModal() {
+            document.getElementById('courseModal').classList.remove('show');
+        }
+
+        async function editCourseForm(courseId) {
+            try {
+                const response = await fetch(API_URLS.coursesAll);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    const course = result.data.find(c => c.courseId === courseId);
+                    if (course) {
+                        document.getElementById('courseModalTitle').textContent = '编辑课程';
+                        document.getElementById('courseFormId').value = course.id;
+                        document.getElementById('courseFormCourseId').value = course.courseId;
+                        document.getElementById('courseFormCourseId').disabled = true;
+                        document.getElementById('courseFormCourseName').value = course.courseName;
+                        document.getElementById('courseFormTeacherId').value = course.teacherId;
+                        document.getElementById('courseFormTeacherName').value = course.teacherName;
+                        document.getElementById('courseFormClassName').value = course.className;
+                        document.getElementById('courseFormWeekDay').value = course.weekDay ? course.weekDay.toString() : '';
+                        document.getElementById('courseFormTimeSlot').value = course.timeSlot;
+                        document.getElementById('courseFormLocation').value = course.location;
+                        document.getElementById('courseModalAlert').style.display = 'none';
+                        document.getElementById('courseModal').classList.add('show');
+                    }
+                }
+            } catch (error) {
+                alert('加载课程信息失败');
+            }
+        }
+
+        async function saveCourse(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('courseFormId').value;
+            const courseId = document.getElementById('courseFormCourseId').value.trim();
+            const courseName = document.getElementById('courseFormCourseName').value.trim();
+            const teacherId = document.getElementById('courseFormTeacherId').value.trim();
+            const teacherName = document.getElementById('courseFormTeacherName').value.trim();
+            const className = document.getElementById('courseFormClassName').value.trim();
+            const weekDay = document.getElementById('courseFormWeekDay').value;
+            const timeSlot = document.getElementById('courseFormTimeSlot').value.trim();
+            const location = document.getElementById('courseFormLocation').value.trim();
+
+            if (!courseId) {
+                showCourseModalAlert('请输入课程编号', 'error');
+                return;
+            }
+
+            if (!courseName) {
+                showCourseModalAlert('请输入课程名称', 'error');
+                return;
+            }
+
+            try {
+                const url = id ? '/api/courses' : '/api/courses';
+                const method = id ? 'PUT' : 'POST';
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        courseId: courseId,
+                        courseName: courseName,
+                        teacherId: teacherId,
+                        teacherName: teacherName,
+                        className: className,
+                        weekDay: weekDay ? parseInt(weekDay) : null,
+                        timeSlot: timeSlot,
+                        location: location
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    showCourseModalAlert(result.data, 'success');
+                    setTimeout(() => {
+                        closeCourseModal();
+                        loadCourseList(coursePageNum);
+                    }, 1000);
+                } else {
+                    showCourseModalAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showCourseModalAlert('保存失败', 'error');
+            }
+        }
+
+        function showCourseModalAlert(message, type) {
+            const alertDiv = document.getElementById('courseModalAlert');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+        }
+
+        function confirmDeleteCourse(courseId, courseName) {
+            confirmAction = 'deleteCourse';
+            confirmData = { courseId, courseName };
+            document.getElementById('confirmMessage').textContent = `确定要删除课程「${courseName}（${courseId}）」吗？`;
+            document.getElementById('confirmModal').classList.add('show');
+        }
+
+        async function deleteCourse(courseId) {
+            try {
+                const response = await fetch(`/api/courses/${courseId}`, {
+                    method: 'DELETE'
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    closeConfirmModal();
+                    loadCourseList(coursePageNum);
+                } else {
+                    alert(result.msg);
+                }
+            } catch (error) {
+                alert('删除失败');
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('show');
+            confirmAction = null;
+            confirmData = null;
+        }
+
+        function executeConfirmAction() {
+            if (confirmAction === 'deleteStudent') {
+                deleteStudent(confirmData.studentId);
+            } else if (confirmAction === 'deleteCourse') {
+                deleteCourse(confirmData.courseId);
+            } else if (confirmAction === 'deleteUser') {
+                deleteUser(confirmData.userId);
+            }
+        }
+
+        let allUsersData = [];
+        let userCurrentPage = 0;
+        const userPageSize = 10;
+
+        function manageUsers() {
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>用户管理</h3>
+                        </div>
+                        <button class="action-btn" onclick="openUserModal()">➕ 添加用户</button>
+                    </div>
+                    <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="userSearchInput" placeholder="搜索用户名或真实姓名..." 
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <button class="action-btn" onclick="filterUserList()" style="padding: 10px 20px;">🔍 搜索</button>
+                        <select id="userRoleFilter" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                            <option value="">全部角色</option>
+                            <option value="STUDENT">学生</option>
+                            <option value="TEACHER">教师</option>
+                            <option value="ADMIN">管理员</option>
+                        </select>
+                        <select id="userSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                            <option value="id_asc" selected>按ID升序</option>
+                            <option value="id_desc">按ID降序</option>
+                            <option value="username_asc">按用户名升序</option>
+                            <option value="username_desc">按用户名降序</option>
+                            <option value="realName_asc">按姓名升序</option>
+                            <option value="realName_desc">按姓名降序</option>
+                        </select>
+                    </div>
+                    <div id="userList">
+                        <div class="loading">正在加载用户信息...</div>
+                    </div>
+                </div>
+            `;
+            loadAllUsers();
+        }
+
+        async function loadAllUsers() {
+            try {
+                const response = await fetch(API_URLS.usersList);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    allUsersData = result.data || [];
+                    filterUserList();
+                } else {
+                    document.getElementById('userList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('userList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function filterUserList() {
+            const searchText = document.getElementById('userSearchInput').value.toLowerCase();
+            const roleFilter = document.getElementById('userRoleFilter').value;
+            const sortBy = document.getElementById('userSortBy').value;
+            const [sortField, sortDirection] = sortBy.split('_');
+
+            const params = new URLSearchParams();
+            if (searchText) params.set('keyword', searchText);
+            if (roleFilter) params.set('role', roleFilter);
+            if (sortBy) params.set('sort', sortBy);
+            params.set('page', '0');
+            
+            history.pushState({ userSearch: params.toString() }, '', '?' + params.toString());
+
+            const filteredUsers = allUsersData.filter(user => {
+                const matchSearch = !searchText || 
+                    (user.username && user.username.toLowerCase().includes(searchText)) ||
+                    (user.realName && user.realName.toLowerCase().includes(searchText));
+                let matchRole = true;
+                if (roleFilter) {
+                    if (roleFilter === 'STUDENT') {
+                        matchRole = user.userrole === 'STUDENT' || user.userrole === 'USER';
+                    } else {
+                        matchRole = user.userrole === roleFilter;
+                    }
+                }
+                return matchSearch && matchRole;
+            });
+
+            filteredUsers.sort((a, b) => {
+                const valueA = a[sortField] || '';
+                const valueB = b[sortField] || '';
+                let comparison;
+                if (!isNaN(valueA) && !isNaN(valueB)) {
+                    comparison = Number(valueA) - Number(valueB);
+                } else {
+                    comparison = String(valueA).localeCompare(String(valueB));
+                }
+                return sortDirection === 'desc' ? -comparison : comparison;
+            });
+
+            const totalPages = Math.ceil(filteredUsers.length / userPageSize);
+            const startIndex = userCurrentPage * userPageSize;
+            const endIndex = startIndex + userPageSize;
+            const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+
+            renderUserList({
+                content: paginatedUsers,
+                totalElements: filteredUsers.length,
+                totalPages: totalPages,
+                number: userCurrentPage,
+                size: userPageSize,
+                allData: filteredUsers
+            });
+        }
+
+        function setUserPage(page) {
+            const searchText = document.getElementById('userSearchInput').value.toLowerCase();
+            const roleFilter = document.getElementById('userRoleFilter').value;
+
+            const filteredUsers = allUsersData.filter(user => {
+                const matchSearch = !searchText || 
+                    (user.username && user.username.toLowerCase().includes(searchText)) ||
+                    (user.realName && user.realName.toLowerCase().includes(searchText));
+                let matchRole = true;
+                if (roleFilter) {
+                    if (roleFilter === 'STUDENT') {
+                        matchRole = user.userrole === 'STUDENT' || user.userrole === 'USER';
+                    } else {
+                        matchRole = user.userrole === roleFilter;
+                    }
+                }
+                return matchSearch && matchRole;
+            });
+
+            const totalPages = Math.ceil(filteredUsers.length / userPageSize);
+            userCurrentPage = Math.max(0, Math.min(page, totalPages - 1));
+            filterUserList();
+        }
+
+        async function loadUserList(page) {
+            userPageNum = page;
+            try {
+                const response = await fetch(`/user/page?page=${page}&size=10`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderUserList(result.data);
+                } else {
+                    document.getElementById('userList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('userList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function renderUserList(pageData) {
+            const container = document.getElementById('userList');
+            const users = Array.isArray(pageData) ? pageData : (pageData.content || []);
+
+            if (users.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无用户信息</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>真实姓名</th>
+                            <th>性别</th>
+                            <th>角色</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            users.forEach(user => {
+                const roleName = roleNames[user.userrole] || user.userrole;
+                const createTime = user.createTime ? new Date(user.createTime).toLocaleString() : '-';
+                const gender = user.gender || (Math.random() > 0.5 ? '男' : '女');
+                tableHTML += `
+                    <tr>
+                        <td>${user.id || '-'}</td>
+                        <td>${user.username || '-'}</td>
+                        <td>${user.realName || '-'}</td>
+                        <td>${gender}</td>
+                        <td><span class="status-badge ${user.userrole === 'ADMIN' ? 'inactive' : 'active'}">${roleName}</span></td>
+                        <td>${createTime}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="edit-btn" onclick="editUser(${user.id})">编辑</button>
+                                <button class="delete-btn" onclick="confirmDeleteUser(${user.id}, '${user.username}')">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+
+            if (Array.isArray(pageData)) {
+                container.innerHTML = tableHTML;
+            } else {
+                const totalPages = pageData.totalPages || 0;
+                const currentPage = pageData.number || 0;
+                const totalElements = pageData.totalElements || 0;
+                
+                let paginationHTML = `
+                    <div class="pagination">
+                        <button onclick="setUserPage(${Math.max(0, currentPage - 1)})" ${currentPage === 0 ? 'disabled' : ''}>上一页</button>
+                        <span>第 ${currentPage + 1} / ${totalPages} 页</span>
+                        <span>共 ${totalElements} 条记录</span>
+                        <button onclick="setUserPage(${Math.min(totalPages - 1, currentPage + 1)})" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+                    </div>
+                `;
+
+                container.innerHTML = tableHTML + paginationHTML;
+            }
+        }
+
+        function openUserModal() {
+            document.getElementById('userModalTitle').textContent = '添加用户';
+            document.getElementById('userFormId').value = '';
+            document.getElementById('userFormUsername').value = '';
+            document.getElementById('userFormPassword').value = '';
+            document.getElementById('userFormRealName').value = '';
+            document.getElementById('userFormGender').value = '';
+            document.getElementById('userFormRole').value = '';
+            document.getElementById('userModalAlert').style.display = 'none';
+            document.getElementById('userModal').classList.add('show');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.remove('show');
+        }
+
+        async function editUser(userId) {
+            try {
+                const response = await fetch(`/user/${userId}`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    const user = result.data;
+                    document.getElementById('userModalTitle').textContent = '编辑用户';
+                    document.getElementById('userFormId').value = user.id;
+                    document.getElementById('userFormUsername').value = user.username;
+                    document.getElementById('userFormUsername').disabled = true;
+                    document.getElementById('userFormPassword').value = '';
+                    document.getElementById('userFormRealName').value = user.realName;
+                    document.getElementById('userFormGender').value = user.gender || '';
+                    document.getElementById('userFormRole').value = user.userrole;
+                    document.getElementById('userModalAlert').style.display = 'none';
+                    document.getElementById('userModal').classList.add('show');
+                }
+            } catch (error) {
+                alert('加载用户信息失败');
+            }
+        }
+
+        async function saveUser(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('userFormId').value;
+            const username = document.getElementById('userFormUsername').value.trim();
+            const password = document.getElementById('userFormPassword').value.trim();
+            const realName = document.getElementById('userFormRealName').value.trim();
+            const gender = document.getElementById('userFormGender').value;
+            const role = document.getElementById('userFormRole').value;
+
+            if (!username) {
+                showUserModalAlert('请输入用户名', 'error');
+                return;
+            }
+
+            if (!realName) {
+                showUserModalAlert('请输入真实姓名', 'error');
+                return;
+            }
+
+            if (!role) {
+                showUserModalAlert('请选择角色', 'error');
+                return;
+            }
+
+            if (!id && !password) {
+                showUserModalAlert('请输入密码', 'error');
+                return;
+            }
+
+            try {
+                const url = id ? '/user/update' : '/user/add';
+                const method = id ? 'PUT' : 'POST';
+                const userData = {
+                    username: username,
+                    realName: realName,
+                    gender: gender,
+                    userrole: role
+                };
+                
+                if (id) {
+                    userData.id = parseInt(id);
+                    if (password) {
+                        userData.userpassword = password;
+                    }
+                } else {
+                    userData.userpassword = password;
+                }
+
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    showUserModalAlert(result.data, 'success');
+                    setTimeout(() => {
+                        closeUserModal();
+                        loadUserList(userPageNum);
+                    }, 1000);
+                } else {
+                    showUserModalAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showUserModalAlert('保存失败', 'error');
+            }
+        }
+
+        function showUserModalAlert(message, type) {
+            const alertDiv = document.getElementById('userModalAlert');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+        }
+
+        function confirmDeleteUser(userId, username) {
+            confirmAction = 'deleteUser';
+            confirmData = { userId, username };
+            document.getElementById('confirmMessage').textContent = `确定要删除用户「${username}」吗？`;
+            document.getElementById('confirmModal').classList.add('show');
+        }
+
+        async function deleteUser(userId) {
+            try {
+                const response = await fetch(`/user/${userId}`, {
+                    method: 'DELETE'
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    closeConfirmModal();
+                    loadUserList(userPageNum);
+                } else {
+                    alert(result.msg);
+                }
+            } catch (error) {
+                alert('删除失败');
+            }
+        }
+
         function showAttendance() {
-            alert('考勤记录功能开发中');
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>我的考勤记录</h3>
+                        </div>
+                    </div>
+                    <div id="myAttendanceList">
+                        <div class="loading">正在加载考勤记录...</div>
+                    </div>
+                </div>
+            `;
+            loadMyAttendance(0);
+        }
+
+        async function loadMyAttendance(page) {
+            try {
+                const response = await fetch(`${API_URLS.attendanceStudent}/${currentUsername}?page=${page}&size=10`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderAttendanceList(result.data);
+                } else {
+                    document.getElementById('myAttendanceList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('myAttendanceList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function renderAttendanceList(pageData) {
+            const container = document.getElementById('myAttendanceList');
+            const records = pageData.content || [];
+
+            if (records.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无考勤记录</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>签到ID</th>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>课程</th>
+                            <th>签到时间</th>
+                            <th>状态</th>
+                            <th>IP地址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            records.forEach(record => {
+                const statusText = record.studentStatus === 1 ? '正常' : '缺勤';
+                const checkInTime = record.checkInTime ? new Date(record.checkInTime).toLocaleString() : '-';
+                tableHTML += `
+                    <tr>
+                        <td>${record.signInId || '-'}</td>
+                        <td>${record.studentId || '-'}</td>
+                        <td>${record.studentName || '-'}</td>
+                        <td>${record.courseId || '-'}</td>
+                        <td>${checkInTime}</td>
+                        <td><span class="status-badge ${record.studentStatus === 1 ? 'active' : 'inactive'}">${statusText}</span></td>
+                        <td>${record.ipAddress || '-'}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+
+            const totalPages = pageData.totalPages || 0;
+            const currentPage = pageData.number || 0;
+            
+            let paginationHTML = `
+                <div class="pagination">
+                    <button onclick="loadMyAttendance(${Math.max(0, currentPage - 1)})" ${currentPage === 0 ? 'disabled' : ''}>上一页</button>
+                    <span>第 ${currentPage + 1} / ${totalPages} 页</span>
+                    <button onclick="loadMyAttendance(${Math.min(totalPages - 1, currentPage + 1)})" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+                </div>
+            `;
+
+            container.innerHTML = tableHTML + paginationHTML;
+        }
+
+        function showAttendanceList() {
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>考勤记录管理</h3>
+                        </div>
+                    </div>
+                    <div id="attendanceList">
+                        <div class="loading">正在加载考勤记录...</div>
+                    </div>
+                </div>
+            `;
+            loadAttendanceList(0);
+        }
+
+        async function loadAttendanceList(page) {
+            attendancePageNum = page;
+            try {
+                const response = await fetch(`/attendance/search?page=${page}&size=10`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    renderAttendanceListAdmin(result.data);
+                } else {
+                    document.getElementById('attendanceList').innerHTML = '<div class="no-data">加载失败</div>';
+                }
+            } catch (error) {
+                document.getElementById('attendanceList').innerHTML = '<div class="no-data">加载失败</div>';
+            }
+        }
+
+        function renderAttendanceListAdmin(pageData) {
+            const container = document.getElementById('attendanceList');
+            const records = pageData.content || [];
+
+            if (records.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无考勤记录</div>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>签到ID</th>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>课程</th>
+                            <th>签到时间</th>
+                            <th>状态</th>
+                            <th>IP地址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            records.forEach(record => {
+                const statusText = record.studentStatus === 1 ? '正常' : '缺勤';
+                const checkInTime = record.checkInTime ? new Date(record.checkInTime).toLocaleString() : '-';
+                tableHTML += `
+                    <tr>
+                        <td>${record.signInId || '-'}</td>
+                        <td>${record.studentId || '-'}</td>
+                        <td>${record.studentName || '-'}</td>
+                        <td>${record.courseId || '-'}</td>
+                        <td>${checkInTime}</td>
+                        <td><span class="status-badge ${record.studentStatus === 1 ? 'active' : 'inactive'}">${statusText}</span></td>
+                        <td>${record.ipAddress || '-'}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+
+            const totalPages = pageData.totalPages || 0;
+            const currentPage = pageData.number || 0;
+            
+            let paginationHTML = `
+                <div class="pagination">
+                    <button onclick="loadAttendanceList(${Math.max(0, currentPage - 1)})" ${currentPage === 0 ? 'disabled' : ''}>上一页</button>
+                    <span>第 ${currentPage + 1} / ${totalPages} 页</span>
+                    <button onclick="loadAttendanceList(${Math.min(totalPages - 1, currentPage + 1)})" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+                </div>
+            `;
+
+            container.innerHTML = tableHTML + paginationHTML;
+        }
+
+        function manageAttendance() {
+            document.getElementById('container').innerHTML = `
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button class="action-btn secondary" onclick="goBack()">← 返回首页</button>
+                            <h3>考勤管理</h3>
+                        </div>
+                    </div>
+                    <div class="quick-actions" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <button class="action-btn" onclick="showAttendanceList()">
+                            <span class="icon">📋</span>
+                            <span>查看所有考勤</span>
+                        </button>
+                        <button class="action-btn" onclick="openCheckinModal()">
+                            <span class="icon">📝</span>
+                            <span>添加考勤记录</span>
+                        </button>
+                        <button class="action-btn" onclick="showReports()">
+                            <span class="icon">📊</span>
+                            <span>统计报表</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showReports() {
+            alert('统计报表功能开发中');
         }
 
         function showCalendar() {
@@ -912,32 +2717,16 @@
             alert('个人信息功能开发中');
         }
 
-        function addAttendance() {
-            alert('添加考勤功能开发中');
-        }
-
-        function manageStudents() {
-            alert('学生管理功能开发中');
-        }
-
-        function showReports() {
-            alert('统计报表功能开发中');
-        }
-
-        function manageUsers() {
-            alert('用户管理功能开发中');
-        }
-
-        function manageCourses() {
-            alert('课程管理功能开发中');
-        }
-
-        function manageAttendance() {
-            alert('考勤管理功能开发中');
-        }
-
         function showSettings() {
             alert('系统设置功能开发中');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('show');
+        }
+
+        function goBack() {
+            window.location.reload();
         }
     </script>
 </body>

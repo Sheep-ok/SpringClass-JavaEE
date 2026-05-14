@@ -25,6 +25,9 @@ public class User {
     @Column(name = "userrole", length = 20)
     private String userrole;
 
+    @Column(name = "gender", length = 10)
+    private String gender;
+
     @Column(name = "create_time")
     private LocalDateTime createTime;
 

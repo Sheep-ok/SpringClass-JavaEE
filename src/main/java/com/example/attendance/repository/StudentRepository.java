@@ -1,6 +1,8 @@
 package com.example.attendance.repository;
 
 import com.example.attendance.entity.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +20,12 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     // 3. 统计某班级学生数量（自定义查询）
     long countByClassName(String className);
 
+    // 4. 根据班级分页查询
+    Page<Student> findByClassName(String className, Pageable pageable);
 
+    // 5. 根据姓名模糊查询
+    List<Student> findByNameContaining(String name);
+
+    // 6. 根据学号模糊查询
+    List<Student> findByStudentIdContaining(String studentId);
 }

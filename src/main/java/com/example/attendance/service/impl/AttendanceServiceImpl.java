@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,28 +32,40 @@ public class AttendanceServiceImpl implements AttendanceService {
         return attendanceRepository.findByStudentId(studentId, pageable);
     }
 
-    // AttendanceServiceImpl 实现
     @Override
     public Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, Pageable pageable) {
         return attendanceRepository.findAll((root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            // 学号条件
             if (studentId != null && !studentId.isBlank()) {
                 predicates.add(cb.equal(root.get("studentId"), studentId));
             }
 
-            // 课程ID条件
             if (courseId != null && !courseId.isBlank()) {
                 predicates.add(cb.equal(root.get("courseId"), courseId));
             }
 
-            // 状态条件
             if (studentStatus != null) {
                 predicates.add(cb.equal(root.get("studentStatus"), studentStatus));
             }
 
             return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));
         }, pageable);
+    }
+
+    @Override
+    public String checkIn(String studentId, String studentName, String courseId, String signInId, String ipAddress) {
+        Attendance attendance = new Attendance();
+        attendance.setStudentId(studentId);
+        attendance.setStudentName(studentName);
+        attendance.setCourseId(courseId);
+        attendance.setSignInId(signInId);
+        attendance.setCheckInTime(LocalDateTime.now());
+        attendance.setStudentStatus(1);
+        attendance.setIpAddress(ipAddress);
+        attendance.setCreateTime(LocalDateTime.now());
+
+        attendanceRepository.save(attendance);
+        return "签到成功";
     }
 }

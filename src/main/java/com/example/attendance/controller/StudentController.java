@@ -4,7 +4,12 @@ import com.example.attendance.entity.AttendanceRecord;
 import com.example.attendance.entity.Student;
 import com.example.attendance.service.StudentService;
 import com.example.attendance.util.Result;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +43,7 @@ public class StudentController {
     // 任务一：路径参数查询单个学生
     @GetMapping("/info/{id}")
     public Result<Student> getStudentById(@PathVariable String id) {
-        Student student = new Student(id, "张三", "计算机", 20);
+        Student student = new Student(id, "张三", "计算机", 20, "男");
         return Result.success(student);
     }
 
@@ -49,9 +54,9 @@ public class StudentController {
             @RequestParam(defaultValue = "1") int page) {
 
         List<Student> students = new ArrayList<>();
-        students.add(new Student("001", "张三", className, 20));
-        students.add(new Student("002", "李四", className, 19));
-        students.add(new Student("003", "王五", className, 20));
+        students.add(new Student("001", "张三", className, 20, "男"));
+        students.add(new Student("002", "李四", className, 19, "女"));
+        students.add(new Student("003", "王五", className, 20, "男"));
 
         return Result.success(students);
     }
@@ -73,5 +78,60 @@ public class StudentController {
     @GetMapping("/{id}")
     public Result<Student> getById(@PathVariable String id) {
         return Result.success(studentService.getStudentById(id));
+    }
+
+    // 更新学生信息
+    @PutMapping("/update")
+    public Result<String> update(@RequestBody Student student) {
+        String result = studentService.updateStudent(student);
+        if ("学生不存在".equals(result)) {
+            return Result.error(result);
+        }
+        return Result.success(result);
+    }
+
+    // 删除学生
+    @DeleteMapping("/{studentId}")
+    public Result<String> delete(@PathVariable String studentId) {
+        String result = studentService.deleteStudent(studentId);
+        if ("学生不存在".equals(result)) {
+            return Result.error(result);
+        }
+        return Result.success(result);
+    }
+
+    // 分页查询所有学生
+    @GetMapping("/page")
+    public Result<Page<Student>> getStudentPage(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "studentId") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+
+        Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(direction, sortField));
+        Page<Student> studentPage = studentService.getStudentPage(pageRequest);
+        return Result.success(studentPage);
+    }
+
+    // 根据班级分页查询学生
+    @GetMapping("/page/class")
+    public Result<Page<Student>> getStudentPageByClassName(
+            @RequestParam String className,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "studentId") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+
+        Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(direction, sortField));
+        Page<Student> studentPage = studentService.getStudentPageByClassName(className, pageRequest);
+        return Result.success(studentPage);
+    }
+
+    // 查询所有学生列表
+    @GetMapping("/all")
+    public Result<List<Student>> getAllStudents() {
+        return Result.success(studentService.getAllStudents());
     }
 }

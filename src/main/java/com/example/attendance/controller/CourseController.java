@@ -130,6 +130,15 @@ public class CourseController {
         return Result.success("课程添加成功");
     }
 
+    @PutMapping("/courses")
+    public Result<String> updateCourse(@RequestBody Course course) {
+        if (courseRepository.findByCourseId(course.getCourseId()).isEmpty()) {
+            return Result.error("课程不存在");
+        }
+        courseRepository.save(course);
+        return Result.success("课程更新成功");
+    }
+
     @DeleteMapping("/courses/{courseId}")
     public Result<String> deleteCourse(@PathVariable String courseId) {
         Optional<Course> course = courseRepository.findByCourseId(courseId);

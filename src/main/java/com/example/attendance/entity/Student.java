@@ -15,7 +15,11 @@ public class Student {
     @Column(name = "student_id", nullable = false, unique = true, length = 20)
     private String studentId;
 
+    @Column(name = "student_name", length = 50)
     private String name;
+    @Column(name = "class_name", length = 50)
     private String className;
     private Integer age;
+    @Column(name = "gender", length = 10)
+    private String gender;
 }
