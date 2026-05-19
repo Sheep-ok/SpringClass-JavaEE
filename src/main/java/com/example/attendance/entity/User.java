@@ -28,6 +28,9 @@ public class User {
     @Column(name = "gender", length = 10)
     private String gender;
 
+    @Column(name = "class_name", length = 50)
+    private String className;
+
     @Column(name = "create_time")
     private LocalDateTime createTime;
 

@@ -14,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUserrole(String userrole);
     List<User> findByRealNameContaining(String keyword);
     long countByUserrole(String userrole);
+    long countByUserroleIgnoreCase(String userrole);
     boolean existsByUsername(String username);
     Page<User> findByUserrole(String userrole, Pageable pageable);
 }

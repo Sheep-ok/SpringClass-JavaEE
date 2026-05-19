@@ -683,19 +683,19 @@
 
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
-                <div class="icon attendance">✅</div>
+                <div class="icon attendance">👥</div>
                 <div class="value" id="statPresent">-</div>
-                <div class="label">出勤次数</div>
+                <div class="label">学生人数</div>
             </div>
             <div class="stat-card">
-                <div class="icon absent">❌</div>
+                <div class="icon absent">👨‍🏫</div>
                 <div class="value" id="statAbsent">-</div>
-                <div class="label">缺勤次数</div>
+                <div class="label">教师人数</div>
             </div>
             <div class="stat-card">
-                <div class="icon percentage">📊</div>
+                <div class="icon percentage">📚</div>
                 <div class="value" id="statRate">-</div>
-                <div class="label">出勤率</div>
+                <div class="label">课程数量</div>
             </div>
         </div>
 
@@ -914,6 +914,10 @@
                         <option value="ADMIN">管理员</option>
                     </select>
                 </div>
+                <div class="form-group" id="userFormClassGroup" style="display: none;">
+                    <label for="userFormClassName">班级 *</label>
+                    <input type="text" id="userFormClassName" placeholder="请输入班级名称" required>
+                </div>
                 <div style="display: flex; justify-content: flex-end; gap: 10px;">
                     <button type="button" class="btn btn-secondary" onclick="closeUserModal()">取消</button>
                     <button type="submit" class="btn btn-primary">保存</button>
@@ -1032,6 +1036,18 @@
                 }
             });
 
+            document.getElementById('userFormRole').addEventListener('change', function() {
+                const classGroup = document.getElementById('userFormClassGroup');
+                const classInput = document.getElementById('userFormClassName');
+                if (this.value === 'STUDENT') {
+                    classGroup.style.display = 'block';
+                    classInput.required = true;
+                } else {
+                    classGroup.style.display = 'none';
+                    classInput.required = false;
+                }
+            });
+
             document.getElementById('closeConfirmModalBtn').addEventListener('click', closeConfirmModal);
             document.getElementById('confirmModal').addEventListener('click', (e) => {
                 if (e.target === document.getElementById('confirmModal')) {
@@ -1051,7 +1067,7 @@
             document.getElementById('userForm').addEventListener('submit', saveUser);
         });
 
-        const API_BASE = '';
+        const API_BASE = ' ';
         
         const API_URLS = {
             courses: `${API_BASE}/api/courses`,
@@ -1096,7 +1112,23 @@
                 const stats = data.attendanceStats[0];
                 document.getElementById('statPresent').textContent = stats.present || 0;
                 document.getElementById('statAbsent').textContent = stats.absent || 0;
-                document.getElementById('statRate').textContent = (stats.rate || '0') + '%';
+
+                if (role === 'TEACHER') {
+                    document.getElementById('statRate').textContent = (stats.rate || 0) + '%';
+                    document.querySelector('#statsGrid .stat-card:nth-child(2) .label').textContent = '授课数量';
+                    document.querySelector('#statsGrid .stat-card:nth-child(3) .label').textContent = '总出勤率';
+                } else if (role === 'ADMIN') {
+                    document.getElementById('statRate').textContent = stats.rate || 0;
+                    document.querySelector('#statsGrid .stat-card:nth-child(2) .label').textContent = '教师人数';
+                    document.querySelector('#statsGrid .stat-card:nth-child(3) .label').textContent = '课程数量';
+                } else if (role === 'STUDENT' || role === 'USER') {
+                    document.getElementById('statRate').textContent = (stats.rate || 0) + '%';
+                    document.querySelector('#statsGrid .stat-card:nth-child(1) .label').textContent = '课程数量';
+                    document.querySelector('#statsGrid .stat-card:nth-child(2) .label').textContent = '签到次数';
+                    document.querySelector('#statsGrid .stat-card:nth-child(3) .label').textContent = '出勤率';
+                } else {
+                    document.getElementById('statRate').textContent = (stats.rate || 0) + '%';
+                }
             }
 
             selectedCourseIds = (data.courses || []).map(c => c.courseId);
@@ -1188,21 +1220,31 @@
                 return;
             }
 
+            let displayStats = stats;
+            if ((currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER') && stats.length > 1) {
+                displayStats = stats.slice(1);
+            }
+
+            if (displayStats.length === 0) {
+                container.innerHTML = '<div class="no-data">暂无考勤统计</div>';
+                return;
+            }
+
             let tableHTML = `
                 <table class="course-table">
                     <thead>
                         <tr>
                             <th>课程名称</th>
                             <th>总考勤次数</th>
-                            <th>出勤人数</th>
-                            <th>缺勤人数</th>
+                            <th>签到人次</th>
+                            <th>缺勤人次</th>
                             <th>出勤率</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            stats.forEach(stat => {
+            displayStats.forEach(stat => {
                 const rate = parseFloat(stat.rate || 0);
 
                 tableHTML += `
@@ -1232,14 +1274,14 @@
 
             if (isStudentRole(role)) {
                 actions = [
-                    { icon: '📝', text: '签到', action: 'openCheckinModal' },
+                    { icon: '📝', text: '签到', action: 'goToStudentCheck' },
                     { icon: '📋', text: '我的考勤', action: 'showAttendance' },
                     { icon: '📅', text: '考勤日历', action: 'showCalendar' },
                     { icon: '👤', text: '个人信息', action: 'showProfile' }
                 ];
             } else if (role === 'TEACHER') {
                 actions = [
-                    { icon: '📝', text: '添加考勤', action: 'openCheckinModal' },
+                    { icon: '📝', text: '添加考勤', action: 'goToStudentCheck' },
                     { icon: '📋', text: '考勤记录', action: 'showAttendanceList' },
                     { icon: '👥', text: '学生管理', action: 'manageStudents' },
                     { icon: '📊', text: '统计报表', action: 'showReports' }
@@ -1248,7 +1290,7 @@
                 actions = [
                     { icon: '👥', text: '用户管理', action: 'manageUsers' },
                     { icon: '📚', text: '课程管理', action: 'manageCourses' },
-                    { icon: '📝', text: '考勤管理', action: 'manageAttendance' },
+                    { icon: '📝', text: '考勤管理', action: 'goToStudentCheck' },
                     { icon: '📊', text: '数据统计', action: 'showReports' },
                     { icon: '⚙️', text: '系统设置', action: 'showSettings' }
                 ];
@@ -1762,8 +1804,9 @@
 
             try {
                 const url = id ? '/student/update' : '/student/create';
+                const method = id ? 'PUT' : 'POST';
                 const response = await fetch(url, {
-                    method: 'POST',
+                    method: method,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -2362,6 +2405,8 @@
             document.getElementById('userFormRealName').value = '';
             document.getElementById('userFormGender').value = '';
             document.getElementById('userFormRole').value = '';
+            document.getElementById('userFormClassName').value = '';
+            document.getElementById('userFormClassGroup').style.display = 'none';
             document.getElementById('userModalAlert').style.display = 'none';
             document.getElementById('userModal').classList.add('show');
         }
@@ -2385,6 +2430,18 @@
                     document.getElementById('userFormRealName').value = user.realName;
                     document.getElementById('userFormGender').value = user.gender || '';
                     document.getElementById('userFormRole').value = user.userrole;
+                    document.getElementById('userFormClassName').value = user.className || '';
+                    
+                    const classGroup = document.getElementById('userFormClassGroup');
+                    const classInput = document.getElementById('userFormClassName');
+                    if (user.userrole === 'STUDENT') {
+                        classGroup.style.display = 'block';
+                        classInput.required = true;
+                    } else {
+                        classGroup.style.display = 'none';
+                        classInput.required = false;
+                    }
+                    
                     document.getElementById('userModalAlert').style.display = 'none';
                     document.getElementById('userModal').classList.add('show');
                 }
@@ -2402,6 +2459,7 @@
             const realName = document.getElementById('userFormRealName').value.trim();
             const gender = document.getElementById('userFormGender').value;
             const role = document.getElementById('userFormRole').value;
+            const className = document.getElementById('userFormClassName').value.trim();
 
             if (!username) {
                 showUserModalAlert('请输入用户名', 'error');
@@ -2418,6 +2476,11 @@
                 return;
             }
 
+            if (role === 'STUDENT' && !className) {
+                showUserModalAlert('请输入班级名称', 'error');
+                return;
+            }
+
             if (!id && !password) {
                 showUserModalAlert('请输入密码', 'error');
                 return;
@@ -2430,7 +2493,8 @@
                     username: username,
                     realName: realName,
                     gender: gender,
-                    userrole: role
+                    userrole: role,
+                    className: className
                 };
                 
                 if (id) {
@@ -2727,6 +2791,10 @@
 
         function goBack() {
             window.location.reload();
+        }
+
+        function goToStudentCheck() {
+            window.location.href = '/student_check';
         }
     </script>
 </body>

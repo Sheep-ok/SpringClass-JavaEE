@@ -37,6 +37,11 @@ public class AuthController {
         return "index"; // 首页
     }
 
+    @GetMapping("/student_check")
+    public String studentCheckPage() {
+        return "student_check"; // 学生考勤签到页面
+    }
+
     // ===================== 注册接口（密码加密）=====================
     @PostMapping("/auth/register")
     @ResponseBody

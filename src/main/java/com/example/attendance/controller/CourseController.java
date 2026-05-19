@@ -8,6 +8,8 @@ import com.example.attendance.repository.AttendanceRepository;
 import com.example.attendance.repository.CourseRepository;
 import com.example.attendance.repository.CourseSelectionRepository;
 import com.example.attendance.repository.UserRepository;
+import com.example.attendance.repository.StudentRepository;
+import com.example.attendance.entity.Student;
 import com.example.attendance.util.Result;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,15 +23,18 @@ public class CourseController {
     private final AttendanceRepository attendanceRepository;
     private final UserRepository userRepository;
     private final CourseSelectionRepository courseSelectionRepository;
+    private final StudentRepository studentRepository;
 
     public CourseController(CourseRepository courseRepository,
                             AttendanceRepository attendanceRepository,
                             UserRepository userRepository,
-                            CourseSelectionRepository courseSelectionRepository) {
+                            CourseSelectionRepository courseSelectionRepository,
+                            StudentRepository studentRepository) {
         this.courseRepository = courseRepository;
         this.attendanceRepository = attendanceRepository;
         this.userRepository = userRepository;
         this.courseSelectionRepository = courseSelectionRepository;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping("/courses")
@@ -51,7 +56,7 @@ public class CourseController {
 
         List<Course> courses = new ArrayList<>();
 
-        switch (role) {
+        switch (role.toUpperCase()) {
             case "STUDENT":
                 List<CourseSelection> selections = courseSelectionRepository.findByStudentIdAndStatus(username, 1);
                 for (CourseSelection selection : selections) {
@@ -79,7 +84,40 @@ public class CourseController {
 
         List<Map<String, Object>> attendanceStats = new ArrayList<>();
 
-        if ("TEACHER".equals(role) || "ADMIN".equals(role)) {
+        if ("ADMIN".equals(role.toUpperCase())) {
+            long studentCount = userRepository.countByUserroleIgnoreCase("STUDENT") + userRepository.countByUserroleIgnoreCase("USER");
+            long teacherCount = userRepository.countByUserroleIgnoreCase("TEACHER");
+            long courseCount = courseRepository.count();
+
+            Map<String, Object> stat = new HashMap<>();
+            stat.put("present", studentCount);
+            stat.put("absent", teacherCount);
+            stat.put("rate", courseCount);
+            attendanceStats.add(stat);
+
+            for (Course course : courses) {
+                Map<String, Object> courseStat = new HashMap<>();
+                courseStat.put("courseId", course.getCourseId());
+                courseStat.put("courseName", course.getCourseName());
+
+                List<Attendance> attendanceList = attendanceRepository.findByCourseId(course.getCourseId());
+                int total = attendanceList.size();
+                long present = attendanceList.stream().filter(a -> a.getStudentStatus() == 1).count();
+                long absent = attendanceList.stream().filter(a -> a.getStudentStatus() != 1).count();
+
+                courseStat.put("total", total);
+                courseStat.put("present", present);
+                courseStat.put("absent", absent);
+                courseStat.put("rate", total > 0 ? String.format("%.1f", (present * 100.0 / total)) : "0.0");
+
+                attendanceStats.add(courseStat);
+            }
+        } else if ("TEACHER".equals(role.toUpperCase())) {
+            int courseCount = courses.size();
+            long totalPresent = 0;
+            long totalAbsent = 0;
+            long totalStudents = studentRepository.count();
+
             for (Course course : courses) {
                 Map<String, Object> stat = new HashMap<>();
                 stat.put("courseId", course.getCourseId());
@@ -88,7 +126,7 @@ public class CourseController {
                 List<Attendance> attendanceList = attendanceRepository.findByCourseId(course.getCourseId());
                 int total = attendanceList.size();
                 long present = attendanceList.stream().filter(a -> a.getStudentStatus() == 1).count();
-                long absent = attendanceList.stream().filter(a -> a.getStudentStatus() == 0).count();
+                long absent = attendanceList.stream().filter(a -> a.getStudentStatus() != 1).count();
 
                 stat.put("total", total);
                 stat.put("present", present);
@@ -96,17 +134,32 @@ public class CourseController {
                 stat.put("rate", total > 0 ? String.format("%.1f", (present * 100.0 / total)) : "0.0");
 
                 attendanceStats.add(stat);
+
+                totalPresent += present;
+                totalAbsent += absent;
             }
-        } else if ("STUDENT".equals(role)) {
+
+            long totalRecords = totalPresent + totalAbsent;
+            String overallRate = totalRecords > 0 ? String.format("%.1f", (totalPresent * 100.0 / totalRecords)) : "0.0";
+
+            Map<String, Object> summaryStat = new HashMap<>();
+            summaryStat.put("present", totalStudents);
+            summaryStat.put("absent", courseCount);
+            summaryStat.put("rate", overallRate);
+            attendanceStats.add(0, summaryStat);
+        } else if ("STUDENT".equals(role.toUpperCase())) {
+            List<CourseSelection> selections = courseSelectionRepository.findByStudentIdAndStatus(username, 1);
+            long courseCount = selections.stream().map(CourseSelection::getCourseId).distinct().count();
+
             List<Attendance> studentAttendance = attendanceRepository.findByStudentId(username);
             int total = studentAttendance.size();
             long present = studentAttendance.stream().filter(a -> a.getStudentStatus() == 1).count();
-            long absent = studentAttendance.stream().filter(a -> a.getStudentStatus() == 0).count();
+            long absent = studentAttendance.stream().filter(a -> a.getStudentStatus() != 1).count();
 
             Map<String, Object> stat = new HashMap<>();
             stat.put("total", total);
-            stat.put("present", present);
-            stat.put("absent", absent);
+            stat.put("present", courseCount);
+            stat.put("absent", present);
             stat.put("rate", total > 0 ? String.format("%.1f", (present * 100.0 / total)) : "0.0");
             attendanceStats.add(stat);
         }
@@ -182,5 +235,28 @@ public class CourseController {
     @GetMapping("/course-selection/course/{courseId}")
     public Result<List<CourseSelection>> getCourseSelections(@PathVariable String courseId) {
         return Result.success(courseSelectionRepository.findByCourseIdAndStatus(courseId, 1));
+    }
+
+    @GetMapping("/students")
+    public Result<Map<String, Object>> getStudentsByCourse(@RequestParam(required = false) String courseId) {
+        Map<String, Object> result = new HashMap<>();
+        
+        if (courseId != null && !courseId.isEmpty()) {
+            List<CourseSelection> selections = courseSelectionRepository.findByCourseIdAndStatus(courseId, 1);
+            List<Student> students = new ArrayList<>();
+            
+            for (CourseSelection selection : selections) {
+                Student student = studentRepository.findById(selection.getStudentId()).orElse(null);
+                if (student != null) {
+                    students.add(student);
+                }
+            }
+            
+            result.put("students", students);
+        } else {
+            result.put("students", studentRepository.findAll());
+        }
+        
+        return Result.success(result);
     }
 }

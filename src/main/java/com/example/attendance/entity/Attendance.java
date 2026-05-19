@@ -40,4 +40,10 @@ public class Attendance {
 
     @Column(name = "create_time", columnDefinition = "datetime default getdate()")
     private LocalDateTime createTime;
+    
+    @Column(name = "update_time")
+    private LocalDateTime updateTime;
+    
+    @Column(name = "reason", length = 500)
+    private String reason;
 }

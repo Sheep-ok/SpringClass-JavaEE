@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考勤管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-header .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-header .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-header .title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .nav-header .user-info {
+            margin-left: auto;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .main-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #666;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h3 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .current-time {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .current-time .time {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .current-time .date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #667eea;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-success {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert.error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .alert.success {
+            background-color: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-container .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .success-container h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .success-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .student-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .student-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .student-item:hover {
+            border-color: #667eea;
+            background: #f8faff;
+        }
+
+        .student-item.selected {
+            border-color: #667eea;
+            background: #f0f5ff;
+        }
+
+        .student-item input[type="checkbox"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .student-info {
+            flex: 1;
+        }
+
+        .student-info .name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .student-info .id {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th,
+        .attendance-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .attendance-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .attendance-table tr:hover {
+            background: #f8faff;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-present {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-absent {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-late {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-leave {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-header .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 16px;
+        }
+
+        .modal-body .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .modal-body .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #667eea;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar input:focus {
+            border-color: #667eea;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #f0f0f0;
+        }
+
+        .pagination button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-header {
+                flex-wrap: wrap;
+            }
+
+            .nav-header .user-info {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .tab-container {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: 1;
+                min-width: calc(50% - 5px);
+            }
+
+            .batch-actions {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <button class="back-btn" onclick="goBack()">
+            ← 返回首页
+        </button>
+        <span class="title">考勤管理系统</span>
+        <span class="user-info" id="userInfo"></span>
+    </div>
+
+    <div class="main-container">
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('checkin')">🎯 个人签到</button>
+            <button class="tab-btn" onclick="showTab('records')">📋 考勤记录</button>
+        </div>
+
+        <div id="checkinTab" class="card">
+            <div class="current-time">
+                <div class="time" id="currentTimeDisplay">--:--:--</div>
+                <div class="date" id="currentDateDisplay">----年--月--日 星期--</div>
+            </div>
+
+            <div class="alert" id="checkinAlert"></div>
+
+            <div id="checkinForm">
+                <div class="form-group">
+                    <label for="studentId">学号 *</label>
+                    <input type="text" id="studentId" placeholder="请输入您的学号" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentName">姓名 *</label>
+                    <input type="text" id="studentName" placeholder="请输入您的姓名" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseId">课程编号 *</label>
+                    <select id="courseId" required>
+                        <option value="">请选择课程</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentStatus">考勤状态 *</label>
+                    <select id="studentStatus" required>
+                        <option value="1">✅ 签到</option>
+                        <option value="2">⏰ 迟到</option>
+                        <option value="3">🚪 早退</option>
+                        <option value="4">📝 请假</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="reasonGroup" style="display: none;">
+                    <label for="checkinReason">请假理由 *</label>
+                    <textarea id="checkinReason" rows="3" placeholder="请输入请假理由..." maxlength="500"></textarea>
+                </div>
+
+                <button class="btn btn-primary" id="checkinBtn" onclick="doCheckin()">
+                    🎯 确认提交
+                </button>
+            </div>
+
+            <div id="checkinSuccess" style="display: none;" class="success-container">
+                <div class="icon">🎉</div>
+                <h3>考勤登记成功</h3>
+                <p id="successMessage">您的考勤记录已成功保存</p>
+                <button class="btn btn-primary" onclick="resetCheckin()">
+                    🔄 继续登记
+                </button>
+            </div>
+        </div>
+
+        <div id="recordsTab" class="card" style="display: none;">
+            <div class="card-header">
+                <h3>考勤记录查询</h3>
+                <button class="btn btn-sm btn-primary" onclick="loadAttendanceRecords()">🔄 刷新记录</button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索学号、姓名或课程..." onkeyup="searchRecords()">
+                <button class="btn btn-secondary btn-sm" onclick="resetSearch()">重置</button>
+            </div>
+
+            <div class="form-group" style="display: inline-block; width: 48%; margin-right: 4%;">
+                <label for="filterCourse">筛选课程</label>
+                <select id="filterCourse" onchange="filterRecords()">
+                    <option value="">全部课程</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="display: inline-block; width: 48%;">
+                <label for="filterStatus">筛选状态</label>
+                <select id="filterStatus" onchange="filterRecords()">
+                    <option value="">全部状态</option>
+                    <option value="1">已签到</option>
+                    <option value="2">迟到</option>
+                    <option value="3">早退</option>
+                    <option value="4">请假</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>课程</th>
+                            <th>签到时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsTableBody">
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <div class="icon">📋</div>
+                                <p>暂无考勤记录</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '';
+
+        const API_URLS = {
+            courses: `${API_BASE}/api/courses`,
+            checkin: `${API_BASE}/attendance/checkin`,
+            checkinWithStatus: `${API_BASE}/attendance/checkin/status`
+        };
+
+        let currentUsername = '';
+        let currentUserRole = '';
+        let coursesData = [];
+        let attendanceRecords = [];
+        let currentPage = 1;
+        let totalPages = 1;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            currentUsername = localStorage.getItem('username');
+            currentUserRole = userData.userrole || 'STUDENT';
+
+            if (!currentUsername) {
+                window.location.href = '/';
+                return;
+            }
+
+            document.getElementById('userInfo').textContent = `当前用户: ${currentUsername} (${getRoleName(currentUserRole)})`;
+
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+
+            loadCourses();
+
+            if (currentUserRole === 'STUDENT' || currentUserRole === 'USER') {
+                document.getElementById('studentId').value = currentUsername;
+            }
+
+            // 所有角色都加载考勤记录
+            loadAttendanceRecords();
+        });
+
+        function getRoleName(role) {
+            const roleNames = {
+                'ADMIN': '管理员',
+                'TEACHER': '教师',
+                'STUDENT': '学生',
+                'USER': '用户'
+            };
+            return roleNames[role] || role;
+        }
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            const dateStr = now.toLocaleDateString('zh-CN', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            });
+            
+            document.getElementById('currentTimeDisplay').textContent = timeStr;
+            document.getElementById('currentDateDisplay').textContent = dateStr;
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.card').forEach(card => card.style.display = 'none');
+            
+            document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.add('active');
+            
+            const tabContentId = tabName === 'batch' ? 'batchContent' : `${tabName}Tab`;
+            document.getElementById(tabContentId).style.display = 'block';
+
+            if (tabName === 'records') {
+                currentPage = 1;
+                loadAttendanceRecords();
+            } else if (tabName === 'batch') {
+                loadStudentsForCourse();
+            }
+        }
+
+        async function loadCourses() {
+            try {
+                const response = await fetch(`${API_URLS.courses}?username=${encodeURIComponent(currentUsername)}`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    coursesData = result.data.courses || [];
+                    populateCourseSelect('courseId');
+                    populateCourseSelect('filterCourse');
+                }
+            } catch (error) {
+                console.error('加载课程失败:', error);
+            }
+        }
+
+        function populateCourseSelect(selectId) {
+            const select = document.getElementById(selectId);
+            select.innerHTML = selectId === 'filterCourse' ? '<option value="">全部课程</option>' : '<option value="">请选择课程</option>';
+
+            coursesData.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course.courseId;
+                option.textContent = `${course.courseId} - ${course.courseName}`;
+                select.appendChild(option);
+            });
+        }
+
+        document.getElementById('studentStatus').addEventListener('change', function() {
+                const reasonGroup = document.getElementById('reasonGroup');
+                const checkinReason = document.getElementById('checkinReason');
+                if (this.value === '4') {
+                    reasonGroup.style.display = 'block';
+                    checkinReason.required = true;
+                } else {
+                    reasonGroup.style.display = 'none';
+                    checkinReason.required = false;
+                    checkinReason.value = '';
+                }
+            });
+
+        async function doCheckin() {
+            const studentId = document.getElementById('studentId').value.trim();
+            const studentName = document.getElementById('studentName').value.trim();
+            const courseId = document.getElementById('courseId').value;
+            const studentStatus = parseInt(document.getElementById('studentStatus').value);
+            const reason = document.getElementById('checkinReason').value.trim();
+            const checkinBtn = document.getElementById('checkinBtn');
+
+            if (!studentId) {
+                showAlert('checkinAlert', '请输入学号', 'error');
+                return;
+            }
+
+            if (!studentName) {
+                showAlert('checkinAlert', '请输入姓名', 'error');
+                return;
+            }
+
+            if (!courseId) {
+                showAlert('checkinAlert', '请选择课程', 'error');
+                return;
+            }
+
+            if (studentStatus === 4 && !reason) {
+                showAlert('checkinAlert', '请输入请假理由', 'error');
+                return;
+            }
+
+            checkinBtn.disabled = true;
+            checkinBtn.textContent = '⏳ 提交中...';
+
+            const statusNames = {
+                1: '签到',
+                2: '迟到',
+                3: '早退',
+                4: '请假'
+            };
+
+            try {
+                const response = await fetch(API_URLS.checkinWithStatus, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `studentId=${encodeURIComponent(studentId)}&studentName=${encodeURIComponent(studentName)}&courseId=${encodeURIComponent(courseId)}&studentStatus=${studentStatus}&reason=${encodeURIComponent(reason)}`
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    document.getElementById('checkinForm').style.display = 'none';
+                    document.getElementById('successMessage').textContent = `您的${statusNames[studentStatus]}记录已成功保存`;
+                    document.getElementById('checkinSuccess').style.display = 'block';
+                } else {
+                    showAlert('checkinAlert', result.msg || '考勤登记失败', 'error');
+                }
+            } catch (error) {
+                showAlert('checkinAlert', '考勤登记失败，请稍后重试', 'error');
+            } finally {
+                checkinBtn.disabled = false;
+                checkinBtn.textContent = '🎯 确认提交';
+            }
+        }
+
+        function resetCheckin() {
+            document.getElementById('checkinSuccess').style.display = 'none';
+            document.getElementById('checkinForm').style.display = 'block';
+            document.getElementById('studentName').value = '';
+            document.getElementById('courseId').value = '';
+            document.getElementById('studentStatus').value = '1';
+        }
+
+        function getAttendanceStatusClass(status) {
+            const classes = {
+                1: 'status-present',
+                2: 'status-late',
+                3: 'status-leave',
+                4: 'status-absent'
+            };
+            return classes[status] || 'status-absent';
+        }
+
+        function getAttendanceStatusText(status) {
+            const texts = {
+                1: '已签到',
+                2: '迟到',
+                3: '早退',
+                4: '请假'
+            };
+            return texts[status] || '未签到';
+        }
+
+        async function loadAttendanceRecords() {
+            try {
+                let url;
+                console.log('当前用户角色:', currentUserRole);
+                console.log('当前用户名:', currentUsername);
+                
+                if (currentUserRole === 'STUDENT' || currentUserRole === 'USER') {
+                    // 学生只能查看自己的记录
+                    url = `${API_BASE}/attendance/search?studentId=${encodeURIComponent(currentUsername)}&page=${currentPage - 1}&size=10`;
+                } else if (currentUserRole === 'ADMIN') {
+                    // 管理员查看所有记录
+                    url = `${API_BASE}/attendance/all?page=${currentPage - 1}&size=10`;
+                } else {
+                    // 教师使用搜索接口
+                    url = `${API_BASE}/attendance/search?page=${currentPage - 1}&size=10`;
+                }
+                
+                console.log('请求URL:', url);
+                
+                const response = await fetch(url);
+                const result = await response.json();
+                
+                console.log('API响应:', result);
+
+                if (result.code === 200) {
+                    attendanceRecords = result.data.content || [];
+                    totalPages = result.data.totalPages || 1;
+                    console.log('获取到记录数:', attendanceRecords.length);
+                    console.log('总页数:', totalPages);
+                    renderRecordsTable();
+                    renderPagination();
+                } else {
+                    console.error('API返回错误:', result.msg);
+                    document.getElementById('recordsTableBody').innerHTML = `
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <div class="icon">📋</div>
+                                <p>${result.msg || '暂无考勤记录'}</p>
+                            </td>
+                        </tr>
+                    `;
+                }
+            } catch (error) {
+                console.error('加载考勤记录失败:', error);
+                document.getElementById('recordsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <div class="icon">📋</div>
+                            <p>加载考勤记录失败: ${error.message}</p>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function renderRecordsTable() {
+            if (attendanceRecords.length === 0) {
+                document.getElementById('recordsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <div class="icon">📋</div>
+                            <p>暂无考勤记录</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            document.getElementById('recordsTableBody').innerHTML = attendanceRecords.map(record => `
+                <tr>
+                    <td>${record.studentId || '-'}</td>
+                    <td>${record.studentName || '-'}</td>
+                    <td>${record.courseId || '-'}</td>
+                    <td>${record.checkInTime ? new Date(record.checkInTime).toLocaleString('zh-CN') : '-'}</td>
+                    <td><span class="status-badge ${getAttendanceStatusClass(record.studentStatus)}">${getAttendanceStatusText(record.studentStatus)}</span></td>
+                    <td>
+                        ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
+                            <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
+                        ` : '-'}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderPagination() {
+            if (totalPages <= 1) {
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            paginationHTML += `<button onclick="changePage(1)" ${currentPage === 1 ? 'disabled' : ''}>首页</button>`;
+            paginationHTML += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>上一页</button>`;
+
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button onclick="changePage(${i})" ${currentPage === i ? 'class="active"' : ''}>${i}</button>`;
+            }
+
+            paginationHTML += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>下一页</button>`;
+            paginationHTML += `<button onclick="changePage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}>末页</button>`;
+
+            document.getElementById('pagination').innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            if (page < 1 || page > totalPages || page === currentPage) return;
+            currentPage = page;
+            loadAttendanceRecords();
+        }
+
+        function searchRecords() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                renderRecordsTable();
+                return;
+            }
+
+            const filtered = attendanceRecords.filter(record => 
+                record.studentId.toLowerCase().includes(searchTerm) ||
+                record.studentName.toLowerCase().includes(searchTerm) ||
+                record.courseId.toLowerCase().includes(searchTerm)
+            );
+            renderFilteredRecords(filtered);
+        }
+
+        function filterRecords() {
+            const courseFilter = document.getElementById('filterCourse').value;
+            const statusFilter = document.getElementById('filterStatus').value;
+
+            if (!courseFilter && !statusFilter) {
+                renderRecordsTable();
+                return;
+            }
+
+            let filtered = [...attendanceRecords];
+
+            if (courseFilter) {
+                filtered = filtered.filter(record => record.courseId === courseFilter);
+            }
+
+            if (statusFilter) {
+                filtered = filtered.filter(record => record.studentStatus === parseInt(statusFilter));
+            }
+
+            renderFilteredRecords(filtered);
+        }
+
+        function renderFilteredRecords(filtered) {
+            if (filtered.length === 0) {
+                document.getElementById('recordsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <div class="icon">📋</div>
+                            <p>没有找到匹配的记录</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            document.getElementById('recordsTableBody').innerHTML = filtered.map(record => `
+                <tr>
+                    <td>${record.studentId || '-'}</td>
+                    <td>${record.studentName || '-'}</td>
+                    <td>${record.courseId || '-'}</td>
+                    <td>${record.checkInTime ? new Date(record.checkInTime).toLocaleString('zh-CN') : '-'}</td>
+                    <td><span class="status-badge ${getAttendanceStatusClass(record.studentStatus)}">${getAttendanceStatusText(record.studentStatus)}</span></td>
+                    <td>
+                        ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
+                            <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
+                        ` : '-'}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterCourse').value = '';
+            document.getElementById('filterStatus').value = '';
+            renderRecordsTable();
+        }
+
+        function editRecord(recordId) {
+            fetch(`${API_BASE}/attendance/${recordId}`)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.code === 200) {
+                        const record = result.data;
+                        const editModal = document.createElement('div');
+                        editModal.className = 'modal-overlay';
+                        editModal.innerHTML = `
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>编辑考勤记录</h3>
+                                    <button onclick="closeModal()" class="close-btn">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>学号: ${record.studentId}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>姓名: ${record.studentName}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>课程: ${record.courseId}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>考勤状态:</label>
+                                        <select id="editStatus" class="form-control">
+                                            <option value="1" ${record.studentStatus === 1 ? 'selected' : ''}>签到</option>
+                                            <option value="2" ${record.studentStatus === 2 ? 'selected' : ''}>迟到</option>
+                                            <option value="3" ${record.studentStatus === 3 ? 'selected' : ''}>早退</option>
+                                            <option value="4" ${record.studentStatus === 4 ? 'selected' : ''}>请假</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="closeModal()" class="btn btn-secondary">取消</button>
+                                    <button onclick="saveEdit(${recordId})" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
+                        `;
+                        document.body.appendChild(editModal);
+                        editModal.style.display = 'flex';
+                    }
+                })
+                .catch(error => {
+                    console.error('获取考勤记录失败:', error);
+                    alert('获取考勤记录失败');
+                });
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function saveEdit(recordId) {
+            const studentStatus = document.getElementById('editStatus').value;
+            
+            fetch(`${API_BASE}/attendance/${recordId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `studentStatus=${studentStatus}`
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.code === 200) {
+                    alert(result.msg || '修改成功');
+                    closeModal();
+                    loadAttendanceRecords();
+                } else {
+                    alert(result.msg || '修改失败');
+                }
+            })
+            .catch(error => {
+                console.error('修改考勤记录失败:', error);
+                alert('修改考勤记录失败');
+            });
+        }
+
+        function deleteRecord(recordId) {
+            if (confirm('确定要删除这条考勤记录吗？')) {
+                fetch(`${API_BASE}/attendance/${recordId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.code === 200) {
+                        alert(result.msg || '删除成功');
+                        loadAttendanceRecords();
+                    } else {
+                        alert(result.msg || '删除失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('删除考勤记录失败:', error);
+                    alert('删除考勤记录失败');
+                });
+            }
+        }
+
+        function refreshStudentList() {
+            loadStudentsForCourse();
+        }
+
+        function showAlert(alertId, message, type) {
+            const alertDiv = document.getElementById(alertId);
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function goBack() {
+            window.location.href = '/index';
+        }
+    </script>
+</body>
+</html>

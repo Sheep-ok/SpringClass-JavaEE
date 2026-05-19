@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             student.setStudentId(user.getUsername());
             student.setName(user.getRealName() != null && !user.getRealName().isEmpty() ? user.getRealName() : user.getUsername());
             student.setGender(user.getGender());
-            student.setClassName("未分配");
+            student.setClassName(user.getClassName() != null && !user.getClassName().isEmpty() ? user.getClassName() : "未分配");
             student.setAge(20);
             studentRepository.save(student);
         }
@@ -73,14 +73,22 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         if ("STUDENT".equals(user.getUserrole()) || "USER".equals(user.getUserrole())) {
-            if (studentRepository.findByStudentId(user.getUsername()).orElse(null) == null) {
+            Student existingStudent = studentRepository.findByStudentId(user.getUsername()).orElse(null);
+            if (existingStudent == null) {
                 Student student = new Student();
                 student.setStudentId(user.getUsername());
                 student.setName(user.getRealName() != null && !user.getRealName().isEmpty() ? user.getRealName() : user.getUsername());
                 student.setGender(user.getGender());
-                student.setClassName("未分配");
+                student.setClassName(user.getClassName() != null && !user.getClassName().isEmpty() ? user.getClassName() : "未分配");
                 student.setAge(20);
                 studentRepository.save(student);
+            } else {
+                existingStudent.setName(user.getRealName() != null && !user.getRealName().isEmpty() ? user.getRealName() : user.getUsername());
+                existingStudent.setGender(user.getGender());
+                if (user.getClassName() != null && !user.getClassName().isEmpty()) {
+                    existingStudent.setClassName(user.getClassName());
+                }
+                studentRepository.save(existingStudent);
             }
         }
     }

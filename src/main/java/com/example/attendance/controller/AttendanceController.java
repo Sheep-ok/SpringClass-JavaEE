@@ -60,6 +60,16 @@ public class AttendanceController {
         return Result.success(attendancePage);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @GetMapping("/all")
+    public Result<Page<Attendance>> getAllAttendance(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "checkInTime"));
+        Page<Attendance> attendancePage = attendanceService.getAttendancePage(pageRequest);
+        return Result.success(attendancePage);
+    }
+
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'USER')")
     @GetMapping("/student/{studentId}")
     public Result<Page<Attendance>> getStudentAttendance(
@@ -79,6 +89,64 @@ public class AttendanceController {
         String ipAddress = getClientIpAddress(request);
         
         String result = attendanceService.checkIn(studentId, studentName, courseId, signInId, ipAddress);
+        return Result.success(result);
+    }
+
+    @PostMapping("/checkin/status")
+    public Result<String> checkInWithStatus(
+            @RequestParam String studentId,
+            @RequestParam String studentName,
+            @RequestParam String courseId,
+            @RequestParam(defaultValue = "1") Integer studentStatus,
+            @RequestParam(required = false) String reason,
+            HttpServletRequest request) {
+        
+        String signInId = UUID.randomUUID().toString().substring(0, 8);
+        String ipAddress = getClientIpAddress(request);
+        
+        String result = attendanceService.checkIn(studentId, studentName, courseId, studentStatus, signInId, ipAddress, reason);
+        return Result.success(result);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @PostMapping("/batch")
+    public Result<String> batchCheckIn(
+            @RequestParam String courseId,
+            @RequestParam String studentIds,
+            @RequestParam(defaultValue = "1") Integer studentStatus,
+            HttpServletRequest request) {
+        
+        String signInId = UUID.randomUUID().toString().substring(0, 8);
+        String ipAddress = getClientIpAddress(request);
+        String[] studentIdArray = studentIds.split(",");
+        
+        String result = attendanceService.batchCheckIn(courseId, studentIdArray, studentStatus, signInId, ipAddress);
+        return Result.success(result);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @GetMapping("/{id}")
+    public Result<Attendance> getAttendanceById(@PathVariable Long id) {
+        Attendance attendance = attendanceService.getAttendanceById(id);
+        if (attendance != null) {
+            return Result.success(attendance);
+        }
+        return Result.error("考勤记录不存在");
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @PutMapping("/{id}")
+    public Result<String> updateAttendance(
+            @PathVariable Long id,
+            @RequestParam Integer studentStatus) {
+        String result = attendanceService.updateAttendance(id, studentStatus);
+        return Result.success(result);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @DeleteMapping("/{id}")
+    public Result<String> deleteAttendance(@PathVariable Long id) {
+        String result = attendanceService.deleteAttendance(id);
         return Result.success(result);
     }
 
