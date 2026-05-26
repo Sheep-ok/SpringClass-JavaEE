@@ -550,6 +550,117 @@
                 flex-wrap: wrap;
             }
         }
+
+        /* Excel模板格式样式 */
+        .template-info {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+        }
+
+        .template-table {
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            min-width: 500px;
+        }
+
+        .template-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            min-width: 80px;
+        }
+
+        .template-table th:first-child {
+            min-width: 60px;
+        }
+
+        .template-table td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .template-table tbody tr:nth-child(1) {
+            background: #fff3cd;
+            font-weight: 500;
+        }
+
+        .template-table tbody tr:nth-child(1) td {
+            color: #856404;
+        }
+
+        .template-table tbody tr:not(:first-child):hover {
+            background: #f8f9fa;
+        }
+
+        .template-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .template-notes {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .template-notes p {
+            margin-bottom: 12px;
+            color: #495057;
+        }
+
+        .template-notes strong {
+            color: #2d3436;
+        }
+
+        .template-notes ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+
+        .template-notes li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #636e72;
+            font-size: 13px;
+        }
+
+        .template-notes li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: bold;
+        }
+
+        @media (max-width: 900px) {
+            .template-info {
+                flex-direction: column;
+            }
+
+            .template-table {
+                min-width: 100%;
+            }
+
+            .template-table th,
+            .template-table td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -565,6 +676,7 @@
         <div class="tab-container">
             <button class="tab-btn active" onclick="showTab('checkin')">🎯 个人签到</button>
             <button class="tab-btn" onclick="showTab('records')">📋 考勤记录</button>
+            <button class="tab-btn" id="batchTabBtn" onclick="showTab('batch')" style="display: none;">📥 批量导入</button>
         </div>
 
         <div id="checkinTab" class="card">
@@ -620,6 +732,128 @@
                 <button class="btn btn-primary" onclick="resetCheckin()">
                     🔄 继续登记
                 </button>
+            </div>
+        </div>
+
+        <div id="batchTab" class="card" style="display: none;">
+            <div class="card-header">
+                <h3>📥 批量导入考勤</h3>
+            </div>
+
+            <div class="alert" id="batchAlert"></div>
+
+            <div class="form-group">
+                <label for="batchCourseId">选择课程 *</label>
+                <select id="batchCourseId" required>
+                    <option value="">请选择课程</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>上传附件</label>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="batchFile" accept=".xls,.xlsx" style="display: none;" onchange="handleFileSelect()">
+                    <button class="btn btn-secondary upload-btn" id="uploadBtn" onclick="triggerFileSelect()" disabled>
+                        📁 上传附件
+                    </button>
+                    <div id="fileInfo" style="margin-top: 15px;">
+                        <span id="fileNameDisplay" class="file-name"></span>
+                    </div>
+                </div>
+                <p class="hint">支持 .xls 和 .xlsx 格式，文件大小不超过 10MB</p>
+            </div>
+
+            <div class="form-group">
+                <label>📋 Excel模板格式</label>
+                <div class="template-info">
+                    <table class="template-table">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>E</th>
+                                <th>F</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>学号</td>
+                                <td>姓名</td>
+                                <td>性别</td>
+                                <td>班级</td>
+                                <td>状态</td>
+                                <td>原因</td>
+                            </tr>
+                            <tr>
+                                <td>42411000</td>
+                                <td>张三</td>
+                                <td>男</td>
+                                <td>2024级人工智能</td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>42411999</td>
+                                <td>李四</td>
+                                <td>女</td>
+                                <td>2024级人工智能</td>
+                                <td>2</td>
+                                <td>迟到</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="template-notes">
+                        <p><strong>状态说明：</strong></p>
+                        <ul>
+                            <li>1 - 签到（正常）</li>
+                            <li>2 - 迟到</li>
+                            <li>3 - 早退</li>
+                            <li>4 - 请假</li>
+                        </ul>
+                        <p><strong>注意事项：</strong></p>
+                        <ul>
+                            <li>学号和姓名为必填项</li>
+                            <li>签到时间将自动使用上传文件的当前时间</li>
+                            <li>状态为空时默认为"签到"</li>
+                            <li>原因字段仅在状态为迟到/早退/请假时填写</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="previewSection" style="display: none;">
+                <h4>📋 数据预览（前5行）</h4>
+                <div id="previewTable"></div>
+                <div id="previewStats"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="nextBtn" onclick="goNext()" style="display: none;">
+                    ➡️ 下一步
+                </button>
+                <button class="btn btn-secondary" id="previewBtn" onclick="previewExcel()" style="display: none;">
+                    👁️ 预览数据
+                </button>
+                <button class="btn btn-primary" id="importBtn" onclick="importExcel()" style="display: none;">
+                    📥 确认导入
+                </button>
+                <button class="btn btn-danger" id="clearBtn" onclick="clearBatchForm()" style="display: none;">
+                    🔄 重置
+                </button>
+            </div>
+
+            <div id="importProgress" style="display: none;">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="progressText">正在导入...</p>
+            </div>
+
+            <div id="importResult" style="display: none;">
+                <h4>📊 导入结果</h4>
+                <div id="resultDetails"></div>
             </div>
         </div>
 
@@ -685,7 +919,10 @@
         const API_URLS = {
             courses: `${API_BASE}/api/courses`,
             checkin: `${API_BASE}/attendance/checkin`,
-            checkinWithStatus: `${API_BASE}/attendance/checkin/status`
+            checkinWithStatus: `${API_BASE}/attendance/checkin/status`,
+            batchPreview: `${API_BASE}/attendance/upload/preview`,
+            batchImport: `${API_BASE}/attendance/upload/import`,
+            uploadProgress: `${API_BASE}/attendance/upload/progress`
         };
 
         let currentUsername = '';
@@ -714,6 +951,25 @@
 
             if (currentUserRole === 'STUDENT' || currentUserRole === 'USER') {
                 document.getElementById('studentId').value = currentUsername;
+            }
+
+            // 教师和管理员显示批量导入按钮
+            if (currentUserRole === 'TEACHER' || currentUserRole === 'ADMIN') {
+                document.getElementById('batchTabBtn').style.display = 'block';
+                
+                // 课程选择变化时启用上传按钮
+                document.getElementById('batchCourseId').addEventListener('change', () => {
+                    const courseId = document.getElementById('batchCourseId').value;
+                    const uploadBtn = document.getElementById('uploadBtn');
+                    
+                    if (courseId) {
+                        uploadBtn.disabled = false;
+                        uploadBtn.style.opacity = '1';
+                    } else {
+                        uploadBtn.disabled = true;
+                        uploadBtn.style.opacity = '0.5';
+                    }
+                });
             }
 
             // 所有角色都加载考勤记录
@@ -750,14 +1006,12 @@
             
             document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.add('active');
             
-            const tabContentId = tabName === 'batch' ? 'batchContent' : `${tabName}Tab`;
+            const tabContentId = `${tabName}Tab`;
             document.getElementById(tabContentId).style.display = 'block';
 
             if (tabName === 'records') {
                 currentPage = 1;
                 loadAttendanceRecords();
-            } else if (tabName === 'batch') {
-                loadStudentsForCourse();
             }
         }
 
@@ -770,6 +1024,7 @@
                     coursesData = result.data.courses || [];
                     populateCourseSelect('courseId');
                     populateCourseSelect('filterCourse');
+                    populateCourseSelect('batchCourseId');
                 }
             } catch (error) {
                 console.error('加载课程失败:', error);
@@ -1201,6 +1456,254 @@
 
         function goBack() {
             window.location.href = '/index';
+        }
+
+        // 批量导入相关函数
+        let selectedFile = null;
+
+        // 触发文件选择对话框
+        function triggerFileSelect() {
+            document.getElementById('batchFile').click();
+        }
+
+        function handleFileSelect() {
+            const fileInput = document.getElementById('batchFile');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            
+            if (fileInput.files.length > 0) {
+                selectedFile = fileInput.files[0];
+                fileNameDisplay.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #28a745;">✓</span>
+                        <span style="font-weight: 500;">${selectedFile.name}</span>
+                        <span style="color: #666; font-size: 14px;">(${formatFileSize(selectedFile.size)})</span>
+                    </div>
+                `;
+                
+                // 显示下一步按钮
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                document.getElementById('clearBtn').style.display = 'inline-block';
+                
+                // 隐藏之前的预览和结果
+                document.getElementById('previewSection').style.display = 'none';
+                document.getElementById('importResult').style.display = 'none';
+                document.getElementById('previewBtn').style.display = 'none';
+                document.getElementById('importBtn').style.display = 'none';
+            } else {
+                selectedFile = null;
+                fileNameDisplay.textContent = '';
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('previewBtn').style.display = 'none';
+                document.getElementById('importBtn').style.display = 'none';
+            }
+        }
+
+        // 格式化文件大小
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function goNext() {
+            // 隐藏下一步按钮，显示预览数据和确认导入按钮
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('previewBtn').style.display = 'inline-block';
+            document.getElementById('importBtn').style.display = 'inline-block';
+        }
+
+        async function previewExcel() {
+            const courseId = document.getElementById('batchCourseId').value;
+            
+            if (!courseId) {
+                showAlert('batchAlert', '请先选择课程', 'error');
+                return;
+            }
+            
+            if (!selectedFile) {
+                showAlert('batchAlert', '请选择要上传的文件', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('courseId', courseId);
+
+            try {
+                const response = await fetch(API_URLS.batchPreview, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    displayPreview(result.data);
+                    document.getElementById('importBtn').style.display = 'inline-block';
+                } else {
+                    showAlert('batchAlert', result.msg || '预览失败', 'error');
+                }
+            } catch (error) {
+                console.error('预览失败:', error);
+                showAlert('batchAlert', '预览失败，请稍后重试', 'error');
+            }
+        }
+
+        function displayPreview(data) {
+            const previewSection = document.getElementById('previewSection');
+            const previewTable = document.getElementById('previewTable');
+            const previewStats = document.getElementById('previewStats');
+
+            // 显示预览表格（前5行）
+            const previewData = data.previewData || [];
+            const displayData = previewData.slice(0, 5);
+
+            if (displayData.length === 0) {
+                previewTable.innerHTML = '<div class="no-data">文件中没有有效数据</div>';
+            } else {
+                previewTable.innerHTML = `
+                    <table class="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>学号</th>
+                                <th>姓名</th>
+                                <th>签到时间</th>
+                                <th>状态</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${displayData.map(row => `
+                                <tr>
+                                    <td>${row.studentId || '-'}</td>
+                                    <td>${row.studentName || '-'}</td>
+                                    <td>${row.checkInTime || '-'}</td>
+                                    <td>${row.statusName || '-'}</td>
+                                    <td>${row.reason || '-'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    ${previewData.length > 5 ? `<p style="text-align: center; margin-top: 10px; color: #666;">... 还有 ${previewData.length - 5} 行数据未显示</p>` : ''}
+                `;
+            }
+
+            // 显示统计信息
+            previewStats.innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>📊 数据统计：</strong></p>
+                    <p>总行数：${data.totalRows || 0} 行</p>
+                    <p>成功解析：${data.successCount || 0} 行</p>
+                    <p>解析失败：${data.failedCount || 0} 行</p>
+                    ${data.failedDetails && data.failedDetails.length > 0 ? `
+                        <p style="margin-top: 10px;"><strong>❌ 失败详情：</strong></p>
+                        <ul style="margin-left: 20px; max-height: 150px; overflow-y: auto;">
+                            ${data.failedDetails.slice(0, 10).map((detail, index) => `
+                                <li style="color: #dc3545; font-size: 14px;">第${detail.rowNum}行: ${detail.message}</li>
+                            `).join('')}
+                            ${data.failedDetails.length > 10 ? `<li>... 还有 ${data.failedDetails.length - 10} 条失败记录</li>` : ''}
+                        </ul>
+                    ` : ''}
+                </div>
+            `;
+
+            previewSection.style.display = 'block';
+        }
+
+        async function importExcel() {
+            const courseId = document.getElementById('batchCourseId').value;
+            
+            if (!courseId) {
+                showAlert('batchAlert', '请先选择课程', 'error');
+                return;
+            }
+            
+            if (!selectedFile) {
+                showAlert('batchAlert', '请选择要上传的文件', 'error');
+                return;
+            }
+
+            // 显示进度条
+            document.getElementById('importProgress').style.display = 'block';
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('importBtn').style.display = 'none';
+            document.getElementById('previewBtn').style.display = 'none';
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('courseId', courseId);
+
+            try {
+                const response = await fetch(API_URLS.batchImport, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                // 隐藏进度条
+                document.getElementById('importProgress').style.display = 'none';
+
+                if (result.code === 200) {
+                    displayImportResult(result.data);
+                } else {
+                    showAlert('batchAlert', result.msg || '导入失败', 'error');
+                    document.getElementById('previewBtn').style.display = 'inline-block';
+                }
+            } catch (error) {
+                console.error('导入失败:', error);
+                document.getElementById('importProgress').style.display = 'none';
+                document.getElementById('previewBtn').style.display = 'inline-block';
+                showAlert('batchAlert', '导入失败，请稍后重试', 'error');
+            }
+        }
+
+        function displayImportResult(data) {
+            const resultSection = document.getElementById('importResult');
+            const resultDetails = document.getElementById('resultDetails');
+
+            resultDetails.innerHTML = `
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <span style="font-size: 32px;">${data.successCount > 0 ? '🎉' : '⚠️'}</span>
+                        <h4>${data.successCount > 0 ? '导入完成' : '导入结果'}</h4>
+                    </div>
+                    <p><strong>📥 导入总数：</strong>${data.totalRows || 0} 条</p>
+                    <p><strong>✅ 成功导入：</strong>${data.successCount || 0} 条</p>
+                    <p><strong>❌ 导入失败：</strong>${data.failedCount || 0} 条</p>
+                    ${data.failedDetails && data.failedDetails.length > 0 ? `
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+                            <p><strong>失败详情：</strong></p>
+                            <ul style="margin-left: 20px; max-height: 200px; overflow-y: auto;">
+                                ${data.failedDetails.map((detail, index) => `
+                                    <li style="color: #dc3545; font-size: 14px; margin-bottom: 5px;">
+                                        <strong>第${detail.rowNum}行</strong> (${detail.studentId || '未知学号'} ${detail.studentName || ''}): ${detail.message}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            resultSection.style.display = 'block';
+            document.getElementById('clearBtn').style.display = 'inline-block';
+        }
+
+        function clearBatchForm() {
+            document.getElementById('batchCourseId').value = '';
+            document.getElementById('batchFile').value = '';
+            document.getElementById('fileNameDisplay').textContent = '';
+            selectedFile = null;
+            
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('importResult').style.display = 'none';
+            document.getElementById('importProgress').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('previewBtn').style.display = 'none';
+            document.getElementById('importBtn').style.display = 'none';
+            document.getElementById('clearBtn').style.display = 'none';
+            document.getElementById('batchAlert').style.display = 'none';
         }
     </script>
 </body>

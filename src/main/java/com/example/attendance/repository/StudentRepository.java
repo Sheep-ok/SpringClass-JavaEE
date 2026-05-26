@@ -4,6 +4,8 @@ import com.example.attendance.entity.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,4 +30,16 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     // 6. 根据学号模糊查询
     List<Student> findByStudentIdContaining(String studentId);
+
+    // 7. 获取所有班级名称
+    @Query("SELECT DISTINCT s.className FROM Student s WHERE s.className IS NOT NULL ORDER BY s.className")
+    List<String> findAllClassNames();
+    
+    // 8. 统计选了某门课程的学生数量
+    @Query("SELECT COUNT(DISTINCT s) FROM Student s JOIN CourseSelection cs ON s.studentId = cs.studentId WHERE cs.courseId = :courseId AND cs.status = 1")
+    long countByCourseId(@Param("courseId") String courseId);
+    
+    // 9. 统计选了某门课程且属于某个班级的学生数量
+    @Query("SELECT COUNT(DISTINCT s) FROM Student s JOIN CourseSelection cs ON s.studentId = cs.studentId WHERE cs.courseId = :courseId AND s.className = :className AND cs.status = 1")
+    long countByCourseIdAndClassName(@Param("courseId") String courseId, @Param("className") String className);
 }

@@ -85,7 +85,7 @@ public class CourseController {
         List<Map<String, Object>> attendanceStats = new ArrayList<>();
 
         if ("ADMIN".equals(role.toUpperCase())) {
-            long studentCount = userRepository.countByUserroleIgnoreCase("STUDENT") + userRepository.countByUserroleIgnoreCase("USER");
+            long studentCount = studentRepository.count();
             long teacherCount = userRepository.countByUserroleIgnoreCase("TEACHER");
             long courseCount = courseRepository.count();
 
@@ -116,7 +116,11 @@ public class CourseController {
             int courseCount = courses.size();
             long totalPresent = 0;
             long totalAbsent = 0;
-            long totalStudents = studentRepository.count();
+            
+            // 获取该教师所有课程的ID列表
+            List<String> courseIds = courses.stream().map(Course::getCourseId).toList();
+            // 统计选择该教师课程的学生数（去重，只统计有效选课status=1）
+            long totalStudents = courseIds.isEmpty() ? 0 : courseSelectionRepository.countDistinctStudentIdByCourseIdInAndStatus(courseIds);
 
             for (Course course : courses) {
                 Map<String, Object> stat = new HashMap<>();
@@ -171,6 +175,11 @@ public class CourseController {
 
     @GetMapping("/courses/all")
     public Result<List<Course>> getAllCourses() {
+        return Result.success(courseRepository.findAll());
+    }
+
+    @GetMapping("/course/list")
+    public Result<List<Course>> getCourseList() {
         return Result.success(courseRepository.findAll());
     }
 

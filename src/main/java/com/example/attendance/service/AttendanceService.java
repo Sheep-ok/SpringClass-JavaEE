@@ -1,8 +1,12 @@
 package com.example.attendance.service;
 
 import com.example.attendance.entity.Attendance;
+import com.example.attendance.entity.ImportResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface AttendanceService {
     Page<Attendance> getAttendancePage(Pageable pageable);
@@ -22,4 +26,11 @@ public interface AttendanceService {
     String deleteAttendance(Long id);
     
     Attendance getAttendanceById(Long id);
+    
+    /**
+     * 批量导入考勤数据
+     * @param attendanceList 考勤数据列表
+     * @return 导入结果报告
+     */
+    ImportResult batchImportAttendance(List<Attendance> attendanceList);
     }

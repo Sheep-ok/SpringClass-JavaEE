@@ -1,12 +1,14 @@
 package com.example.attendance.service.impl;
 
 import com.example.attendance.entity.Attendance;
+import com.example.attendance.entity.ImportResult;
 import com.example.attendance.repository.AttendanceRepository;
 import com.example.attendance.service.AttendanceService;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -163,5 +165,46 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public Attendance getAttendanceById(Long id) {
         return attendanceRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public ImportResult batchImportAttendance(List<Attendance> attendanceList) {
+        ImportResult result = new ImportResult();
+        result.setTotalCount(attendanceList.size());
+        
+        List<Attendance> validAttendances = new ArrayList<>();
+        
+        for (int i = 0; i < attendanceList.size(); i++) {
+            Attendance attendance = attendanceList.get(i);
+            int rowNum = i + 2; // Excel行号（从2开始，第一行是标题）
+            
+            // 验证数据
+            if (attendance.getStudentId() == null || attendance.getStudentId().trim().isEmpty()) {
+                result.addFailRecord(rowNum, "", attendance.getStudentName(), "学生ID不能为空");
+                continue;
+            }
+            
+            if (attendance.getStudentName() == null || attendance.getStudentName().trim().isEmpty()) {
+                result.addFailRecord(rowNum, attendance.getStudentId(), "", "学生姓名不能为空");
+                continue;
+            }
+            
+            if (attendance.getCourseId() == null || attendance.getCourseId().trim().isEmpty()) {
+                result.addFailRecord(rowNum, attendance.getStudentId(), attendance.getStudentName(), "课程ID不能为空");
+                continue;
+            }
+            
+            validAttendances.add(attendance);
+            result.setSuccessCount(result.getSuccessCount() + 1);
+        }
+        
+        // 批量保存有效数据
+        if (!validAttendances.isEmpty()) {
+            attendanceRepository.saveAll(validAttendances);
+        }
+        
+        result.calculateResult();
+        return result;
     }
 }

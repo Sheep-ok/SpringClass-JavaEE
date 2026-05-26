@@ -2,6 +2,9 @@ package com.example.attendance.controller;
 
 import com.example.attendance.entity.AttendanceRecord;
 import com.example.attendance.entity.Student;
+import com.example.attendance.repository.CourseRepository;
+import com.example.attendance.repository.CourseSelectionRepository;
+import com.example.attendance.repository.StudentRepository;
 import com.example.attendance.service.StudentService;
 import com.example.attendance.util.Result;
 import org.springframework.data.domain.Page;
@@ -19,10 +22,17 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
+    private final CourseSelectionRepository courseSelectionRepository;
 
     // 构造注入
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, StudentRepository studentRepository,
+                            CourseRepository courseRepository, CourseSelectionRepository courseSelectionRepository) {
         this.studentService = studentService;
+        this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
+        this.courseSelectionRepository = courseSelectionRepository;
     }
 
     @GetMapping("/info")
@@ -43,7 +53,10 @@ public class StudentController {
     // 任务一：路径参数查询单个学生
     @GetMapping("/info/{id}")
     public Result<Student> getStudentById(@PathVariable String id) {
-        Student student = new Student(id, "张三", "计算机", 20, "男");
+        Student student = studentService.getStudentById(id);
+        if (student == null) {
+            return Result.error("学生不存在");
+        }
         return Result.success(student);
     }
 
@@ -53,11 +66,7 @@ public class StudentController {
             @RequestParam String className,
             @RequestParam(defaultValue = "1") int page) {
 
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("001", "张三", className, 20, "男"));
-        students.add(new Student("002", "李四", className, 19, "女"));
-        students.add(new Student("003", "王五", className, 20, "男"));
-
+        List<Student> students = studentService.getStudentsByClassName(className);
         return Result.success(students);
     }
 
@@ -133,5 +142,22 @@ public class StudentController {
     @GetMapping("/all")
     public Result<List<Student>> getAllStudents() {
         return Result.success(studentService.getAllStudents());
+    }
+
+    // 获取所有班级列表
+    @GetMapping("/classes")
+    public Result<List<String>> getAllClasses() {
+        return Result.success(studentRepository.findAllClassNames());
+    }
+
+    // 获取教师课程涉及的班级列表
+    @GetMapping("/teacher-classes")
+    public Result<List<String>> getTeacherClasses(@RequestParam String username) {
+        List<String> classNames = courseSelectionRepository.findDistinctClassNamesByCourseIds(
+            courseRepository.findByTeacherId(username).stream()
+                .map(c -> c.getCourseId())
+                .toList()
+        );
+        return Result.success(classNames);
     }
 }
