@@ -116,8 +116,47 @@ public class UserController {
         if (student.getAge() != null) {
             profile.put("age", student.getAge());
         }
+        if (student.getBirthDate() != null) {
+            profile.put("birthDate", student.getBirthDate().toString());
+        }
+        if (student.getPhone() != null && !student.getPhone().isEmpty()) {
+            profile.put("phone", student.getPhone());
+        }
+        if (student.getEmail() != null && !student.getEmail().isEmpty()) {
+            profile.put("email", student.getEmail());
+        }
 
         return Result.success(profile);
+    }
+
+    @PutMapping("/profile/info")
+    public Result<String> updateProfileInfo(@RequestBody Map<String, String> params) {
+        String username = params.get("username");
+        String birthDate = params.get("birthDate");
+        String phone = params.get("phone");
+        String email = params.get("email");
+
+        if (username == null) {
+            return Result.error("参数不完整");
+        }
+
+        Optional<Student> studentOpt = studentRepository.findByStudentId(username);
+        if (studentOpt.isEmpty()) {
+            return Result.error("学生信息不存在");
+        }
+
+        Student student = studentOpt.get();
+
+        if (birthDate != null && !birthDate.isEmpty()) {
+            student.setBirthDate(java.time.LocalDate.parse(birthDate));
+        } else {
+            student.setBirthDate(null);
+        }
+        student.setPhone(phone != null ? phone : "");
+        student.setEmail(email != null ? email : "");
+
+        studentRepository.save(student);
+        return Result.success("个人信息更新成功");
     }
 
     @PutMapping("/profile/password")

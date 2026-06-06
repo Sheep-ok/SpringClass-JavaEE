@@ -5385,3 +5385,1373 @@ Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 
         attendance a1_0 
     where
         a1_0.course_id=?
+2026-06-06 15:50:48.166 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:50:48.202 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:50:48.210 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:50:48.215 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:50:48.219 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:50:48.223 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:50:48.230 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:50:48.232 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 16:00:18.581 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-06 16:00:18.595 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-06 16:00:18.598 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-06 16:00:18.599 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-06 16:00:18.601 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-06 16:00:24.053 [main] INFO  c.e.a.AttendanceSystemApplication - Starting AttendanceSystemApplication using Java 21.0.2 with PID 19576 (D:\Java\springboot_pj\attendance-system\target\classes started by l in D:\Java\springboot_pj\attendance-system)
+2026-06-06 16:00:24.054 [main] DEBUG c.e.a.AttendanceSystemApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-06-06 16:00:24.054 [main] INFO  c.e.a.AttendanceSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-06 16:00:24.431 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-06 16:00:24.476 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 5 JPA repository interfaces.
+2026-06-06 16:00:24.588 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=d6250731-036a-36ea-b8f9-8d612c972637
+2026-06-06 16:00:24.765 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-06 16:00:24.772 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-06 16:00:24.773 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-06 16:00:24.773 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-06-06 16:00:24.806 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 729 ms
+2026-06-06 16:00:24.917 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-06 16:00:24.944 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-06-06 16:00:25.177 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-06 16:00:25.193 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-06 16:00:25.719 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 1d877ec1-aab8-4125-9980-20dbe3496561
+2026-06-06 16:00:25.720 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-06 16:00:25.833 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-06 16:00:25.847 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlserver://localhost:1433;concatNullYieldsNull=ON;quotedIdentifier=ON;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;vectorTypeSupport=v1;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=false;disableStatementPooling=true;databaseName=attendance_system;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;]
+	Database driver: Microsoft JDBC Driver 13.2 for SQL Server
+	Database dialect: SQLServerDialect
+	Database version: 17.0
+	Default catalog/schema: attendance_system/dbo
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 128
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-06 16:00:26.323 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-06 16:00:27.258 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column id bigint
+2026-06-06 16:00:27.264 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:00:27.265 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column student_status tinyint default 1
+2026-06-06 16:00:27.266 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:00:27.267 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column id bigint
+2026-06-06 16:00:27.268 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:00:27.269 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column status tinyint default 1
+2026-06-06 16:00:27.269 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:00:27.270 [main] DEBUG org.hibernate.SQL - 
+    alter table student 
+       add email varchar(100)
+2026-06-06 16:00:27.281 [main] DEBUG org.hibernate.SQL - 
+    alter table student 
+       alter column phone varchar(20)
+2026-06-06 16:00:27.298 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-06 16:00:27.342 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-06 16:00:28.191 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-06 16:00:28.227 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name myUserDetailsServiceImpl
+2026-06-06 16:00:28.320 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page template: index
+2026-06-06 16:00:29.490 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 16:00:29.516 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-06 16:00:29.527 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-06 16:00:30.545 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 16:00:30.550 [main] INFO  c.e.a.AttendanceSystemApplication - Started AttendanceSystemApplication in 7.843 seconds (process running for 8.414)
+2026-06-06 16:00:34.858 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-06 16:00:34.858 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-06 16:00:34.859 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-06 16:00:35.062 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:00:35.097 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 16:00:35.108 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 16:00:35.120 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 16:00:35.124 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 16:00:35.128 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 16:00:35.133 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 16:00:35.135 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 16:00:42.100 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:00:43.862 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:00:43.873 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:00:43.883 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:00:43.889 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:00:43.896 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=?
+2026-06-06 16:00:46.752 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:02:57.728 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-06 16:02:57.741 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-06 16:02:57.744 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-06 16:02:57.745 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-06 16:02:57.747 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-06 16:03:01.595 [main] INFO  c.e.a.AttendanceSystemApplication - Starting AttendanceSystemApplication using Java 21.0.2 with PID 3484 (D:\Java\springboot_pj\attendance-system\target\classes started by l in D:\Java\springboot_pj\attendance-system)
+2026-06-06 16:03:01.597 [main] DEBUG c.e.a.AttendanceSystemApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-06-06 16:03:01.597 [main] INFO  c.e.a.AttendanceSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-06 16:03:02.006 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-06 16:03:02.044 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 5 JPA repository interfaces.
+2026-06-06 16:03:02.148 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=d6250731-036a-36ea-b8f9-8d612c972637
+2026-06-06 16:03:02.332 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-06 16:03:02.340 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-06 16:03:02.340 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-06 16:03:02.341 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-06-06 16:03:02.373 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 749 ms
+2026-06-06 16:03:02.484 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-06 16:03:02.508 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-06-06 16:03:02.750 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-06 16:03:02.767 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-06 16:03:03.400 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: ae09fe80-005e-43e1-b069-4df613c2e2f4
+2026-06-06 16:03:03.401 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-06 16:03:03.526 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-06 16:03:03.538 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlserver://localhost:1433;concatNullYieldsNull=ON;quotedIdentifier=ON;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;vectorTypeSupport=v1;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=false;disableStatementPooling=true;databaseName=attendance_system;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;]
+	Database driver: Microsoft JDBC Driver 13.2 for SQL Server
+	Database dialect: SQLServerDialect
+	Database version: 17.0
+	Default catalog/schema: attendance_system/dbo
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 128
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-06 16:03:04.038 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-06 16:03:04.808 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column id bigint
+2026-06-06 16:03:04.812 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:03:04.813 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column student_status tinyint default 1
+2026-06-06 16:03:04.815 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:03:04.816 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column id bigint
+2026-06-06 16:03:04.817 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:03:04.818 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column status tinyint default 1
+2026-06-06 16:03:04.818 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 16:03:04.820 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-06 16:03:04.866 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-06 16:03:05.684 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-06 16:03:05.725 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name myUserDetailsServiceImpl
+2026-06-06 16:03:05.817 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page template: index
+2026-06-06 16:03:07.004 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 16:03:07.033 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-06 16:03:07.044 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-06 16:03:08.051 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 16:03:08.056 [main] INFO  c.e.a.AttendanceSystemApplication - Started AttendanceSystemApplication in 7.774 seconds (process running for 8.238)
+2026-06-06 16:03:14.979 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-06 16:03:14.979 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-06 16:03:14.980 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-06 16:03:15.173 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:03:15.208 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:03:15.222 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:03:15.230 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:03:15.233 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=?
+2026-06-06 16:03:59.901 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:04:01.537 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:04:01.542 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:04:01.550 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:04:01.558 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:04:01.560 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:04:01.561 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:04:01.562 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=?
+2026-06-06 16:04:04.398 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:04:09.046 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:05:12.224 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:05:12.256 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    update
+        student 
+    set
+        age=?,
+        birth_date=?,
+        class_name=?,
+        email=?,
+        gender=?,
+        student_name=?,
+        phone=? 
+    where
+        student_id=?
+2026-06-06 16:05:15.219 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:05:20.985 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:07:59.630 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.birth_date,
+        s1_0.class_name,
+        s1_0.email,
+        s1_0.gender,
+        s1_0.student_name,
+        s1_0.phone 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 16:08:11.091 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 16:08:11.098 [http-nio-8080-exec-3] DEBUG c.e.a.s.impl.AttendanceServiceImpl - 按条件查询考勤记录，学生ID: aaa, 课程ID: null, 状态: null
+2026-06-06 16:08:11.101 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:08:11.111 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:08:11.119 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:08:11.122 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 16:08:11.125 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 16:08:11.128 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=?
+2026-06-06 16:08:11.156 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=? 
+    order by
+        a1_0.check_in_time desc 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-06-06 16:08:11.201 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.AttendanceServiceImpl - 条件查询考勤记录完成，总数: 4
+2026-06-06 16:08:11.214 [http-nio-8080-exec-3] WARN  o.s.d.w.c.SpringDataJackson3Configuration$PageModule$WarningLoggingModifier - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-06-06 16:08:13.995 [http-nio-8080-exec-8] DEBUG c.e.a.s.impl.AttendanceServiceImpl - 按条件查询考勤记录，学生ID: aaa, 课程ID: null, 状态: null
+2026-06-06 16:08:13.998 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=? 
+    order by
+        a1_0.check_in_time desc 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-06-06 16:08:14.005 [http-nio-8080-exec-8] INFO  c.e.a.s.impl.AttendanceServiceImpl - 条件查询考勤记录完成，总数: 4
+2026-06-06 16:09:41.552 [http-nio-8080-exec-5] INFO  o.a.coyote.http11.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x050x010x00...]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:391)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)

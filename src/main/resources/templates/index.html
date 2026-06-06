@@ -64,6 +64,22 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
+        .header .edit-profile-btn {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px dashed rgba(255, 255, 255, 0.6);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .header .edit-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
         .container {
             padding: 40px;
             max-width: 1400px;
@@ -875,6 +891,7 @@
         <div class="user-info">
             <span class="role-badge" id="roleBadge">角色</span>
             <span class="username" id="username">欢迎回来</span>
+            <button class="edit-profile-btn" id="editProfileBtn" style="display: none;">完善个人信息</button>
             <button class="logout-btn" id="logoutBtn">退出登录</button>
         </div>
     </div>
@@ -1190,6 +1207,31 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="editInfoModal">
+        <div class="modal" style="max-width: 480px;">
+            <div class="modal-header">
+                <h3>完善个人信息</h3>
+                <button class="close-btn" id="closeEditInfoModalBtn">×</button>
+            </div>
+            <div class="alert" id="editInfoAlert"></div>
+            <form id="editInfoForm">
+                <div class="form-group">
+                    <label for="editBirthDate">出生日期</label>
+                    <input type="date" id="editBirthDate">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">手机号</label>
+                    <input type="text" id="editPhone" placeholder="请输入手机号">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">邮箱</label>
+                    <input type="email" id="editEmail" placeholder="请输入邮箱地址">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">保存</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         const roleNames = {
             'STUDENT': '学生',
@@ -1232,6 +1274,11 @@
 
             document.getElementById('username').textContent = currentUsername;
             document.getElementById('roleBadge').textContent = roleNames[currentUserRole] || '未知';
+
+            // 学生角色显示"完善个人信息"按钮
+            if (isStudentRole(currentUserRole)) {
+                document.getElementById('editProfileBtn').style.display = 'inline-block';
+            }
 
             loadData(currentUsername, currentUserRole);
 
@@ -3010,12 +3057,92 @@
             window.location.href = '/data_sta';
         }
 
+        // ========== 完善个人信息 ==========
+        document.getElementById('editProfileBtn').addEventListener('click', showEditInfoModal);
+        document.getElementById('closeEditInfoModalBtn').addEventListener('click', closeEditInfoModal);
+        document.getElementById('editInfoModal').addEventListener('click', function (e) {
+            if (e.target === this) closeEditInfoModal();
+        });
+        document.getElementById('editInfoForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const alertDiv = document.getElementById('editInfoAlert');
+            alertDiv.style.display = 'none';
+
+            const birthDate = document.getElementById('editBirthDate').value;
+            const phone = document.getElementById('editPhone').value.trim();
+            const email = document.getElementById('editEmail').value.trim();
+
+            try {
+                const response = await fetch(`${API_BASE}/user/profile/info`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: currentUsername,
+                        birthDate: birthDate,
+                        phone: phone,
+                        email: email
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    alertDiv.textContent = '个人信息更新成功';
+                    alertDiv.className = 'alert success';
+                    alertDiv.style.display = 'block';
+                    setTimeout(() => closeEditInfoModal(), 1200);
+                } else {
+                    alertDiv.textContent = result.msg || '更新失败';
+                    alertDiv.className = 'alert error';
+                    alertDiv.style.display = 'block';
+                }
+            } catch (error) {
+                alertDiv.textContent = '网络错误，请稍后重试';
+                alertDiv.className = 'alert error';
+                alertDiv.style.display = 'block';
+            }
+        });
+
+        async function showEditInfoModal() {
+            document.getElementById('editInfoModal').classList.add('show');
+            document.getElementById('editInfoAlert').style.display = 'none';
+            document.getElementById('editInfoForm').reset();
+
+            try {
+                const response = await fetch(`${API_BASE}/user/profile/${currentUsername}`);
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    const profile = result.data;
+                    if (profile.birthDate) {
+                        document.getElementById('editBirthDate').value = profile.birthDate;
+                    }
+                    if (profile.phone) {
+                        document.getElementById('editPhone').value = profile.phone;
+                    }
+                    if (profile.email) {
+                        document.getElementById('editEmail').value = profile.email;
+                    }
+                }
+            } catch (error) {
+                // silently fail, user can still fill the form
+            }
+        }
+
+        function closeEditInfoModal() {
+            document.getElementById('editInfoModal').classList.remove('show');
+        }
+        // ========== end 完善个人信息 ==========
+
         const fieldLabels = {
             studentId: '学号',
             name: '姓名',
             gender: '性别',
             className: '班级',
-            age: '年龄'
+            age: '年龄',
+            birthDate: '出生日期',
+            phone: '手机号',
+            email: '邮箱'
         };
 
         async function showProfile() {
