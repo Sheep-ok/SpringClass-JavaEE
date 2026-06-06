@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,77 +13,82 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: url('/images/background_img.png') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 20px;
+            padding: 20px 20px 20px 10%;
+            position: relative;
         }
 
         .register-container {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            padding: 40px;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
             width: 100%;
-            max-width: 480px;
+            max-width: 380px;
+            animation: slideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
 
         .register-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 24px;
         }
 
         .register-header h1 {
-            color: #333;
-            font-size: 28px;
+            color: #3D4752;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .register-header p {
-            color: #666;
-            font-size: 14px;
+            color: #6E7986;
+            font-size: 13px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
-            color: #444;
-            font-size: 14px;
+            color: #3D4752;
+            font-size: 13px;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
+            padding: 9px 12px;
+            border: 2px solid #E5E2DC;
+            border-radius: 8px;
+            font-size: 14px;
             transition: all 0.3s ease;
             outline: none;
         }
 
         .form-group input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            border-color: #6B8DA8;
+            box-shadow: 0 0 0 3px rgba(107, 141, 168, 0.15);
         }
 
         .form-group input::placeholder {
-            color: #999;
+            color: #A4ACB8;
         }
 
         .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
+            padding: 9px 12px;
+            border: 2px solid #E5E2DC;
+            border-radius: 8px;
+            font-size: 14px;
             transition: all 0.3s ease;
             outline: none;
             background: white;
@@ -91,63 +96,62 @@
         }
 
         .form-group select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            border-color: #6B8DA8;
+            box-shadow: 0 0 0 3px rgba(107, 141, 168, 0.15);
         }
 
         .form-group .hint {
-            font-size: 12px;
-            color: #888;
+            font-size: 11px;
+            color: #A4ACB8;
+            margin-top: 4px;
+        }
+
+        .password-strength {
             margin-top: 6px;
-        }
-
-        .form-options {
-            margin-bottom: 25px;
-        }
-
-        .form-options label {
             display: flex;
             align-items: center;
-            cursor: pointer;
-            color: #555;
-            font-size: 14px;
         }
 
-        .form-options input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+        .password-strength .bar {
+            flex: 1;
+            height: 4px;
+            background: #EAE7E2;
+            border-radius: 2px;
             margin-right: 8px;
-            accent-color: #667eea;
+            overflow: hidden;
         }
 
-        .form-options a {
-            color: #667eea;
-            text-decoration: none;
+        .password-strength .bar div {
+            height: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        .form-options a:hover {
-            text-decoration: underline;
+        .password-strength .text {
+            font-size: 11px;
+            color: #A4ACB8;
+            width: 50px;
         }
 
         .btn {
             width: 100%;
-            padding: 14px;
+            padding: 11px;
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(107, 141, 168, 0.35);
         }
 
         .btn-primary:active {
@@ -156,18 +160,18 @@
 
         .login-link {
             text-align: center;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #eee;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid #EAE7E2;
         }
 
         .login-link p {
-            color: #666;
-            font-size: 14px;
+            color: #6E7986;
+            font-size: 13px;
         }
 
         .login-link a {
-            color: #667eea;
+            color: #6B8DA8;
             text-decoration: none;
             font-weight: 500;
         }
@@ -177,23 +181,23 @@
         }
 
         .alert {
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
+            margin-bottom: 14px;
+            font-size: 13px;
             display: none;
         }
 
         .alert.error {
-            background-color: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+            background-color: #F4E8E8;
+            color: #C47C7C;
+            border: 1px solid #ECD4D4;
         }
 
         .alert.success {
-            background-color: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
+            background-color: #E8F0E8;
+            color: #7A9F7A;
+            border: 1px solid #D4E4D4;
         }
 
         .loading {
@@ -212,6 +216,17 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .password-strength {
             margin-top: 8px;
             display: flex;
@@ -221,7 +236,7 @@
         .password-strength .bar {
             flex: 1;
             height: 4px;
-            background: #eee;
+            background: #EAE7E2;
             border-radius: 2px;
             margin-right: 8px;
             overflow: hidden;
@@ -235,7 +250,7 @@
 
         .password-strength .text {
             font-size: 12px;
-            color: #888;
+            color: #A4ACB8;
             width: 60px;
         }
     </style>
@@ -286,13 +301,6 @@
                 </select>
             </div>
 
-            <div class="form-options">
-                <label>
-                    <input type="checkbox" id="agreeTerms" required>
-                    我已阅读并同意<a href="#" target="_blank">《用户服务协议》</a>和<a href="#" target="_blank">《隐私政策》</a>
-                </label>
-            </div>
-
             <button type="submit" class="btn btn-primary" id="registerBtn">
                 <span class="loading" id="loading" style="display: none;"></span>
                 注 册
@@ -332,7 +340,7 @@
             if (/[^a-zA-Z0-9]/.test(password)) score++;
 
             const texts = ['弱', '较弱', '中等', '较强', '强', '非常强'];
-            const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#10b981', '#06b6d4'];
+            const colors = ['#C47C7C', '#f97316', '#eab308', '#7A9F7A', '#10b981', '#06b6d4'];
             
             const index = Math.min(score, 5);
             strengthBar.style.width = `${(index + 1) * 20}%`;

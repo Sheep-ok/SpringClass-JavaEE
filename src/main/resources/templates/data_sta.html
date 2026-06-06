@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -14,17 +14,17 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            background: #F7F5F2;
             min-height: 100vh;
         }
 
         .nav-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             padding: 15px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .nav-header .back-btn {
@@ -86,12 +86,12 @@
         .stat-card .stat-value {
             font-size: 28px;
             font-weight: 700;
-            color: #2d3436;
+            color: #3D4752;
         }
 
         .stat-card .stat-label {
             font-size: 14px;
-            color: #636e72;
+            color: #6E7986;
             margin-top: 5px;
         }
 
@@ -118,12 +118,12 @@
         .chart-card .chart-title {
             font-size: 16px;
             font-weight: 600;
-            color: #2d3436;
+            color: #3D4752;
         }
 
         .chart-card .chart-subtitle {
             font-size: 12px;
-            color: #636e72;
+            color: #6E7986;
         }
 
         .chart-container {
@@ -145,13 +145,13 @@
 
         .filter-bar label {
             font-size: 14px;
-            color: #636e72;
+            color: #6E7986;
         }
 
         .filter-bar select,
         .filter-bar input {
             padding: 8px 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #E5E2DC;
             border-radius: 6px;
             font-size: 14px;
             outline: none;
@@ -160,12 +160,12 @@
 
         .filter-bar select:focus,
         .filter-bar input:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .filter-bar .btn {
             padding: 8px 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
             border: none;
             border-radius: 6px;
@@ -369,10 +369,10 @@
                         formatter: '{b}: {d}%'
                     },
                     data: [
-                        { value: data.statusData?.present || 0, name: '签到', itemStyle: { color: '#00b894' } },
-                        { value: data.statusData?.late || 0, name: '迟到', itemStyle: { color: '#fdcb6e' } },
-                        { value: data.statusData?.earlyLeave || 0, name: '早退', itemStyle: { color: '#e17055' } },
-                        { value: data.statusData?.absent || 0, name: '请假', itemStyle: { color: '#6c757d' } }
+                        { value: data.statusData?.present || 0, name: '签到', itemStyle: { color: '#7A9F7A' } },
+                        { value: data.statusData?.late || 0, name: '迟到', itemStyle: { color: '#D4B872' } },
+                        { value: data.statusData?.earlyLeave || 0, name: '早退', itemStyle: { color: '#C47C7C' } },
+                        { value: data.statusData?.absent || 0, name: '请假', itemStyle: { color: '#8A94A2' } }
                     ]
                 }]
             });
@@ -410,12 +410,12 @@
                         type: 'line',
                         smooth: true,
                         data: data.dailyData?.present || [0, 0, 0, 0, 0, 0, 0],
-                        lineStyle: { color: '#00b894', width: 3 },
-                        itemStyle: { color: '#00b894' },
+                        lineStyle: { color: '#7A9F7A', width: 3 },
+                        itemStyle: { color: '#7A9F7A' },
                         areaStyle: {
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                { offset: 0, color: 'rgba(0, 184, 148, 0.3)' },
-                                { offset: 1, color: 'rgba(0, 184, 148, 0.05)' }
+                                { offset: 0, color: 'rgba(122, 159, 122, 0.35)' },
+                                { offset: 1, color: 'rgba(122, 159, 122, 0.08)' }
                             ])
                         }
                     },
@@ -424,24 +424,24 @@
                         type: 'line',
                         smooth: true,
                         data: data.dailyData?.late || [0, 0, 0, 0, 0, 0, 0],
-                        lineStyle: { color: '#fdcb6e', width: 3 },
-                        itemStyle: { color: '#fdcb6e' }
+                        lineStyle: { color: '#D4B872', width: 3 },
+                        itemStyle: { color: '#D4B872' }
                     },
                     {
                         name: '早退',
                         type: 'line',
                         smooth: true,
                         data: data.dailyData?.earlyLeave || [0, 0, 0, 0, 0, 0, 0],
-                        lineStyle: { color: '#e17055', width: 3 },
-                        itemStyle: { color: '#e17055' }
+                        lineStyle: { color: '#C47C7C', width: 3 },
+                        itemStyle: { color: '#C47C7C' }
                     },
                     {
                         name: '请假',
                         type: 'line',
                         smooth: true,
                         data: data.dailyData?.absent || [0, 0, 0, 0, 0, 0, 0],
-                        lineStyle: { color: '#6c757d', width: 3 },
-                        itemStyle: { color: '#6c757d' }
+                        lineStyle: { color: '#8A94A2', width: 3 },
+                        itemStyle: { color: '#8A94A2' }
                     }
                 ]
             });
@@ -485,15 +485,15 @@
                     itemStyle: {
                         borderRadius: [6, 6, 0, 0],
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                            { offset: 0, color: '#667eea' },
-                            { offset: 1, color: '#764ba2' }
+                            { offset: 0, color: '#6B8DA8' },
+                            { offset: 1, color: '#4D6F8A' }
                         ])
                     },
                     emphasis: {
                         itemStyle: {
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                                { offset: 0, color: '#764ba2' },
-                                { offset: 1, color: '#667eea' }
+                                { offset: 0, color: '#4D6F8A' },
+                                { offset: 1, color: '#6B8DA8' }
                             ])
                         }
                     }
@@ -535,8 +535,8 @@
                     itemStyle: {
                         borderRadius: [6, 6, 0, 0],
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                            { offset: 0, color: '#00b894' },
-                            { offset: 1, color: '#00cec9' }
+                            { offset: 0, color: '#7A9F7A' },
+                            { offset: 1, color: '#7BA89A' }
                         ])
                     }
                 }]

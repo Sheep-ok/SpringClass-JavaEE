@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,18 +13,18 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            background: #F7F5F2;
             min-height: 100vh;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .header h1 {
@@ -79,13 +79,13 @@
         }
 
         .welcome-section h2 {
-            color: #333;
+            color: #3D4752;
             font-size: 28px;
             margin-bottom: 10px;
         }
 
         .welcome-section p {
-            color: #666;
+            color: #6E7986;
             font-size: 16px;
         }
 
@@ -116,35 +116,35 @@
         }
 
         .stat-card .icon.users {
-            background: #e0f2fe;
-            color: #0284c7;
+            background: #E4EDF4;
+            color: #7B98B5;
         }
 
         .stat-card .icon.attendance {
-            background: #dcfce7;
-            color: #16a34a;
+            background: #E8F0E8;
+            color: #7A9F7A;
         }
 
         .stat-card .icon.absent {
-            background: #fef3c7;
-            color: #f59e0b;
+            background: #F2ECD8;
+            color: #C4A35A;
         }
 
         .stat-card .icon.percentage {
-            background: #fce7f3;
-            color: #db2777;
+            background: #EFE8E8;
+            color: #B58B8B;
         }
 
         .stat-card .value {
             font-size: 32px;
             font-weight: 700;
-            color: #333;
+            color: #3D4752;
             margin-bottom: 5px;
         }
 
         .stat-card .label {
             font-size: 14px;
-            color: #666;
+            color: #6E7986;
         }
 
         .section-card {
@@ -161,17 +161,17 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid #EFECE7;
         }
 
         .section-card-header h3 {
-            color: #333;
+            color: #3D4752;
             font-size: 20px;
             margin: 0;
         }
 
         .section-card-header .action-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             border: none;
             color: white;
             padding: 8px 16px;
@@ -184,16 +184,16 @@
 
         .section-card-header .action-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(107, 141, 168, 0.3);
         }
 
         .section-card-header .action-btn.secondary {
-            background: #f1f5f9;
-            color: #64748b;
+            background: #F2F0ED;
+            color: #6E7986;
         }
 
         .section-card-header .action-btn.secondary:hover {
-            background: #e2e8f0;
+            background: #EAE7E2;
         }
 
         .course-table {
@@ -205,23 +205,23 @@
         .course-table td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #EAE7E2;
         }
 
         .course-table th {
-            background: #f8f9fa;
-            color: #666;
+            background: #F9F7F4;
+            color: #6E7986;
             font-weight: 600;
             font-size: 14px;
         }
 
         .course-table td {
-            color: #333;
+            color: #3D4752;
             font-size: 14px;
         }
 
         .course-table tr:hover {
-            background: #f8f9fa;
+            background: #F9F7F4;
         }
 
         .status-badge {
@@ -233,19 +233,19 @@
         }
 
         .status-badge.active {
-            background: #dcfce7;
-            color: #16a34a;
+            background: #E8F0E8;
+            color: #7A9F7A;
         }
 
         .status-badge.inactive {
-            background: #fee2e2;
-            color: #dc2626;
+            background: #F4E8E8;
+            color: #C47C7C;
         }
 
         .rate-bar {
             width: 100%;
             height: 8px;
-            background: #eee;
+            background: #EAE7E2;
             border-radius: 4px;
             overflow: hidden;
             margin-top: 8px;
@@ -253,52 +253,159 @@
 
         .rate-bar .fill {
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             border-radius: 4px;
             transition: width 0.3s ease;
         }
 
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
         }
 
         .action-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            background: white;
             border: none;
-            color: white;
-            padding: 15px 20px;
+            color: #3D4752;
+            padding: 12px 20px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
         }
 
         .action-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .action-btn .icon {
-            font-size: 24px;
+        .quick-actions .action-btn {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 36px 28px 28px;
+            border-radius: 18px;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .quick-actions .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            transition: height 0.3s ease;
+        }
+
+        .quick-actions .action-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .quick-actions .action-btn:hover::before {
+            height: 8px;
+        }
+
+        .quick-actions .action-btn .icon-wrapper,
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quick-actions .action-btn:hover .icon-wrapper {
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .quick-actions .action-btn .btn-text {
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .quick-actions .action-btn .btn-desc {
+            font-size: 13px;
+            font-weight: 400;
+            color: #8E99A4;
+            margin-top: -8px;
+            transition: color 0.3s ease;
+        }
+
+        /* 蓝色系 — 灰蓝（品牌主色） */
+        .quick-actions .action-btn.color-blue::before {
+            background: linear-gradient(90deg, #6B8DA8, #7B98B5);
+        }
+        .quick-actions .action-btn.color-blue .icon-wrapper {
+            background: linear-gradient(135deg, #E4EDF4, #D6E2EC);
+            color: #6B8DA8;
+        }
+        .quick-actions .action-btn.color-blue:hover {
+            background: #F4F7FA;
+        }
+
+        /* 紫色系 — 灰紫（柔和典雅） */
+        .quick-actions .action-btn.color-purple::before {
+            background: linear-gradient(90deg, #8B7D9A, #9D91AC);
+        }
+        .quick-actions .action-btn.color-purple .icon-wrapper {
+            background: linear-gradient(135deg, #EDE8F2, #E0DAE6);
+            color: #8B7D9A;
+        }
+        .quick-actions .action-btn.color-purple:hover {
+            background: #F7F5FA;
+        }
+
+        /* 绿色系 — 鼠尾草绿（自然沉稳） */
+        .quick-actions .action-btn.color-green::before {
+            background: linear-gradient(90deg, #7A9F7A, #8FAF8F);
+        }
+        .quick-actions .action-btn.color-green .icon-wrapper {
+            background: linear-gradient(135deg, #E8F0E8, #D8E6D8);
+            color: #7A9F7A;
+        }
+        .quick-actions .action-btn.color-green:hover {
+            background: #F5F8F5;
+        }
+
+        /* 橙色系 — 暖金（温润质朴） */
+        .quick-actions .action-btn.color-orange::before {
+            background: linear-gradient(90deg, #B58B53, #C4A35A);
+        }
+        .quick-actions .action-btn.color-orange .icon-wrapper {
+            background: linear-gradient(135deg, #F2ECD8, #E8E0C8);
+            color: #B58B53;
+        }
+        .quick-actions .action-btn.color-orange:hover {
+            background: #F9F6EC;
         }
 
         .loading {
             text-align: center;
             padding: 40px;
-            color: #666;
+            color: #6E7986;
         }
 
         .no-data {
             text-align: center;
             padding: 40px;
-            color: #999;
+            color: #A4ACB8;
         }
 
         .modal-overlay {
@@ -334,11 +441,11 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid #EFECE7;
         }
 
         .modal-header h3 {
-            color: #333;
+            color: #3D4752;
             font-size: 20px;
             margin: 0;
         }
@@ -348,11 +455,11 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: #999;
+            color: #A4ACB8;
         }
 
         .modal-header .close-btn:hover {
-            color: #333;
+            color: #3D4752;
         }
 
         .search-box {
@@ -362,14 +469,14 @@
         .search-box input {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 10px;
             font-size: 15px;
             outline: none;
         }
 
         .search-box input:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .course-list {
@@ -382,30 +489,30 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            border: 1px solid #eee;
+            border: 1px solid #EAE7E2;
             border-radius: 10px;
             margin-bottom: 10px;
             transition: all 0.3s ease;
         }
 
         .course-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+            border-color: #6B8DA8;
+            box-shadow: 0 2px 10px rgba(107, 141, 168, 0.1);
         }
 
         .course-item .info h4 {
-            color: #333;
+            color: #3D4752;
             margin: 0 0 5px 0;
         }
 
         .course-item .info p {
-            color: #666;
+            color: #6E7986;
             font-size: 14px;
             margin: 0;
         }
 
         .course-item .select-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             border: none;
             color: white;
             padding: 8px 16px;
@@ -416,13 +523,13 @@
         }
 
         .course-item .select-btn:disabled {
-            background: #ccc;
+            background: #D8D4CC;
             cursor: not-allowed;
         }
 
         .course-item .selected-badge {
-            background: #dcfce7;
-            color: #16a34a;
+            background: #E8F0E8;
+            color: #7A9F7A;
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 14px;
@@ -438,15 +545,15 @@
         }
 
         .alert.error {
-            background-color: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+            background-color: #F4E8E8;
+            color: #C47C7C;
+            border: 1px solid #ECD4D4;
         }
 
         .alert.success {
-            background-color: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
+            background-color: #E8F0E8;
+            color: #7A9F7A;
+            border: 1px solid #D4E4D4;
         }
 
         .form-group {
@@ -455,7 +562,7 @@
 
         .form-group label {
             display: block;
-            color: #444;
+            color: #3D4752;
             font-size: 14px;
             font-weight: 500;
             margin-bottom: 8px;
@@ -465,7 +572,7 @@
         .form-group select {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 10px;
             font-size: 15px;
             outline: none;
@@ -474,7 +581,7 @@
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .btn {
@@ -488,32 +595,32 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(107, 141, 168, 0.3);
         }
 
         .btn-secondary {
-            background: #f1f5f9;
-            color: #64748b;
+            background: #F2F0ED;
+            color: #6E7986;
             margin-left: 10px;
         }
 
         .btn-secondary:hover {
-            background: #e2e8f0;
+            background: #EAE7E2;
         }
 
         .btn-danger {
-            background: #ef4444;
+            background: #C47C7C;
             color: white;
         }
 
         .btn-danger:hover {
-            background: #dc2626;
+            background: #C47C7C;
         }
 
         .pagination {
@@ -523,12 +630,12 @@
             gap: 10px;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #EAE7E2;
         }
 
         .pagination button {
             padding: 8px 16px;
-            border: 1px solid #ddd;
+            border: 1px solid #E5E2DC;
             background: white;
             border-radius: 6px;
             cursor: pointer;
@@ -536,8 +643,8 @@
         }
 
         .pagination button:hover:not(:disabled) {
-            background: #f8f9fa;
-            border-color: #667eea;
+            background: #F9F7F4;
+            border-color: #6B8DA8;
         }
 
         .pagination button:disabled {
@@ -546,14 +653,14 @@
         }
 
         .pagination .active {
-            background: #667eea;
+            background: #6B8DA8;
             color: white;
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .pagination span {
             padding: 8px 12px;
-            color: #666;
+            color: #6E7986;
         }
 
         .table-actions {
@@ -571,21 +678,21 @@
         }
 
         .table-actions .edit-btn {
-            background: #3b82f6;
+            background: #6B8DA8;
             color: white;
         }
 
         .table-actions .edit-btn:hover {
-            background: #2563eb;
+            background: #5A7C97;
         }
 
         .table-actions .delete-btn {
-            background: #ef4444;
+            background: #C47C7C;
             color: white;
         }
 
         .table-actions .delete-btn:hover {
-            background: #dc2626;
+            background: #C47C7C;
         }
 
         .checkin-modal .modal {
@@ -604,12 +711,12 @@
 
         .checkin-success h4 {
             font-size: 20px;
-            color: #333;
+            color: #3D4752;
             margin-bottom: 10px;
         }
 
         .checkin-success p {
-            color: #666;
+            color: #6E7986;
             font-size: 14px;
         }
 
@@ -625,11 +732,11 @@
         .confirm-content .icon {
             font-size: 48px;
             margin-bottom: 15px;
-            color: #f59e0b;
+            color: #C4A35A;
         }
 
         .confirm-content p {
-            color: #666;
+            color: #6E7986;
             margin-bottom: 25px;
         }
 
@@ -661,6 +768,103 @@
             .course-table th,
             .course-table td {
                 padding: 8px 10px;
+            }
+        }
+
+        .profile-layout {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-section {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .profile-section h4 {
+            color: #3D4752;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #EFECE7;
+        }
+
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 14px 10px;
+        }
+
+        .profile-info-grid .p-label {
+            color: #6E7986;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .profile-info-grid .p-value {
+            color: #3D4752;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 8px 12px;
+            background: #F7F5F2;
+            border-radius: 8px;
+        }
+
+        .password-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .password-form .form-group label {
+            display: block;
+            color: #3D4752;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .password-form .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #E5E2DC;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .password-form .form-group input:focus {
+            border-color: #6B8DA8;
+            box-shadow: 0 0 0 3px rgba(107, 141, 168, 0.15);
+        }
+
+        .password-form .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 4px;
+        }
+
+        .password-form .btn-primary {
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
+            color: white;
+        }
+
+        .password-form .btn-primary:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 14px rgba(107, 141, 168, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .profile-layout {
+                flex-direction: column;
             }
         }
     </style>
@@ -719,10 +923,7 @@
         <div class="section-card" id="actionSection">
             <h3>快捷操作</h3>
             <div class="quick-actions" id="quickActions">
-                <button class="action-btn" onclick="location.reload()">
-                    <span class="icon">🔄</span>
-                    <span>刷新数据</span>
-                </button>
+                <div class="loading">加载中...</div>
             </div>
         </div>
     </div>
@@ -950,6 +1151,42 @@
                 <button class="close-btn" id="closeDetailModalBtn">×</button>
             </div>
             <div id="detailContent"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal" style="max-width: 750px;">
+            <div class="modal-header">
+                <h3>个人信息</h3>
+                <button class="close-btn" id="closeProfileModalBtn">×</button>
+            </div>
+            <div class="alert" id="profileAlert"></div>
+            <div class="profile-layout">
+                <div class="profile-section">
+                    <h4>📋 基本信息</h4>
+                    <div class="profile-info-grid" id="profileInfoGrid">
+                        <div class="loading">正在加载...</div>
+                    </div>
+                </div>
+                <div class="profile-section">
+                    <h4>🔒 修改密码</h4>
+                    <form class="password-form" id="passwordForm">
+                        <div class="form-group">
+                            <label for="oldPassword">旧密码</label>
+                            <input type="password" id="oldPassword" placeholder="请输入旧密码" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">新密码</label>
+                            <input type="password" id="newPassword" placeholder="请输入新密码（至少6位）" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">确认新密码</label>
+                            <input type="password" id="confirmPassword" placeholder="请再次输入新密码" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">修改密码</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1251,8 +1488,8 @@
                     <tr>
                         <td>${stat.courseName || '-'}</td>
                         <td>${stat.total || 0}</td>
-                        <td style="color: #16a34a;">${stat.present || 0}</td>
-                        <td style="color: #dc2626;">${stat.absent || 0}</td>
+                        <td style="color: #7A9F7A;">${stat.present || 0}</td>
+                        <td style="color: #C47C7C;">${stat.absent || 0}</td>
                         <td>
                             ${rate}%
                             <div class="rate-bar">
@@ -1274,32 +1511,31 @@
 
             if (isStudentRole(role)) {
                 actions = [
-                    { icon: '📝', text: '签到', action: 'goToStudentCheck' },
-                    { icon: '📋', text: '我的考勤', action: 'showAttendance' },
-                    { icon: '📅', text: '考勤日历', action: 'showCalendar' },
-                    { icon: '👤', text: '个人信息', action: 'showProfile' }
+                    { icon: '✍️', text: '签到', desc: '快速完成签到', color: 'blue', action: 'goToStudentCheck' },
+                    { icon: '📋', text: '我的考勤', desc: '查看考勤记录', color: 'green', action: 'showAttendance' },
+                    { icon: '👤', text: '个人信息', desc: '管理个人资料', color: 'purple', action: 'showProfile' }
                 ];
             } else if (role === 'TEACHER') {
                 actions = [
-                    { icon: '📝', text: '添加考勤', action: 'goToStudentCheck' },
-                    { icon: '📋', text: '考勤记录', action: 'showAttendanceList' },
-                    { icon: '👥', text: '学生管理', action: 'manageStudents' },
-                    { icon: '📊', text: '统计报表', action: 'showReports' }
+                    { icon: '✍️', text: '添加考勤', desc: '创建考勤记录', color: 'blue', action: 'goToStudentCheck' },
+                    { icon: '📋', text: '考勤记录', desc: '查看与管理考勤', color: 'green', action: 'showAttendanceList' },
+                    { icon: '👥', text: '学生管理', desc: '管理学生信息', color: 'purple', action: 'manageStudents' },
+                    { icon: '📊', text: '统计报表', desc: '查看数据报表', color: 'orange', action: 'showReports' }
                 ];
             } else if (role === 'ADMIN') {
                 actions = [
-                    { icon: '👥', text: '用户管理', action: 'manageUsers' },
-                    { icon: '📚', text: '课程管理', action: 'manageCourses' },
-                    { icon: '📝', text: '考勤管理', action: 'goToStudentCheck' },
-                    { icon: '📊', text: '数据统计', action: 'showReports' },
-                    { icon: '⚙️', text: '系统设置', action: 'showSettings' }
+                    { icon: '👥', text: '用户管理', desc: '管理系统用户', color: 'blue', action: 'manageUsers' },
+                    { icon: '📚', text: '课程管理', desc: '管理课程信息', color: 'purple', action: 'manageCourses' },
+                    { icon: '📝', text: '考勤管理', desc: '学生签到打卡', color: 'green', action: 'goToStudentCheck' },
+                    { icon: '📊', text: '数据统计', desc: '查看统计报表', color: 'orange', action: 'showReports' },
                 ];
             }
 
             container.innerHTML = actions.map(action => `
-                <button class="action-btn" onclick="${action.action}()">
-                    <span class="icon">${action.icon}</span>
-                    <span>${action.text}</span>
+                <button class="action-btn color-${action.color}" onclick="${action.action}()">
+                    <div class="icon-wrapper">${action.icon}</div>
+                    <span class="btn-text">${action.text}</span>
+                    <span class="btn-desc">${action.desc}</span>
                 </button>
             `).join('');
         }
@@ -1540,16 +1776,16 @@
                     </div>
                     <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
                         <input type="text" id="studentSearchInput" placeholder="搜索学号或姓名..." 
-                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                         <button class="action-btn" onclick="filterStudentList()" style="padding: 10px 20px;">🔍 搜索</button>
                         <input type="text" id="studentClassInput" placeholder="搜索班级..." 
-                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
-                        <select id="studentGenderFilter" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
+                        <select id="studentGenderFilter" style="padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                             <option value="">全部性别</option>
                             <option value="男">男</option>
                             <option value="女">女</option>
                         </select>
-                        <select id="studentSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <select id="studentSortBy" style="padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                             <option value="studentId_asc" selected>按学号升序</option>
                             <option value="studentId_desc">按学号降序</option>
                             <option value="name_asc">按姓名升序</option>
@@ -1697,7 +1933,6 @@
                             <th>姓名</th>
                             <th>性别</th>
                             <th>班级</th>
-                            <th>年龄</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -1712,7 +1947,6 @@
                         <td>${student.name || '-'}</td>
                         <td>${gender}</td>
                         <td>${student.className || '-'}</td>
-                        <td>${student.age || '-'}</td>
                         <td>
                             <div class="table-actions">
                                 <button class="edit-btn" onclick="editStudent('${student.studentId}')">编辑</button>
@@ -1882,11 +2116,11 @@
                     </div>
                     <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
                         <input type="text" id="courseSearchInput" placeholder="搜索课程名称或编号..." 
-                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                         <button class="action-btn" onclick="filterCourseList()" style="padding: 10px 20px;">🔍 搜索</button>
                         <input type="text" id="courseTeacherInput" placeholder="搜索教师姓名..." 
-                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
-                        <select id="courseSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
+                        <select id="courseSortBy" style="padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                             <option value="courseId_asc" selected>按课程编号升序</option>
                             <option value="courseId_desc">按课程编号降序</option>
                             <option value="courseName_asc">按课程名称升序</option>
@@ -2191,15 +2425,15 @@
                     </div>
                     <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
                         <input type="text" id="userSearchInput" placeholder="搜索用户名或真实姓名..." 
-                               style="flex: 1; padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                               style="flex: 1; padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                         <button class="action-btn" onclick="filterUserList()" style="padding: 10px 20px;">🔍 搜索</button>
-                        <select id="userRoleFilter" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <select id="userRoleFilter" style="padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                             <option value="">全部角色</option>
                             <option value="STUDENT">学生</option>
                             <option value="TEACHER">教师</option>
                             <option value="ADMIN">管理员</option>
                         </select>
-                        <select id="userSortBy" style="padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;">
+                        <select id="userSortBy" style="padding: 10px 15px; border: 2px solid #E5E2DC; border-radius: 8px; font-size: 14px;">
                             <option value="id_asc" selected>按ID升序</option>
                             <option value="id_desc">按ID降序</option>
                             <option value="username_asc">按用户名升序</option>
@@ -2751,18 +2985,21 @@
                             <h3>考勤管理</h3>
                         </div>
                     </div>
-                    <div class="quick-actions" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                        <button class="action-btn" onclick="showAttendanceList()">
-                            <span class="icon">📋</span>
-                            <span>查看所有考勤</span>
+                    <div class="quick-actions">
+                        <button class="action-btn color-blue" onclick="showAttendanceList()">
+                            <div class="icon-wrapper">📋</div>
+                            <span class="btn-text">查看所有考勤</span>
+                            <span class="btn-desc">浏览全部考勤记录</span>
                         </button>
-                        <button class="action-btn" onclick="openCheckinModal()">
-                            <span class="icon">📝</span>
-                            <span>添加考勤记录</span>
+                        <button class="action-btn color-green" onclick="openCheckinModal()">
+                            <div class="icon-wrapper">📝</div>
+                            <span class="btn-text">添加考勤记录</span>
+                            <span class="btn-desc">手动添加考勤</span>
                         </button>
-                        <button class="action-btn" onclick="showReports()">
-                            <span class="icon">📊</span>
-                            <span>统计报表</span>
+                        <button class="action-btn color-orange" onclick="showReports()">
+                            <div class="icon-wrapper">📊</div>
+                            <span class="btn-text">统计报表</span>
+                            <span class="btn-desc">查看数据统计</span>
                         </button>
                     </div>
                 </div>
@@ -2773,17 +3010,118 @@
             window.location.href = '/data_sta';
         }
 
-        function showCalendar() {
-            alert('考勤日历功能开发中');
+        const fieldLabels = {
+            studentId: '学号',
+            name: '姓名',
+            gender: '性别',
+            className: '班级',
+            age: '年龄'
+        };
+
+        async function showProfile() {
+            document.getElementById('profileModal').classList.add('show');
+            document.getElementById('profileAlert').style.display = 'none';
+            document.getElementById('profileInfoGrid').innerHTML = '<div class="loading">正在加载...</div>';
+            document.getElementById('passwordForm').reset();
+
+            try {
+                const response = await fetch(`${API_BASE}/user/profile/${currentUsername}`);
+                const result = await response.json();
+
+                if (result.code !== 200) {
+                    document.getElementById('profileInfoGrid').innerHTML =
+                        '<div class="no-data">加载失败: ' + (result.msg || '未知错误') + '</div>';
+                    return;
+                }
+
+                const profile = result.data;
+                let html = '';
+
+                for (const [key, label] of Object.entries(fieldLabels)) {
+                    const value = profile[key];
+                    if (value === null || value === undefined || value === '') {
+                        continue;
+                    }
+                    html += `<span class="p-label">${label}</span><span class="p-value">${value}</span>`;
+                }
+
+                if (!html) {
+                    html = '<div class="no-data" style="grid-column: 1 / -1;">暂无个人信息</div>';
+                }
+
+                document.getElementById('profileInfoGrid').innerHTML = html;
+            } catch (error) {
+                document.getElementById('profileInfoGrid').innerHTML =
+                    '<div class="no-data">加载失败，请稍后重试</div>';
+            }
         }
 
-        function showProfile() {
-            alert('个人信息功能开发中');
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.remove('show');
         }
 
-        function showSettings() {
-            alert('系统设置功能开发中');
-        }
+        document.getElementById('closeProfileModalBtn').addEventListener('click', closeProfileModal);
+        document.getElementById('profileModal').addEventListener('click', function(e) {
+            if (e.target === this) closeProfileModal();
+        });
+
+        document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const alertDiv = document.getElementById('profileAlert');
+            alertDiv.style.display = 'none';
+
+            const oldPassword = document.getElementById('oldPassword').value.trim();
+            const newPassword = document.getElementById('newPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            if (!oldPassword || !newPassword || !confirmPassword) {
+                alertDiv.textContent = '请填写所有密码字段';
+                alertDiv.className = 'alert error';
+                alertDiv.style.display = 'block';
+                return;
+            }
+            if (newPassword.length < 6) {
+                alertDiv.textContent = '新密码长度不能少于6位';
+                alertDiv.className = 'alert error';
+                alertDiv.style.display = 'block';
+                return;
+            }
+            if (newPassword !== confirmPassword) {
+                alertDiv.textContent = '两次输入的新密码不一致';
+                alertDiv.className = 'alert error';
+                alertDiv.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/user/profile/password`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: currentUsername,
+                        oldPassword: oldPassword,
+                        newPassword: newPassword
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    alertDiv.textContent = '密码修改成功';
+                    alertDiv.className = 'alert success';
+                    alertDiv.style.display = 'block';
+                    document.getElementById('passwordForm').reset();
+                } else {
+                    alertDiv.textContent = result.msg || '修改失败';
+                    alertDiv.className = 'alert error';
+                    alertDiv.style.display = 'block';
+                }
+            } catch (error) {
+                alertDiv.textContent = '网络错误，请稍后重试';
+                alertDiv.className = 'alert error';
+                alertDiv.style.display = 'block';
+            }
+        });
 
         function closeDetailModal() {
             document.getElementById('detailModal').classList.remove('show');

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,21 +13,26 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: url('/images/background_img.png') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 20px;
+            padding: 20px 20px 20px 10%;
+            position: relative;
         }
 
         .login-container {
-            background: white;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             padding: 40px;
             width: 100%;
             max-width: 420px;
+            animation: slideUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
 
         .login-header {
@@ -36,14 +41,14 @@
         }
 
         .login-header h1 {
-            color: #333;
+            color: #3D4752;
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
         .login-header p {
-            color: #666;
+            color: #6E7986;
             font-size: 14px;
         }
 
@@ -53,7 +58,7 @@
 
         .form-group label {
             display: block;
-            color: #444;
+            color: #3D4752;
             font-size: 14px;
             font-weight: 500;
             margin-bottom: 8px;
@@ -62,7 +67,7 @@
         .form-group input {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 10px;
             font-size: 15px;
             transition: all 0.3s ease;
@@ -70,12 +75,12 @@
         }
 
         .form-group input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            border-color: #6B8DA8;
+            box-shadow: 0 0 0 3px rgba(107, 141, 168, 0.15);
         }
 
         .form-group input::placeholder {
-            color: #999;
+            color: #A4ACB8;
         }
 
         .form-options {
@@ -89,7 +94,7 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            color: #555;
+            color: #5A6470;
             font-size: 14px;
         }
 
@@ -97,11 +102,11 @@
             width: 16px;
             height: 16px;
             margin-right: 8px;
-            accent-color: #667eea;
+            accent-color: #6B8DA8;
         }
 
         .form-options a {
-            color: #667eea;
+            color: #6B8DA8;
             text-decoration: none;
             font-size: 14px;
         }
@@ -122,13 +127,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(107, 141, 168, 0.35);
         }
 
         .btn-primary:active {
@@ -139,16 +144,16 @@
             text-align: center;
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #EAE7E2;
         }
 
         .register-link p {
-            color: #666;
+            color: #6E7986;
             font-size: 14px;
         }
 
         .register-link a {
-            color: #667eea;
+            color: #6B8DA8;
             text-decoration: none;
             font-weight: 500;
         }
@@ -166,15 +171,15 @@
         }
 
         .alert.error {
-            background-color: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+            background-color: #F4E8E8;
+            color: #C47C7C;
+            border: 1px solid #ECD4D4;
         }
 
         .alert.success {
-            background-color: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
+            background-color: #E8F0E8;
+            color: #7A9F7A;
+            border: 1px solid #D4E4D4;
         }
 
         .loading {
@@ -191,6 +196,17 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -219,7 +235,6 @@
                     <input type="checkbox" id="rememberMe">
                     记住我
                 </label>
-                <a href="#" id="forgotPassword">忘记密码？</a>
             </div>
 
             <button type="submit" class="btn btn-primary" id="loginBtn">
@@ -299,11 +314,6 @@
                 loading.style.display = 'none';
                 loginBtn.textContent = '登 录';
             }
-        });
-
-        document.getElementById('forgotPassword').addEventListener('click', (e) => {
-            e.preventDefault();
-            showAlert('忘记密码功能开发中', 'error');
         });
     </script>
 </body>

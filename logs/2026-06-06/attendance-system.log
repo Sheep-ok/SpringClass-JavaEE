@@ -1,0 +1,5387 @@
+2026-06-06 15:39:34.229 [main] INFO  c.e.a.AttendanceSystemApplication - Starting AttendanceSystemApplication using Java 21.0.2 with PID 8204 (D:\Java\springboot_pj\attendance-system\target\classes started by l in D:\Java\springboot_pj\attendance-system)
+2026-06-06 15:39:34.230 [main] DEBUG c.e.a.AttendanceSystemApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-06-06 15:39:34.230 [main] INFO  c.e.a.AttendanceSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-06 15:39:34.683 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-06 15:39:34.726 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 5 JPA repository interfaces.
+2026-06-06 15:39:34.836 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=d6250731-036a-36ea-b8f9-8d612c972637
+2026-06-06 15:39:35.058 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-06 15:39:35.066 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-06 15:39:35.067 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-06 15:39:35.067 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-06-06 15:39:35.101 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 841 ms
+2026-06-06 15:39:35.239 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-06 15:39:35.284 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-06-06 15:39:35.550 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-06 15:39:35.574 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-06 15:39:36.025 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: f4f74d03-65f4-4cd3-b08a-8ed8626ca577
+2026-06-06 15:39:36.026 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-06 15:39:36.139 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-06 15:39:36.153 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlserver://localhost:1433;concatNullYieldsNull=ON;quotedIdentifier=ON;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;vectorTypeSupport=v1;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=false;disableStatementPooling=true;databaseName=attendance_system;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;]
+	Database driver: Microsoft JDBC Driver 13.2 for SQL Server
+	Database dialect: SQLServerDialect
+	Database version: 17.0
+	Default catalog/schema: attendance_system/dbo
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 128
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-06 15:39:36.678 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-06 15:39:37.591 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column id bigint
+2026-06-06 15:39:37.601 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column id bigint" via JDBC [对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__attendan__3213E83F505AAD30' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 15:39:37.603 [main] DEBUG org.hibernate.SQL - 
+    alter table attendance 
+       alter column student_status tinyint default 1
+2026-06-06 15:39:37.607 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table attendance 
+       alter column student_status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 15:39:37.608 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column id bigint
+2026-06-06 15:39:37.610 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column id bigint" via JDBC [对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 对象'PK__course_s__3213E83FDFE3484D' 依赖于 列'id'。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 15:39:37.611 [main] DEBUG org.hibernate.SQL - 
+    alter table course_selection 
+       alter column status tinyint default 1
+2026-06-06 15:39:37.612 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table course_selection 
+       alter column status tinyint default 1" via JDBC [关键字 'default' 附近有语法错误。]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.attendance.AttendanceSystemApplication.main(AttendanceSystemApplication.java:12)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 关键字 'default' 附近有语法错误。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:278)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1788)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:975)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:869)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7825)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4828)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:321)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:253)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:842)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	... 38 common frames omitted
+2026-06-06 15:39:37.613 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-06 15:39:37.660 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-06 15:39:38.544 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-06 15:39:38.582 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name myUserDetailsServiceImpl
+2026-06-06 15:39:38.685 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page template: index
+2026-06-06 15:39:39.874 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 15:39:39.909 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-06 15:39:39.919 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-06 15:39:40.524 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-06 15:39:40.524 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-06 15:39:40.525 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-06 15:39:40.932 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-06-06 15:39:40.941 [main] INFO  c.e.a.AttendanceSystemApplication - Started AttendanceSystemApplication in 8.066 seconds (process running for 8.59)
+2026-06-06 15:39:56.320 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:39:58.250 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:39:58.265 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 15:39:58.282 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0 
+    where
+        c1_0.course_id=?
+2026-06-06 15:39:58.293 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        cs1_0.id,
+        cs1_0.class_name,
+        cs1_0.course_id,
+        cs1_0.course_name,
+        cs1_0.create_time,
+        cs1_0.status,
+        cs1_0.student_id,
+        cs1_0.student_name 
+    from
+        course_selection cs1_0 
+    where
+        cs1_0.student_id=? 
+        and cs1_0.status=?
+2026-06-06 15:39:58.300 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_id=?
+2026-06-06 15:40:05.208 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.class_name,
+        s1_0.gender,
+        s1_0.student_name 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 15:40:17.650 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.class_name,
+        s1_0.gender,
+        s1_0.student_name 
+    from
+        student s1_0 
+    where
+        s1_0.student_id=?
+2026-06-06 15:40:32.203 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:40:33.949 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:40:34.005 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:40:34.037 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:40:34.061 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:40:34.076 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:40:34.076 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:34.092 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:34.092 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:40.181 [http-nio-8080-exec-6] DEBUG c.e.a.service.impl.UserServiceImpl - 查询所有用户列表
+2026-06-06 15:40:40.204 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0
+2026-06-06 15:40:40.224 [http-nio-8080-exec-6] INFO  c.e.a.service.impl.UserServiceImpl - 查询到 73 个用户
+2026-06-06 15:40:42.259 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:40:42.266 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:40:42.276 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:40:42.283 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:40:42.286 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:40:42.289 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:42.293 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:42.297 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:44.517 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:40:45.978 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:40:45.990 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:40:45.994 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:40:45.994 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:40:45.994 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:40:46.009 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:46.013 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:46.016 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:48.367 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:40:48.369 [http-nio-8080-exec-6] DEBUG c.e.a.s.impl.AttendanceServiceImpl - 分页查询考勤记录，页码: 0, 每页数量: 10
+2026-06-06 15:40:48.378 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:40:48.382 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:40:48.388 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:40:48.394 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:40:48.399 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:48.399 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    order by
+        a1_0.check_in_time desc 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-06-06 15:40:48.403 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:48.406 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:40:48.411 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0
+2026-06-06 15:40:48.416 [http-nio-8080-exec-6] INFO  c.e.a.s.impl.AttendanceServiceImpl - 考勤记录分页查询完成，总数: 29
+2026-06-06 15:40:48.426 [http-nio-8080-exec-6] WARN  o.s.d.w.c.SpringDataJackson3Configuration$PageModule$WarningLoggingModifier - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-06-06 15:40:51.147 [http-nio-8080-exec-3] DEBUG c.e.a.s.impl.AttendanceServiceImpl - 分页查询考勤记录，页码: 0, 每页数量: 10
+2026-06-06 15:40:51.156 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    order by
+        a1_0.check_in_time desc 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-06-06 15:40:51.160 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0
+2026-06-06 15:40:51.246 [http-nio-8080-exec-3] INFO  c.e.a.s.impl.AttendanceServiceImpl - 考勤记录分页查询完成，总数: 29
+2026-06-06 15:41:00.299 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:41:00.307 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:41:00.308 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:41:00.313 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:41:00.313 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:41:00.322 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:41:00.325 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:41:00.330 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:41:02.090 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:41:02.105 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        distinct s1_0.class_name 
+    from
+        student s1_0 
+    where
+        s1_0.class_name is not null 
+    order by
+        s1_0.class_name
+2026-06-06 15:41:02.121 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:41:02.140 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:41:02.161 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.188 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.203 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.205 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.206 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.209 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.211 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.214 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.216 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.219 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.231 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.234 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.236 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.239 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.242 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.244 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.250 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.255 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.258 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.261 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.266 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.276 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.285 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.288 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.290 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.292 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.305 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.305 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.320 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.320 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.320 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.336 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.336 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.336 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        distinct s1_0.class_name 
+    from
+        student s1_0 
+    where
+        s1_0.class_name is not null 
+    order by
+        s1_0.class_name
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.352 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.367 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.367 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.367 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.367 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.383 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.383 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.383 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.398 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:02.423 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.course_id,
+        c1_0.course_name,
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    left join
+        course c1_0 
+            on a1_0.course_id=c1_0.course_id 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        ) 
+    group by
+        a1_0.course_id,
+        c1_0.course_name 
+    order by
+        count_big(a1_0.id) desc
+2026-06-06 15:41:08.147 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:41:08.152 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:41:08.156 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.159 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.160 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.163 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.164 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.167 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.170 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.172 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.173 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.175 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.177 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.179 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.181 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.183 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.185 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.187 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.187 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.187 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.203 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.203 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.203 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.203 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.218 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.218 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.218 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.218 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.234 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.234 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.234 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.234 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.234 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.250 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.250 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.250 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.250 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.250 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        distinct s1_0.class_name 
+    from
+        student s1_0 
+    where
+        s1_0.class_name is not null 
+    order by
+        s1_0.class_name
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.265 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:08.281 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.course_id,
+        c1_0.course_name,
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    left join
+        course c1_0 
+            on a1_0.course_id=c1_0.course_id 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        ) 
+    group by
+        a1_0.course_id,
+        c1_0.course_name 
+    order by
+        count_big(a1_0.id) desc
+2026-06-06 15:41:12.760 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:41:12.765 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:41:12.769 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.771 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.773 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.775 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.776 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.778 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.781 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.784 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.786 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.787 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.789 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.791 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.793 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.794 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.797 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.799 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.801 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.803 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.818 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.834 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.834 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.834 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.850 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.865 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.881 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.896 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.896 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.900 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.914 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.936 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.936 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.936 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.936 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.936 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.952 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.967 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.967 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.967 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.967 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.983 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.998 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:12.998 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        distinct s1_0.class_name 
+    from
+        student s1_0 
+    where
+        s1_0.class_name is not null 
+    order by
+        s1_0.class_name
+2026-06-06 15:41:13.014 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.014 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.014 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.014 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.030 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.045 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.045 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.061 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.061 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.077 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    where
+        a1_0.student_status=? 
+        and a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or a1_0.course_id=?
+        ) 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        )
+2026-06-06 15:41:13.077 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.course_id,
+        c1_0.course_name,
+        count_big(a1_0.id) 
+    from
+        attendance a1_0 
+    left join
+        course c1_0 
+            on a1_0.course_id=c1_0.course_id 
+    where
+        a1_0.check_in_time between ? and ? 
+        and (
+            ? is null 
+            or ?='' 
+            or exists(select
+                s1_0.student_id from student s1_0 
+            where
+                s1_0.student_id=a1_0.student_id 
+                and s1_0.class_name=?)
+        ) 
+    group by
+        a1_0.course_id,
+        c1_0.course_name 
+    order by
+        count_big(a1_0.id) desc
+2026-06-06 15:41:23.522 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.class_name,
+        u1_0.create_time,
+        u1_0.gender,
+        u1_0.real_name,
+        u1_0.username,
+        u1_0.userpassword,
+        u1_0.userrole 
+    from
+        my_user u1_0 
+    where
+        u1_0.username=?
+2026-06-06 15:41:23.541 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.class_name,
+        c1_0.course_id,
+        c1_0.course_name,
+        c1_0.create_time,
+        c1_0.location,
+        c1_0.teacher_id,
+        c1_0.teacher_name,
+        c1_0.time_slot,
+        c1_0.week_day 
+    from
+        course c1_0
+2026-06-06 15:41:23.551 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        student s1_0
+2026-06-06 15:41:23.561 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(u1_0.id) 
+    from
+        my_user u1_0 
+    where
+        upper(u1_0.userrole)=upper(?)
+2026-06-06 15:41:23.567 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        count_big(*) 
+    from
+        course c1_0
+2026-06-06 15:41:23.572 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:41:23.582 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?
+2026-06-06 15:41:23.585 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        a1_0.id,
+        a1_0.check_in_time,
+        a1_0.course_id,
+        a1_0.create_time,
+        a1_0.ip_address,
+        a1_0.reason,
+        a1_0.sign_in_id,
+        a1_0.student_id,
+        a1_0.student_name,
+        a1_0.student_status,
+        a1_0.update_time 
+    from
+        attendance a1_0 
+    where
+        a1_0.course_id=?

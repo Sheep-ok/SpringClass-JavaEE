@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,17 +13,17 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            background: #F7F5F2;
             min-height: 100vh;
         }
 
         .nav-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             padding: 15px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .nav-header .back-btn {
@@ -82,16 +82,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: transparent;
-            color: #666;
+            color: #6E7986;
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
         .tab-btn:hover:not(.active) {
-            background: #f0f0f0;
+            background: #EFECE7;
         }
 
         .card {
@@ -108,16 +108,16 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #EAE7E2;
         }
 
         .card-header h3 {
-            color: #333;
+            color: #3D4752;
             font-size: 18px;
         }
 
         .current-time {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             padding: 20px;
             border-radius: 12px;
             color: white;
@@ -142,7 +142,7 @@
 
         .form-group label {
             display: block;
-            color: #444;
+            color: #3D4752;
             font-size: 14px;
             font-weight: 500;
             margin-bottom: 8px;
@@ -152,7 +152,7 @@
         .form-group select {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 10px;
             font-size: 14px;
             outline: none;
@@ -162,11 +162,11 @@
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .form-group input::placeholder {
-            color: #999;
+            color: #A4ACB8;
         }
 
         .btn {
@@ -180,13 +180,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 20px rgba(107, 141, 168, 0.35);
         }
 
         .btn-primary:disabled {
@@ -197,12 +197,12 @@
         }
 
         .btn-secondary {
-            background: #f1f5f9;
-            color: #64748b;
+            background: #F2F0ED;
+            color: #6E7986;
         }
 
         .btn-secondary:hover {
-            background: #e2e8f0;
+            background: #EAE7E2;
         }
 
         .btn-sm {
@@ -211,21 +211,21 @@
         }
 
         .btn-danger {
-            background: #ef4444;
+            background: #C47C7C;
             color: white;
         }
 
         .btn-danger:hover {
-            background: #dc2626;
+            background: #C47C7C;
         }
 
         .btn-success {
-            background: #22c55e;
+            background: #7A9F7A;
             color: white;
         }
 
         .btn-success:hover {
-            background: #16a34a;
+            background: #7A9F7A;
         }
 
         .alert {
@@ -237,15 +237,15 @@
         }
 
         .alert.error {
-            background-color: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+            background-color: #F4E8E8;
+            color: #C47C7C;
+            border: 1px solid #ECD4D4;
         }
 
         .alert.success {
-            background-color: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
+            background-color: #E8F0E8;
+            color: #7A9F7A;
+            border: 1px solid #D4E4D4;
         }
 
         .success-container {
@@ -265,13 +265,13 @@
         }
 
         .success-container h3 {
-            color: #333;
+            color: #3D4752;
             font-size: 24px;
             margin-bottom: 10px;
         }
 
         .success-container p {
-            color: #666;
+            color: #6E7986;
             font-size: 14px;
             margin-bottom: 25px;
         }
@@ -286,7 +286,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 16px;
-            border: 2px solid #f0f0f0;
+            border: 2px solid #EFECE7;
             border-radius: 10px;
             margin-bottom: 10px;
             transition: all 0.3s ease;
@@ -294,13 +294,13 @@
         }
 
         .student-item:hover {
-            border-color: #667eea;
-            background: #f8faff;
+            border-color: #6B8DA8;
+            background: #F7F5F2;
         }
 
         .student-item.selected {
-            border-color: #667eea;
-            background: #f0f5ff;
+            border-color: #6B8DA8;
+            background: #EDEAE6;
         }
 
         .student-item input[type="checkbox"] {
@@ -316,12 +316,12 @@
 
         .student-info .name {
             font-weight: 600;
-            color: #333;
+            color: #3D4752;
         }
 
         .student-info .id {
             font-size: 12px;
-            color: #999;
+            color: #A4ACB8;
         }
 
         .table-container {
@@ -337,18 +337,18 @@
         .attendance-table td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #EAE7E2;
         }
 
         .attendance-table th {
-            background: #f8f9fa;
+            background: #F9F7F4;
             font-weight: 600;
-            color: #666;
+            color: #6E7986;
             font-size: 13px;
         }
 
         .attendance-table tr:hover {
-            background: #f8faff;
+            background: #F7F5F2;
         }
 
         .status-badge {
@@ -360,23 +360,23 @@
         }
 
         .status-present {
-            background: #dcfce7;
-            color: #16a34a;
+            background: #E8F0E8;
+            color: #7A9F7A;
         }
 
         .status-absent {
-            background: #fef3c7;
-            color: #d97706;
+            background: #F2ECD8;
+            color: #C4A35A;
         }
 
         .status-late {
-            background: #fee2e2;
-            color: #dc2626;
+            background: #F4E8E8;
+            color: #C47C7C;
         }
 
         .status-leave {
-            background: #e0f2fe;
-            color: #0284c7;
+            background: #E4EDF4;
+            color: #7B98B5;
         }
 
         .modal-overlay {
@@ -406,7 +406,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
         }
 
@@ -437,20 +437,20 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #333;
+            color: #3D4752;
         }
 
         .modal-body .form-control {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
         }
 
         .modal-body .form-control:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .modal-footer {
@@ -458,7 +458,7 @@
             justify-content: flex-end;
             gap: 12px;
             padding: 16px 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #EAE7E2;
         }
 
         .search-bar {
@@ -470,14 +470,14 @@
         .search-bar input {
             flex: 1;
             padding: 12px 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E5E2DC;
             border-radius: 10px;
             font-size: 14px;
             outline: none;
         }
 
         .search-bar input:focus {
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .pagination {
@@ -489,7 +489,7 @@
 
         .pagination button {
             padding: 8px 16px;
-            border: 1px solid #ddd;
+            border: 1px solid #E5E2DC;
             border-radius: 8px;
             background: white;
             cursor: pointer;
@@ -497,13 +497,13 @@
         }
 
         .pagination button:hover:not(:disabled) {
-            background: #f0f0f0;
+            background: #EFECE7;
         }
 
         .pagination button.active {
-            background: #667eea;
+            background: #6B8DA8;
             color: white;
-            border-color: #667eea;
+            border-color: #6B8DA8;
         }
 
         .pagination button:disabled {
@@ -514,7 +514,7 @@
         .empty-state {
             text-align: center;
             padding: 40px;
-            color: #999;
+            color: #A4ACB8;
         }
 
         .empty-state .icon {
@@ -556,10 +556,10 @@
             display: flex;
             gap: 30px;
             align-items: flex-start;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #F9F7F4 0%, #EAE7E2 100%);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #E5E2DC;
         }
 
         .template-table {
@@ -572,7 +572,7 @@
         }
 
         .template-table th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
             padding: 12px 16px;
             text-align: center;
@@ -588,22 +588,22 @@
         .template-table td {
             padding: 12px 16px;
             text-align: center;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid #EAE7E2;
             font-size: 14px;
-            color: #495057;
+            color: #3D4752;
         }
 
         .template-table tbody tr:nth-child(1) {
-            background: #fff3cd;
+            background: #F2ECD8;
             font-weight: 500;
         }
 
         .template-table tbody tr:nth-child(1) td {
-            color: #856404;
+            color: #C4A35A;
         }
 
         .template-table tbody tr:not(:first-child):hover {
-            background: #f8f9fa;
+            background: #F9F7F4;
         }
 
         .template-table tbody tr:last-child td {
@@ -617,11 +617,11 @@
 
         .template-notes p {
             margin-bottom: 12px;
-            color: #495057;
+            color: #3D4752;
         }
 
         .template-notes strong {
-            color: #2d3436;
+            color: #3D4752;
         }
 
         .template-notes ul {
@@ -634,7 +634,7 @@
             position: relative;
             padding-left: 20px;
             margin-bottom: 8px;
-            color: #636e72;
+            color: #6E7986;
             font-size: 13px;
         }
 
@@ -642,7 +642,7 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: #00b894;
+            color: #7A9F7A;
             font-weight: bold;
         }
 
@@ -1474,9 +1474,9 @@
                 selectedFile = fileInput.files[0];
                 fileNameDisplay.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: #28a745;">✓</span>
+                        <span style="color: #7A9F7A;">✓</span>
                         <span style="font-weight: 500;">${selectedFile.name}</span>
-                        <span style="color: #666; font-size: 14px;">(${formatFileSize(selectedFile.size)})</span>
+                        <span style="color: #6E7986; font-size: 14px;">(${formatFileSize(selectedFile.size)})</span>
                     </div>
                 `;
                 
@@ -1584,13 +1584,13 @@
                             `).join('')}
                         </tbody>
                     </table>
-                    ${previewData.length > 5 ? `<p style="text-align: center; margin-top: 10px; color: #666;">... 还有 ${previewData.length - 5} 行数据未显示</p>` : ''}
+                    ${previewData.length > 5 ? `<p style="text-align: center; margin-top: 10px; color: #6E7986;">... 还有 ${previewData.length - 5} 行数据未显示</p>` : ''}
                 `;
             }
 
             // 显示统计信息
             previewStats.innerHTML = `
-                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <div style="margin-top: 15px; padding: 15px; background: #F9F7F4; border-radius: 8px;">
                     <p><strong>📊 数据统计：</strong></p>
                     <p>总行数：${data.totalRows || 0} 行</p>
                     <p>成功解析：${data.successCount || 0} 行</p>
@@ -1599,7 +1599,7 @@
                         <p style="margin-top: 10px;"><strong>❌ 失败详情：</strong></p>
                         <ul style="margin-left: 20px; max-height: 150px; overflow-y: auto;">
                             ${data.failedDetails.slice(0, 10).map((detail, index) => `
-                                <li style="color: #dc3545; font-size: 14px;">第${detail.rowNum}行: ${detail.message}</li>
+                                <li style="color: #C47C7C; font-size: 14px;">第${detail.rowNum}行: ${detail.message}</li>
                             `).join('')}
                             ${data.failedDetails.length > 10 ? `<li>... 还有 ${data.failedDetails.length - 10} 条失败记录</li>` : ''}
                         </ul>
@@ -1663,7 +1663,7 @@
             const resultDetails = document.getElementById('resultDetails');
 
             resultDetails.innerHTML = `
-                <div style="padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <div style="padding: 15px; background: #F9F7F4; border-radius: 8px;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
                         <span style="font-size: 32px;">${data.successCount > 0 ? '🎉' : '⚠️'}</span>
                         <h4>${data.successCount > 0 ? '导入完成' : '导入结果'}</h4>
@@ -1672,11 +1672,11 @@
                     <p><strong>✅ 成功导入：</strong>${data.successCount || 0} 条</p>
                     <p><strong>❌ 导入失败：</strong>${data.failedCount || 0} 条</p>
                     ${data.failedDetails && data.failedDetails.length > 0 ? `
-                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #E5E2DC;">
                             <p><strong>失败详情：</strong></p>
                             <ul style="margin-left: 20px; max-height: 200px; overflow-y: auto;">
                                 ${data.failedDetails.map((detail, index) => `
-                                    <li style="color: #dc3545; font-size: 14px; margin-bottom: 5px;">
+                                    <li style="color: #C47C7C; font-size: 14px; margin-bottom: 5px;">
                                         <strong>第${detail.rowNum}行</strong> (${detail.studentId || '未知学号'} ${detail.studentName || ''}): ${detail.message}
                                     </li>
                                 `).join('')}
