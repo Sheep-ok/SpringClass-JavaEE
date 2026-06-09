@@ -1361,6 +1361,7 @@
             attendanceStudent: `${API_BASE}/attendance/page/student`,
             students: `${API_BASE}/student`,
             studentsAll: `${API_BASE}/student/all`,
+            studentsTeacherAll: `${API_BASE}/student/teacher-all`,
             studentsPage: `${API_BASE}/student/page`,
             users: `${API_BASE}/user`,
             usersList: `${API_BASE}/user/list`,
@@ -1849,7 +1850,11 @@
 
         async function loadAllStudents() {
             try {
-                const response = await fetch(API_URLS.studentsAll);
+                let url = API_URLS.studentsAll;
+                if (currentUserRole === 'TEACHER') {
+                    url = `${API_URLS.studentsTeacherAll}?username=${encodeURIComponent(currentUsername)}`;
+                }
+                const response = await fetch(url);
                 const result = await response.json();
 
                 if (result.code === 200) {
@@ -2953,7 +2958,11 @@
         async function loadAttendanceList(page) {
             attendancePageNum = page;
             try {
-                const response = await fetch(`/attendance/search?page=${page}&size=10`);
+                let url = `/attendance/search?page=${page}&size=10`;
+                if (currentUserRole === 'TEACHER') {
+                    url += `&username=${encodeURIComponent(currentUsername)}`;
+                }
+                const response = await fetch(url);
                 const result = await response.json();
 
                 if (result.code === 200) {

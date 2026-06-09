@@ -57,14 +57,27 @@ public class AttendanceController {
             @RequestParam(required = false) String studentId,
             @RequestParam(required = false) String courseId,
             @RequestParam(required = false) Integer studentStatus,
+            @RequestParam(required = false) String username,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "checkInTime") String sortField,
             @RequestParam(defaultValue = "desc") String sortDirection) {
 
+        // 如果传了username（教师），先查出该教师授课的课程ID列表
+        List<String> teacherCourseIds = null;
+        if (username != null && !username.isBlank()) {
+            teacherCourseIds = courseRepository.findByTeacherId(username).stream()
+                    .map(Course::getCourseId)
+                    .toList();
+            // 教师没有课程时直接返回空，避免走到无过滤逻辑
+            if (teacherCourseIds.isEmpty()) {
+                return Result.success(Page.empty());
+            }
+        }
+
         Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(direction, sortField));
-        Page<Attendance> result = attendanceService.getAttendancePageByConditions(studentId, courseId, studentStatus, pageRequest);
+        Page<Attendance> result = attendanceService.getAttendancePageByConditions(studentId, courseId, studentStatus, teacherCourseIds, pageRequest);
         return Result.success(result);
     }
 

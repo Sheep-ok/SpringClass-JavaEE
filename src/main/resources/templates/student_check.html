@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -1161,8 +1161,8 @@
                     // 管理员查看所有记录
                     url = `${API_BASE}/attendance/all?page=${currentPage - 1}&size=10`;
                 } else {
-                    // 教师使用搜索接口
-                    url = `${API_BASE}/attendance/search?page=${currentPage - 1}&size=10`;
+                    // 教师使用搜索接口，限定自己授课课程
+                    url = `${API_BASE}/attendance/search?username=${encodeURIComponent(currentUsername)}&page=${currentPage - 1}&size=10`;
                 }
                 
                 console.log('请求URL:', url);

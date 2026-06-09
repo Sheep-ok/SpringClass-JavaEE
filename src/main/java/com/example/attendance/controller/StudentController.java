@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -153,11 +154,26 @@ public class StudentController {
     // 获取教师课程涉及的班级列表
     @GetMapping("/teacher-classes")
     public Result<List<String>> getTeacherClasses(@RequestParam String username) {
-        List<String> classNames = courseSelectionRepository.findDistinctClassNamesByCourseIds(
-            courseRepository.findByTeacherId(username).stream()
+        List<String> courseIds = courseRepository.findByTeacherId(username).stream()
                 .map(c -> c.getCourseId())
-                .toList()
-        );
+                .toList();
+        if (courseIds.isEmpty()) {
+            return Result.success(Collections.emptyList());
+        }
+        List<String> classNames = courseSelectionRepository.findDistinctClassNamesByCourseIds(courseIds);
         return Result.success(classNames);
+    }
+
+    // 教师查看自己授课课程下的所有学生
+    @GetMapping("/teacher-all")
+    public Result<List<Student>> getTeacherStudents(@RequestParam String username) {
+        List<String> courseIds = courseRepository.findByTeacherId(username).stream()
+                .map(c -> c.getCourseId())
+                .toList();
+        if (courseIds.isEmpty()) {
+            return Result.success(Collections.emptyList());
+        }
+        List<Student> students = studentRepository.findStudentsByCourseIds(courseIds);
+        return Result.success(students);
     }
 }

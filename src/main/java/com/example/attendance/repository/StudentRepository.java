@@ -42,4 +42,8 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     // 9. 统计选了某门课程且属于某个班级的学生数量
     @Query("SELECT COUNT(DISTINCT s) FROM Student s JOIN CourseSelection cs ON s.studentId = cs.studentId WHERE cs.courseId = :courseId AND s.className = :className AND cs.status = 1")
     long countByCourseIdAndClassName(@Param("courseId") String courseId, @Param("className") String className);
+
+    // 10. 根据课程ID列表查询学生（教师查看自己课程下的学生）
+    @Query("SELECT DISTINCT s FROM Student s JOIN CourseSelection cs ON s.studentId = cs.studentId WHERE cs.courseId IN :courseIds AND cs.status = 1")
+    List<Student> findStudentsByCourseIds(@Param("courseIds") List<String> courseIds);
 }

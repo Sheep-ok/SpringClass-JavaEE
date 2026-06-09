@@ -46,8 +46,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, Pageable pageable) {
-        logger.debug("按条件查询考勤记录，学生ID: {}, 课程ID: {}, 状态: {}", studentId, courseId, studentStatus);
+    public Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, List<String> courseIds, Pageable pageable) {
+        logger.debug("按条件查询考勤记录，学生ID: {}, 课程ID: {}, 状态: {}, courseIds: {}", studentId, courseId, studentStatus, courseIds);
+        // 防御：courseIds 非 null 但为空，说明教师无课程，直接返回空页
+        if (courseIds != null && courseIds.isEmpty()) {
+            return Page.empty();
+        }
         Page<Attendance> page = attendanceRepository.findAll((root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -61,6 +65,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 
             if (studentStatus != null) {
                 predicates.add(cb.equal(root.get("studentStatus"), studentStatus));
+            }
+
+            if (courseIds != null && !courseIds.isEmpty()) {
+                predicates.add(root.get("courseId").in(courseIds));
             }
 
             return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));

@@ -4,6 +4,8 @@ import com.example.attendance.entity.Attendance;
 import com.example.attendance.entity.ImportResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 public interface AttendanceService {
     Page<Attendance> getAttendancePage(Pageable pageable);
     Page<Attendance> getAttendancePageByStudentId(String studentId, Pageable pageable);
-    Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, Pageable pageable);
+    Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, List<String> courseIds, Pageable pageable);
 
     String checkIn(String studentId, String studentName, String courseId, String signInId, String ipAddress);
     
