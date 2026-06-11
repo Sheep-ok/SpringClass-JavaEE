@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +13,33 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #F7F5F2;
+            background-image: url('/images/background_pages.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             color: white;
             padding: 20px 40px;
@@ -81,13 +103,16 @@
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             padding: 40px;
+            padding-top: 220px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .welcome-section {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 16px;
             padding: 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -113,7 +138,7 @@
         }
 
         .stat-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -164,7 +189,7 @@
         }
 
         .section-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -249,13 +274,23 @@
         }
 
         .status-badge.active {
-            background: #E8F0E8;
-            color: #7A9F7A;
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .status-badge.warning {
+            background: #FFF3E0;
+            color: #FF9800;
         }
 
         .status-badge.inactive {
-            background: #F4E8E8;
-            color: #C47C7C;
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .status-badge.info {
+            background: #E3F2FD;
+            color: #1976D2;
         }
 
         .rate-bar {
@@ -767,14 +802,36 @@
                 padding: 15px 20px;
                 flex-direction: column;
                 gap: 15px;
+                align-items: flex-start;
             }
 
             .header h1 {
                 font-size: 18px;
             }
 
+            .header .user-info {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .header .username {
+                order: -1;
+                width: 100%;
+                font-size: 14px;
+            }
+
             .container {
                 padding: 20px;
+                padding-top: 140px;
+            }
+
+            .welcome-section {
+                padding: 25px;
+            }
+
+            .welcome-section h2 {
+                font-size: 22px;
             }
 
             .course-table {
@@ -991,6 +1048,49 @@
                 <div class="icon">🎉</div>
                 <h4>签到成功</h4>
                 <p>您的考勤记录已成功保存</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 发布考勤任务模态框 -->
+    <div class="modal-overlay" id="publishTaskModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>发布考勤任务</h3>
+                <button class="close-btn" onclick="closePublishTaskModal()">×</button>
+            </div>
+            <div class="alert" id="publishTaskAlert"></div>
+            <div id="publishTaskForm">
+                <div class="form-group">
+                    <label for="taskCourseId">选择课程 *</label>
+                    <select id="taskCourseId" required>
+                        <option value="">请选择课程</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskStartTime">签到开始时间 *</label>
+                    <input type="datetime-local" id="taskStartTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskEndTime">签到结束时间 *</label>
+                    <input type="datetime-local" id="taskEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">任务描述</label>
+                    <textarea id="taskDescription" rows="3" placeholder="请输入任务描述（可选）"></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closePublishTaskModal()">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="publishTask()">发布考勤</button>
+                </div>
+            </div>
+            <div id="publishTaskSuccess" style="display: none; text-align: center; padding: 30px;">
+                <div style="font-size: 60px; margin-bottom: 20px;">✅</div>
+                <h3 style="color: #3D4752; margin-bottom: 15px;">考勤任务发布成功</h3>
+                <p style="color: #6E7986; margin-bottom: 10px;">考勤码：</p>
+                <div id="taskCodeDisplay" style="font-size: 36px; font-weight: bold; color: #6B8DA8; margin-bottom: 20px; padding: 15px; background: #F4F7FA; border-radius: 10px;"></div>
+                <p style="color: #A4ACB8; font-size: 14px;">请将考勤码告知学生进行签到</p>
+                <button class="btn btn-primary" onclick="closePublishTaskModal()" style="margin-top: 20px;">确定</button>
             </div>
         </div>
     </div>
@@ -1359,6 +1459,7 @@
             courseSelection: `${API_BASE}/api/course-selection`,
             checkin: `${API_BASE}/attendance/checkin`,
             attendanceStudent: `${API_BASE}/attendance/page/student`,
+            attendanceUpdate: `${API_BASE}/attendance/update`,
             students: `${API_BASE}/student`,
             studentsAll: `${API_BASE}/student/all`,
             studentsTeacherAll: `${API_BASE}/student/teacher-all`,
@@ -1461,24 +1562,23 @@
                             <th>${isStudentRole(role) ? '授课教师' : '班级'}</th>
                             <th>上课时间</th>
                             <th>上课地点</th>
-                            <th>状态</th>
-                            ${(role === 'TEACHER' || role === 'ADMIN') ? '<th>操作</th>' : ''}
+                            <!-- 管理员端不显示状态列 -->
+                            ${role !== 'ADMIN' ? '<th>状态</th>' : ''}
+                            <!-- 管理员端不显示操作列 -->
+                            ${role !== 'ADMIN' ? '<th>操作</th>' : ''}
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            courses.forEach(course => {
+            // 管理员端只显示前3条课程记录
+            const displayCourses = role === 'ADMIN' ? courses.slice(0, 3) : courses;
+            
+            displayCourses.forEach(course => {
                 const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
                 const weekDay = course.weekDay ? weekDays[course.weekDay] : '-';
-                const actions = (role === 'TEACHER' || role === 'ADMIN') ? `
-                    <td>
-                        <div class="table-actions">
-                            <button class="edit-btn" onclick="editCourse('${course.courseId}')">编辑</button>
-                            <button class="delete-btn" onclick="confirmDeleteCourse('${course.courseId}', '${course.courseName}')">删除</button>
-                        </div>
-                    </td>
-                ` : '';
+                // 管理员端不显示操作按钮
+                const actions = '';
 
                 tableHTML += `
                     <tr>
@@ -1487,8 +1587,9 @@
                         <td>${isStudentRole(role) ? (course.teacherName || '-') : (course.className || '-')}</td>
                         <td>${weekDay} ${course.timeSlot || '-'}</td>
                         <td>${course.location || '-'}</td>
-                        <td><span class="status-badge active">已选</span></td>
-                        ${actions}
+                        <!-- 管理员端不显示状态 -->
+                        ${role !== 'ADMIN' ? '<td><span class="status-badge active">已选</span></td>' : ''}
+                        ${role !== 'ADMIN' ? actions : ''}
                     </tr>
                 `;
             });
@@ -1559,22 +1660,20 @@
 
             if (isStudentRole(role)) {
                 actions = [
-                    { icon: '✍️', text: '签到', desc: '快速完成签到', color: 'blue', action: 'goToStudentCheck' },
+                    { icon: '🔑', text: '考勤码签到', desc: '输入考勤码签到', color: 'blue', action: 'goToStudentCheck' },
                     { icon: '📋', text: '我的考勤', desc: '查看考勤记录', color: 'green', action: 'showAttendance' },
                     { icon: '👤', text: '个人信息', desc: '管理个人资料', color: 'purple', action: 'showProfile' }
                 ];
             } else if (role === 'TEACHER') {
                 actions = [
-                    { icon: '✍️', text: '添加考勤', desc: '创建考勤记录', color: 'blue', action: 'goToStudentCheck' },
-                    { icon: '📋', text: '考勤记录', desc: '查看与管理考勤', color: 'green', action: 'showAttendanceList' },
-                    { icon: '👥', text: '学生管理', desc: '管理学生信息', color: 'purple', action: 'manageStudents' },
-                    { icon: '📊', text: '统计报表', desc: '查看数据报表', color: 'orange', action: 'showReports' }
+                    { icon: '🎯', text: '发布考勤', desc: '发布考勤任务', color: 'blue', action: 'openPublishTaskModal' },
+                    { icon: '📋', text: '考勤记录', desc: '查看与管理考勤', color: 'purple', action: 'showAttendanceList' },
+                    { icon: '👥', text: '学生管理', desc: '管理学生信息', color: 'orange', action: 'manageStudents' }
                 ];
             } else if (role === 'ADMIN') {
                 actions = [
                     { icon: '👥', text: '用户管理', desc: '管理系统用户', color: 'blue', action: 'manageUsers' },
                     { icon: '📚', text: '课程管理', desc: '管理课程信息', color: 'purple', action: 'manageCourses' },
-                    { icon: '📝', text: '考勤管理', desc: '学生签到打卡', color: 'green', action: 'goToStudentCheck' },
                     { icon: '📊', text: '数据统计', desc: '查看统计报表', color: 'orange', action: 'showReports' },
                 ];
             }
@@ -1736,6 +1835,123 @@
             document.getElementById('checkinModal').classList.remove('show');
             document.getElementById('checkinContent').style.display = 'block';
             document.getElementById('checkinSuccess').style.display = 'none';
+        }
+
+        // 发布考勤任务相关函数
+        function openPublishTaskModal() {
+            document.getElementById('publishTaskModal').classList.add('show');
+            document.getElementById('publishTaskForm').style.display = 'block';
+            document.getElementById('publishTaskSuccess').style.display = 'none';
+            document.getElementById('publishTaskAlert').style.display = 'none';
+            
+            // 加载教师的课程列表
+            loadTeacherCourses();
+            
+            // 设置默认时间
+            const now = new Date();
+            const startTime = new Date(now.getTime() + 5 * 60000); // 5分钟后开始
+            const endTime = new Date(now.getTime() + 65 * 60000); // 65分钟后结束（签到时长60分钟）
+            
+            document.getElementById('taskStartTime').value = formatDateTimeLocal(startTime);
+            document.getElementById('taskEndTime').value = formatDateTimeLocal(endTime);
+        }
+
+        function closePublishTaskModal() {
+            document.getElementById('publishTaskModal').classList.remove('show');
+            document.getElementById('publishTaskForm').style.display = 'block';
+            document.getElementById('publishTaskSuccess').style.display = 'none';
+        }
+
+        function formatDateTimeLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        async function loadTeacherCourses() {
+            const select = document.getElementById('taskCourseId');
+            select.innerHTML = '<option value="">请选择课程</option>';
+            
+            try {
+                const response = await fetch(API_URLS.coursesAll);
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    // 过滤出当前教师的课程
+                    const teacherCourses = result.data.filter(course => course.teacherId === currentUsername);
+                    
+                    teacherCourses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.courseId;
+                        option.textContent = `${course.courseId} - ${course.courseName}`;
+                        select.appendChild(option);
+                    });
+                    
+                    if (teacherCourses.length === 0) {
+                        showPublishTaskAlert('您还没有授课的课程', 'error');
+                    }
+                }
+            } catch (error) {
+                showPublishTaskAlert('加载课程失败', 'error');
+            }
+        }
+
+        async function publishTask() {
+            const courseId = document.getElementById('taskCourseId').value;
+            const startTime = document.getElementById('taskStartTime').value;
+            const endTime = document.getElementById('taskEndTime').value;
+            const description = document.getElementById('taskDescription').value.trim();
+            
+            if (!courseId) {
+                showPublishTaskAlert('请选择课程', 'error');
+                return;
+            }
+            
+            if (!startTime || !endTime) {
+                showPublishTaskAlert('请设置签到时间', 'error');
+                return;
+            }
+            
+            if (new Date(endTime) <= new Date(startTime)) {
+                showPublishTaskAlert('结束时间必须晚于开始时间', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/task/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `courseId=${encodeURIComponent(courseId)}&teacherId=${encodeURIComponent(currentUsername)}&startTime=${encodeURIComponent(startTime)}&endTime=${encodeURIComponent(endTime)}&description=${encodeURIComponent(description)}`
+                });
+                
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    document.getElementById('publishTaskForm').style.display = 'none';
+                    document.getElementById('publishTaskSuccess').style.display = 'block';
+                    document.getElementById('taskCodeDisplay').textContent = result.data.taskCode;
+                } else {
+                    showPublishTaskAlert(result.msg, 'error');
+                }
+            } catch (error) {
+                showPublishTaskAlert('发布失败，请稍后重试', 'error');
+            }
+        }
+
+        function showPublishTaskAlert(message, type) {
+            const alertDiv = document.getElementById('publishTaskAlert');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert ${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 3000);
         }
 
         function populateCheckinCourses() {
@@ -2884,6 +3100,7 @@
         function renderAttendanceList(pageData) {
             const container = document.getElementById('myAttendanceList');
             const records = pageData.content || [];
+            const isStudent = isStudentRole(currentUserRole);
 
             if (records.length === 0) {
                 container.innerHTML = '<div class="no-data">暂无考勤记录</div>';
@@ -2899,25 +3116,38 @@
                             <th>姓名</th>
                             <th>课程</th>
                             <th>签到时间</th>
-                            <th>状态</th>
+                            <th>考勤状态</th>
+                            <th>原因</th>
                             <th>IP地址</th>
+                            ${!isStudent ? '<th>操作</th>' : ''}
                         </tr>
                     </thead>
                     <tbody>
             `;
 
             records.forEach(record => {
-                const statusText = record.studentStatus === 1 ? '正常' : '缺勤';
+                const statusText = getCheckStatusText(record.checkStatus);
+                const statusClass = getCheckStatusClass(record.checkStatus);
                 const checkInTime = record.checkInTime ? new Date(record.checkInTime).toLocaleString() : '-';
+                const reason = record.reason || '-';
+                
                 tableHTML += `
                     <tr>
                         <td>${record.signInId || '-'}</td>
                         <td>${record.studentId || '-'}</td>
                         <td>${record.studentName || '-'}</td>
-                        <td>${record.courseId || '-'}</td>
+                        <td>${record.courseName || record.courseId || '-'}</td>
                         <td>${checkInTime}</td>
-                        <td><span class="status-badge ${record.studentStatus === 1 ? 'active' : 'inactive'}">${statusText}</span></td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;" title="${reason}">${reason}</td>
                         <td>${record.ipAddress || '-'}</td>
+                        ${!isStudent ? `
+                        <td>
+                            <button class="action-btn color-blue" onclick="openEditAttendanceModal(${record.id})" style="padding: 5px 10px; font-size: 12px;">
+                                ✏️ 编辑
+                            </button>
+                        </td>
+                        ` : ''}
                     </tr>
                 `;
             });
@@ -2947,21 +3177,100 @@
                             <h3>考勤记录管理</h3>
                         </div>
                     </div>
+                    
+                    <!-- 搜索表单 -->
+                    <div style="margin: 20px 0; padding: 15px; background: #F4F7FA; border-radius: 8px;">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                            <input type="text" id="searchStudentId" placeholder="学号" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; min-width: 120px;">
+                            <input type="text" id="searchStudentName" placeholder="姓名" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; min-width: 120px;">
+                            <select id="searchCourseId" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; min-width: 150px;">
+                                <option value="">全部课程</option>
+                            </select>
+                            <select id="searchStatus" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; min-width: 100px;">
+                                <option value="">全部状态</option>
+                                <option value="1">正常</option>
+                                <option value="2">迟到</option>
+                                <option value="3">缺勤</option>
+                                <option value="4">请假</option>
+                            </select>
+                            <button class="action-btn color-blue" onclick="searchAttendance()" style="padding: 8px 16px;">
+                                🔍 搜索
+                            </button>
+                            <button class="action-btn secondary" onclick="resetSearch()" style="padding: 8px 16px;">
+                                🔄 重置
+                            </button>
+                        </div>
+                    </div>
+                    
                     <div id="attendanceList">
                         <div class="loading">正在加载考勤记录...</div>
                     </div>
                 </div>
             `;
+            
+            // 加载课程列表
+            loadCoursesForSearch();
+            
+            attendancePageNum = 0;
             loadAttendanceList(0);
+        }
+        
+        // 加载课程列表用于搜索
+        async function loadCoursesForSearch() {
+            try {
+                const response = await fetch(`${API_BASE}/api/courses?username=${encodeURIComponent(currentUsername)}`);
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    const courses = result.data.courses || [];
+                    const select = document.getElementById('searchCourseId');
+                    courses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.courseId;
+                        option.textContent = course.courseName;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('加载课程列表失败:', error);
+            }
+        }
+        
+        // 搜索考勤记录
+        function searchAttendance() {
+            attendancePageNum = 0;
+            loadAttendanceList(0);
+        }
+        
+        // 重置搜索
+        function resetSearch() {
+            document.getElementById('searchStudentId').value = '';
+            document.getElementById('searchStudentName').value = '';
+            document.getElementById('searchCourseId').value = '';
+            document.getElementById('searchStatus').value = '';
+            searchAttendance();
         }
 
         async function loadAttendanceList(page) {
             attendancePageNum = page;
             try {
                 let url = `/attendance/search?page=${page}&size=10`;
+                
+                // 添加搜索参数
+                const studentId = document.getElementById('searchStudentId')?.value.trim();
+                const studentName = document.getElementById('searchStudentName')?.value.trim();
+                const courseId = document.getElementById('searchCourseId')?.value;
+                const status = document.getElementById('searchStatus')?.value;
+                
+                if (studentId) url += `&studentId=${encodeURIComponent(studentId)}`;
+                if (studentName) url += `&studentName=${encodeURIComponent(studentName)}`;
+                if (courseId) url += `&courseId=${encodeURIComponent(courseId)}`;
+                if (status) url += `&checkStatus=${encodeURIComponent(status)}`;
+                
                 if (currentUserRole === 'TEACHER') {
                     url += `&username=${encodeURIComponent(currentUsername)}`;
                 }
+                
                 const response = await fetch(url);
                 const result = await response.json();
 
@@ -2971,6 +3280,7 @@
                     document.getElementById('attendanceList').innerHTML = '<div class="no-data">加载失败</div>';
                 }
             } catch (error) {
+                console.error('加载考勤记录失败:', error);
                 document.getElementById('attendanceList').innerHTML = '<div class="no-data">加载失败</div>';
             }
         }
@@ -2993,25 +3303,36 @@
                             <th>姓名</th>
                             <th>课程</th>
                             <th>签到时间</th>
-                            <th>状态</th>
+                            <th>考勤状态</th>
+                            <th>原因</th>
                             <th>IP地址</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
             records.forEach(record => {
-                const statusText = record.studentStatus === 1 ? '正常' : '缺勤';
+                const statusText = getCheckStatusText(record.checkStatus);
+                const statusClass = getCheckStatusClass(record.checkStatus);
                 const checkInTime = record.checkInTime ? new Date(record.checkInTime).toLocaleString() : '-';
+                const reason = record.reason || '-';
+                
                 tableHTML += `
                     <tr>
                         <td>${record.signInId || '-'}</td>
                         <td>${record.studentId || '-'}</td>
                         <td>${record.studentName || '-'}</td>
-                        <td>${record.courseId || '-'}</td>
+                        <td>${record.courseName || record.courseId || '-'}</td>
                         <td>${checkInTime}</td>
-                        <td><span class="status-badge ${record.studentStatus === 1 ? 'active' : 'inactive'}">${statusText}</span></td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;" title="${reason}">${reason}</td>
                         <td>${record.ipAddress || '-'}</td>
+                        <td>
+                            <button class="action-btn color-blue" onclick="openEditAttendanceModal(${record.id})" style="padding: 5px 10px; font-size: 12px;">
+                                ✏️ 编辑
+                            </button>
+                        </td>
                     </tr>
                 `;
             });
@@ -3030,6 +3351,117 @@
             `;
 
             container.innerHTML = tableHTML + paginationHTML;
+        }
+        
+        // 获取考勤状态文本
+        function getCheckStatusText(checkStatus) {
+            const statusMap = {
+                1: '正常',
+                2: '迟到',
+                3: '缺勤',
+                4: '请假'
+            };
+            return statusMap[checkStatus] || '未知';
+        }
+        
+        // 获取考勤状态样式类
+        function getCheckStatusClass(checkStatus) {
+            const classMap = {
+                1: 'active',
+                2: 'warning',
+                3: 'inactive',
+                4: 'info'
+            };
+            return classMap[checkStatus] || '';
+        }
+        
+        // 打开编辑考勤记录模态框
+        function openEditAttendanceModal(id) {
+            const container = document.createElement('div');
+            container.id = 'editAttendanceModal';
+            container.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;';
+            container.onclick = function(e) { if(e.target === this) closeEditAttendanceModal(); };
+            
+            container.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 10px; width: 450px; max-width: 90%;">
+                    <h3 style="margin: 0 0 20px 0; color: #3D4752;">✏️ 编辑考勤记录</h3>
+                    <div id="editAttendanceAlert" style="margin-bottom: 15px;"></div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">考勤状态 *</label>
+                        <select id="editCheckStatus" onchange="toggleReasonInput()" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option value="1">正常</option>
+                            <option value="2">迟到</option>
+                            <option value="3">缺勤</option>
+                            <option value="4">请假</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="reasonInputGroup" style="margin-bottom: 15px; display: none;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">请假原因 *</label>
+                        <textarea id="editReason" rows="3" placeholder="请输入请假原因" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button onclick="closeEditAttendanceModal()" style="padding: 10px 20px; border: 1px solid #ddd; background: #f5f5f5; border-radius: 5px; cursor: pointer;">取消</button>
+                        <button onclick="saveAttendance(${id})" style="padding: 10px 20px; border: none; background: #6B8DA8; color: white; border-radius: 5px; cursor: pointer;">保存</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(container);
+        }
+        
+        // 切换原因输入框显示
+        function toggleReasonInput() {
+            const status = document.getElementById('editCheckStatus').value;
+            const reasonGroup = document.getElementById('reasonInputGroup');
+            if (status === '4') {
+                reasonGroup.style.display = 'block';
+            } else {
+                reasonGroup.style.display = 'none';
+            }
+        }
+        
+        // 关闭编辑模态框
+        function closeEditAttendanceModal() {
+            const modal = document.getElementById('editAttendanceModal');
+            if (modal) modal.remove();
+        }
+        
+        // 保存考勤记录
+        async function saveAttendance(id) {
+            const checkStatus = document.getElementById('editCheckStatus').value;
+            const reason = document.getElementById('editReason').value.trim();
+            const alertDiv = document.getElementById('editAttendanceAlert');
+            
+            // 如果是请假状态，必须填写原因
+            if (checkStatus === '4' && !reason) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">请填写请假原因</div>';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URLS.attendanceUpdate}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        checkStatus: parseInt(checkStatus),
+                        reason: reason || null
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    alertDiv.innerHTML = '<div style="padding: 10px; background: #E8F5E9; color: #2E7D32; border-radius: 5px;">保存成功</div>';
+                    setTimeout(() => {
+                        closeEditAttendanceModal();
+                        loadAttendanceList(attendancePageNum);
+                    }, 1000);
+                } else {
+                    alertDiv.innerHTML = `<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">${result.msg || '保存失败'}</div>`;
+                }
+            } catch (error) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">网络错误，请稍后重试</div>';
+            }
         }
 
         function manageAttendance() {

@@ -41,9 +41,12 @@ public class Attendance {
     @Column(name = "create_time", columnDefinition = "datetime default getdate()")
     private LocalDateTime createTime;
     
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-    
     @Column(name = "reason", length = 500)
     private String reason;
+    
+    @Column(name = "task_id")
+    private Long taskId; // 关联的考勤任务ID
+    
+    @Column(name = "check_status", columnDefinition = "tinyint default 1")
+    private Integer checkStatus; // 签到状态：1-正常签到，2-迟到，3-缺勤
 }

@@ -194,10 +194,22 @@ public class CourseController {
 
     @PutMapping("/courses")
     public Result<String> updateCourse(@RequestBody Course course) {
-        if (courseRepository.findByCourseId(course.getCourseId()).isEmpty()) {
+        Optional<Course> existingCourse = courseRepository.findByCourseId(course.getCourseId());
+        if (existingCourse.isEmpty()) {
             return Result.error("课程不存在");
         }
-        courseRepository.save(course);
+        
+        // 更新现有课程的字段
+        Course updateCourse = existingCourse.get();
+        updateCourse.setCourseName(course.getCourseName());
+        updateCourse.setTeacherId(course.getTeacherId());
+        updateCourse.setTeacherName(course.getTeacherName());
+        updateCourse.setClassName(course.getClassName());
+        updateCourse.setWeekDay(course.getWeekDay());
+        updateCourse.setTimeSlot(course.getTimeSlot());
+        updateCourse.setLocation(course.getLocation());
+        
+        courseRepository.save(updateCourse);
         return Result.success("课程更新成功");
     }
 

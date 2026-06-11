@@ -55,7 +55,9 @@ public class AttendanceController {
     @GetMapping("/search")
     public Result<Page<Attendance>> searchAttendance(
             @RequestParam(required = false) String studentId,
+            @RequestParam(required = false) String studentName,
             @RequestParam(required = false) String courseId,
+            @RequestParam(required = false) Integer checkStatus,
             @RequestParam(required = false) Integer studentStatus,
             @RequestParam(required = false) String username,
             @RequestParam(defaultValue = "0") int page,
@@ -77,7 +79,7 @@ public class AttendanceController {
 
         Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(direction, sortField));
-        Page<Attendance> result = attendanceService.getAttendancePageByConditions(studentId, courseId, studentStatus, teacherCourseIds, pageRequest);
+        Page<Attendance> result = attendanceService.getAttendancePageByConditions(studentId, studentName, courseId, checkStatus, studentStatus, teacherCourseIds, pageRequest);
         return Result.success(result);
     }
 
@@ -169,6 +171,28 @@ public class AttendanceController {
             @RequestParam Integer studentStatus) {
         String result = attendanceService.updateAttendance(id, studentStatus);
         return Result.success(result);
+    }
+
+    /**
+     * 更新考勤记录（支持修改考勤状态和原因）
+     */
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    @PutMapping("/update/{id}")
+    public Result<String> updateAttendanceStatus(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> requestBody) {
+        Integer checkStatus = (Integer) requestBody.get("checkStatus");
+        String reason = (String) requestBody.get("reason");
+        
+        if (checkStatus == null) {
+            return Result.error("考勤状态不能为空");
+        }
+        
+        String result = attendanceService.updateAttendanceStatus(id, checkStatus, reason);
+        if ("更新成功".equals(result)) {
+            return Result.success(result);
+        }
+        return Result.error(result);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")

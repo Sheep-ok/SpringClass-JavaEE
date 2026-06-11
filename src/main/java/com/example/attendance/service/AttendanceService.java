@@ -15,6 +15,8 @@ public interface AttendanceService {
     Page<Attendance> getAttendancePageByStudentId(String studentId, Pageable pageable);
     Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, List<String> courseIds, Pageable pageable);
 
+    Page<Attendance> getAttendancePageByConditions(String studentId, String studentName, String courseId, Integer checkStatus, Integer studentStatus, List<String> courseIds, Pageable pageable);
+
     String checkIn(String studentId, String studentName, String courseId, String signInId, String ipAddress);
     
     String checkIn(String studentId, String studentName, String courseId, Integer studentStatus, String signInId, String ipAddress);
@@ -24,6 +26,8 @@ public interface AttendanceService {
     String batchCheckIn(String courseId, String[] studentIds, Integer studentStatus, String signInId, String ipAddress);
     
     String updateAttendance(Long id, Integer studentStatus);
+    
+    String updateAttendanceStatus(Long id, Integer checkStatus, String reason);
     
     String deleteAttendance(Long id);
     

@@ -20,6 +20,10 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long>, J
 
     List<Attendance> findByCourseId(String courseId);
 
+    List<Attendance> findByTaskId(Long taskId);
+
+    Attendance findByStudentIdAndTaskId(String studentId, Long taskId);
+
     @Query("SELECT COUNT(a) FROM Attendance a WHERE a.checkInTime BETWEEN :start AND :end " +
            "AND (:courseId IS NULL OR a.courseId = :courseId) " +
            "AND (:className IS NULL OR :className = '' OR EXISTS (SELECT s FROM Student s WHERE s.studentId = a.studentId AND s.className = :className))")

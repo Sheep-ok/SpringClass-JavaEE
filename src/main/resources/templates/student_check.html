@@ -13,11 +13,33 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #F7F5F2;
+            background-image: url('/images/background_pages.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             background: linear-gradient(135deg, #6B8DA8 0%, #4D6F8A 100%);
             padding: 15px 20px;
             display: flex;
@@ -57,7 +79,10 @@
         }
 
         .main-container {
+            position: relative;
+            z-index: 1;
             padding: 20px;
+            padding-top: 80px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -66,7 +91,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             padding: 10px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -95,7 +120,7 @@
         }
 
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -359,24 +384,24 @@
             font-weight: 500;
         }
 
-        .status-present {
+        .status-normal {
             background: #E8F0E8;
-            color: #7A9F7A;
-        }
-
-        .status-absent {
-            background: #F2ECD8;
-            color: #C4A35A;
+            color: #22C55E;
         }
 
         .status-late {
-            background: #F4E8E8;
-            color: #C47C7C;
+            background: #FFEDD5;
+            color: #F97316;
         }
 
-        .status-leave {
-            background: #E4EDF4;
-            color: #7B98B5;
+        .status-absent {
+            background: #FEE2E2;
+            color: #EF4444;
+        }
+
+        .status-request {
+            background: #EFF6FF;
+            color: #3B82F6;
         }
 
         .modal-overlay {
@@ -646,6 +671,84 @@
             font-weight: bold;
         }
 
+        .task-list {
+            margin-top: 10px;
+        }
+
+        .task-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: white;
+            border: 1px solid #E8EAED;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            border-color: #6B8DA8;
+            box-shadow: 0 4px 12px rgba(107, 141, 168, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .task-item h4 {
+            margin: 0 0 10px 0;
+            color: #3D4752;
+            font-size: 18px;
+        }
+
+        .task-item p {
+            margin: 5px 0;
+            color: #6E7986;
+            font-size: 14px;
+        }
+
+        .task-item .time-info {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .task-item .time-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #F4F7FA;
+            border-radius: 15px;
+            font-size: 13px;
+            color: #6E7986;
+        }
+
+        .task-item .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #E8F5E9;
+            border-radius: 15px;
+            font-size: 13px;
+            color: #7A9F7A;
+            font-weight: 500;
+        }
+
+        .task-item .status-badge-late {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FFF3E0;
+            border-radius: 15px;
+            font-size: 13px;
+            color: #FF9800;
+            font-weight: 500;
+        }
+
+        .no-tasks {
+            text-align: center;
+            padding: 40px;
+            color: #A4ACB8;
+        }
+
+        .no-tasks .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
         @media (max-width: 900px) {
             .template-info {
                 flex-direction: column;
@@ -674,67 +777,74 @@
 
     <div class="main-container">
         <div class="tab-container">
-            <button class="tab-btn active" onclick="showTab('checkin')">🎯 个人签到</button>
+            <button class="tab-btn active" onclick="showTab('taskCheckin')">🔑 考勤码签到</button>
             <button class="tab-btn" onclick="showTab('records')">📋 考勤记录</button>
             <button class="tab-btn" id="batchTabBtn" onclick="showTab('batch')" style="display: none;">📥 批量导入</button>
         </div>
 
-        <div id="checkinTab" class="card">
+        <!-- 考勤码签到标签页 -->
+        <div id="taskCheckinTab" class="card">
             <div class="current-time">
-                <div class="time" id="currentTimeDisplay">--:--:--</div>
-                <div class="date" id="currentDateDisplay">----年--月--日 星期--</div>
+                <div class="time" id="taskCurrentTimeDisplay">--:--:--</div>
+                <div class="date" id="taskCurrentDateDisplay">----年--月--日 星期--</div>
             </div>
 
-            <div class="alert" id="checkinAlert"></div>
+            <div class="alert" id="taskCheckinAlert"></div>
 
-            <div id="checkinForm">
-                <div class="form-group">
-                    <label for="studentId">学号 *</label>
-                    <input type="text" id="studentId" placeholder="请输入您的学号" required>
+            <!-- 考勤任务列表 -->
+            <div id="taskListSection">
+                <h3 style="margin-bottom: 20px; color: #3D4752;">🎯 正在进行的考勤</h3>
+                <div id="availableTasksList" class="task-list">
+                    <div class="loading">加载中...</div>
                 </div>
-
-                <div class="form-group">
-                    <label for="studentName">姓名 *</label>
-                    <input type="text" id="studentName" placeholder="请输入您的姓名" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="courseId">课程编号 *</label>
-                    <select id="courseId" required>
-                        <option value="">请选择课程</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="studentStatus">考勤状态 *</label>
-                    <select id="studentStatus" required>
-                        <option value="1">✅ 签到</option>
-                        <option value="2">⏰ 迟到</option>
-                        <option value="3">🚪 早退</option>
-                        <option value="4">📝 请假</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="reasonGroup" style="display: none;">
-                    <label for="checkinReason">请假理由 *</label>
-                    <textarea id="checkinReason" rows="3" placeholder="请输入请假理由..." maxlength="500"></textarea>
-                </div>
-
-                <button class="btn btn-primary" id="checkinBtn" onclick="doCheckin()">
-                    🎯 确认提交
-                </button>
             </div>
 
-            <div id="checkinSuccess" style="display: none;" class="success-container">
+            <!-- 签到表单 -->
+            <div id="taskCheckinForm" style="display: none;">
+                <div style="margin-bottom: 20px; padding: 15px; background: #F4F7FA; border-radius: 10px;">
+                    <h4 id="selectedTaskCourse" style="margin: 0 0 10px 0; color: #3D4752;"></h4>
+                    <p id="selectedTaskTime" style="margin: 0; color: #6E7986; font-size: 14px;"></p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskStudentId">学号</label>
+                    <input type="text" id="taskStudentId" readonly style="background-color: #f5f5f5; cursor: not-allowed;">
+                </div>
+
+                <div class="form-group">
+                    <label for="taskStudentName">姓名</label>
+                    <input type="text" id="taskStudentName" readonly style="background-color: #f5f5f5; cursor: not-allowed;">
+                </div>
+
+                <div class="form-group">
+                    <label for="taskCodeInput">考勤码 *</label>
+                    <input type="text" id="taskCodeInput" placeholder="请输入6位考勤码" maxlength="6" required style="font-size: 24px; text-align: center; letter-spacing: 5px;">
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-secondary" onclick="backToTaskList()">← 返回</button>
+                    <button class="btn btn-primary" id="taskCheckinBtn" onclick="doTaskCheckin()" style="flex: 1;">
+                        🔑 确认签到
+                    </button>
+                </div>
+            </div>
+
+            <div id="taskCheckinSuccess" style="display: none;" class="success-container">
                 <div class="icon">🎉</div>
-                <h3>考勤登记成功</h3>
-                <p id="successMessage">您的考勤记录已成功保存</p>
-                <button class="btn btn-primary" onclick="resetCheckin()">
-                    🔄 继续登记
+                <h3>签到成功</h3>
+                <p id="taskSuccessMessage">您的考勤记录已成功保存</p>
+                <div id="taskCheckinStatus" style="margin: 20px 0; padding: 15px; background: #F4F7FA; border-radius: 10px;">
+                    <p style="margin: 5px 0;"><strong>签到状态：</strong><span id="checkStatusText"></span></p>
+                    <p style="margin: 5px 0;"><strong>签到时间：</strong><span id="checkTimeText"></span></p>
+                    <p style="margin: 5px 0;"><strong>课程名称：</strong><span id="checkCourseText"></span></p>
+                </div>
+                <button class="btn btn-primary" onclick="resetTaskCheckin()">
+                    🔄 继续签到
                 </button>
             </div>
         </div>
 
+        <!-- 批量导入标签页 -->
         <div id="batchTab" class="card" style="display: none;">
             <div class="card-header">
                 <h3>📥 批量导入考勤</h3>
@@ -895,7 +1005,7 @@
                             <th>课程</th>
                             <th>签到时间</th>
                             <th>状态</th>
-                            <th>操作</th>
+                            <th id="actionColumnHeader">操作</th>
                         </tr>
                     </thead>
                     <tbody id="recordsTableBody">
@@ -931,6 +1041,7 @@
         let attendanceRecords = [];
         let currentPage = 1;
         let totalPages = 1;
+        let selectedTask = null; // 当前选择的考勤任务
 
         document.addEventListener('DOMContentLoaded', () => {
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -944,14 +1055,17 @@
 
             document.getElementById('userInfo').textContent = `当前用户: ${currentUsername} (${getRoleName(currentUserRole)})`;
 
+            // 自动填充学号和姓名
+            document.getElementById('taskStudentId').value = currentUsername;
+            document.getElementById('taskStudentName').value = userData.realName || currentUsername;
+
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
 
             loadCourses();
-
-            if (currentUserRole === 'STUDENT' || currentUserRole === 'USER') {
-                document.getElementById('studentId').value = currentUsername;
-            }
+            
+            // 加载可用的考勤任务
+            loadAvailableTasks();
 
             // 教师和管理员显示批量导入按钮
             if (currentUserRole === 'TEACHER' || currentUserRole === 'ADMIN') {
@@ -970,6 +1084,12 @@
                         uploadBtn.style.opacity = '0.5';
                     }
                 });
+            } else {
+                // 学生隐藏操作列
+                const actionHeader = document.getElementById('actionColumnHeader');
+                if (actionHeader) {
+                    actionHeader.style.display = 'none';
+                }
             }
 
             // 所有角色都加载考勤记录
@@ -996,8 +1116,16 @@
                 weekday: 'long'
             });
             
-            document.getElementById('currentTimeDisplay').textContent = timeStr;
-            document.getElementById('currentDateDisplay').textContent = dateStr;
+            // 设置考勤码签到页面的时间显示
+            const timeElement = document.getElementById('taskCurrentTimeDisplay');
+            const dateElement = document.getElementById('taskCurrentDateDisplay');
+            
+            if (timeElement) {
+                timeElement.textContent = timeStr;
+            }
+            if (dateElement) {
+                dateElement.textContent = dateStr;
+            }
         }
 
         function showTab(tabName) {
@@ -1013,6 +1141,171 @@
                 currentPage = 1;
                 loadAttendanceRecords();
             }
+            
+            if (tabName === 'taskCheckin') {
+                loadAvailableTasks();
+            }
+        }
+
+        // 加载可用的考勤任务
+        async function loadAvailableTasks() {
+            const container = document.getElementById('availableTasksList');
+            container.innerHTML = '<div class="loading">加载中...</div>';
+            
+            try {
+                const response = await fetch(`/task/available/${currentUsername}`);
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    const tasks = result.data;
+                    renderAvailableTasks(tasks);
+                } else {
+                    container.innerHTML = `<div class="no-tasks"><div class="icon">❌</div><p>${result.msg || '加载失败'}</p></div>`;
+                }
+            } catch (error) {
+                console.error('加载考勤任务失败:', error);
+                container.innerHTML = '<div class="no-tasks"><div class="icon">❌</div><p>加载失败，请稍后重试</p></div>';
+            }
+        }
+
+        // 渲染考勤任务列表
+        function renderAvailableTasks(tasks) {
+            const container = document.getElementById('availableTasksList');
+            
+            if (!tasks || tasks.length === 0) {
+                container.innerHTML = `
+                    <div class="no-tasks">
+                        <div class="icon">📭</div>
+                        <p>暂无进行中的考勤任务</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = tasks.map(task => {
+                const startTime = formatDateTime(task.startTime);
+                const endTime = formatDateTime(task.endTime);
+                const now = new Date();
+                const taskStart = new Date(task.startTime);
+                const taskEnd = new Date(task.endTime);
+                // 使用后端返回的宽限结束时间
+                const gracePeriodEnd = task.worseTime ? new Date(task.worseTime) : new Date(taskEnd.getTime() + 10 * 60 * 1000);
+                
+                let statusText = '进行中';
+                let statusClass = 'status-badge';
+                
+                if (now < taskStart) {
+                    statusText = '未开始';
+                } else if (now > gracePeriodEnd) {
+                    statusText = '已结束';
+                } else if (now > taskEnd) {
+                    statusText = '迟到签到';
+                    statusClass = 'status-badge-late';
+                }
+                
+                return `
+                    <div class="task-item" onclick="selectTask(${task.id}, '${task.courseName}', '${startTime}', '${endTime}')">
+                        <h4>📚 ${task.courseName}</h4>
+                        <p>教师：${task.teacherName || '未知'}</p>
+                        <div class="time-info">
+                            <span class="time-badge">🕐 开始：${startTime}</span>
+                            <span class="time-badge">🕐 截止：${endTime}</span>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <span class="${statusClass}">${statusText}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 格式化日期时间
+        function formatDateTime(dateStr) {
+            const date = new Date(dateStr);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
+
+        // 选择考勤任务
+        function selectTask(taskId, courseName, startTime, endTime) {
+            selectedTask = { id: taskId, courseName, startTime, endTime };
+            
+            document.getElementById('selectedTaskCourse').textContent = `📚 ${courseName}`;
+            document.getElementById('selectedTaskTime').textContent = `🕐 签到时间：${startTime} ~ ${endTime}`;
+            
+            document.getElementById('taskListSection').style.display = 'none';
+            document.getElementById('taskCheckinForm').style.display = 'block';
+            document.getElementById('taskCheckinAlert').style.display = 'none';
+        }
+
+        // 返回任务列表
+        function backToTaskList() {
+            selectedTask = null;
+            document.getElementById('taskListSection').style.display = 'block';
+            document.getElementById('taskCheckinForm').style.display = 'none';
+            document.getElementById('taskCodeInput').value = '';
+        }
+
+        async function doTaskCheckin() {
+            const studentId = document.getElementById('taskStudentId').value.trim();
+            const studentName = document.getElementById('taskStudentName').value.trim();
+            const taskCode = document.getElementById('taskCodeInput').value.trim();
+            const checkinBtn = document.getElementById('taskCheckinBtn');
+
+            if (!taskCode || taskCode.length !== 6) {
+                showAlert('taskCheckinAlert', '请输入6位考勤码', 'error');
+                return;
+            }
+
+            checkinBtn.disabled = true;
+            checkinBtn.textContent = '⏳ 签到中...';
+
+            try {
+                const response = await fetch('/task/checkin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `studentId=${encodeURIComponent(studentId)}&studentName=${encodeURIComponent(studentName)}&taskCode=${encodeURIComponent(taskCode)}`
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    document.getElementById('taskCheckinForm').style.display = 'none';
+                    document.getElementById('taskCheckinSuccess').style.display = 'block';
+                    
+                    const data = result.data;
+                    const statusText = data.status === 1 ? '正常签到' : (data.status === 2 ? '迟到' : '缺勤');
+                    const statusColor = data.status === 1 ? '#7A9F7A' : (data.status === 2 ? '#C4A35A' : '#C47C7C');
+                    
+                    document.getElementById('checkStatusText').textContent = statusText;
+                    document.getElementById('checkStatusText').style.color = statusColor;
+                    document.getElementById('checkTimeText').textContent = new Date(data.checkInTime).toLocaleString('zh-CN');
+                    document.getElementById('checkCourseText').textContent = data.courseName;
+                } else {
+                    showAlert('taskCheckinAlert', result.msg, 'error');
+                }
+            } catch (error) {
+                showAlert('taskCheckinAlert', '签到失败，请稍后重试', 'error');
+            } finally {
+                checkinBtn.disabled = false;
+                checkinBtn.textContent = '🔑 确认签到';
+            }
+        }
+
+        function resetTaskCheckin() {
+            document.getElementById('taskCheckinSuccess').style.display = 'none';
+            document.getElementById('taskCodeInput').value = '';
+            document.getElementById('taskCheckinAlert').style.display = 'none';
+            
+            // 返回任务列表并刷新
+            backToTaskList();
+            loadAvailableTasks();
         }
 
         async function loadCourses() {
@@ -1022,7 +1315,6 @@
 
                 if (result.code === 200) {
                     coursesData = result.data.courses || [];
-                    populateCourseSelect('courseId');
                     populateCourseSelect('filterCourse');
                     populateCourseSelect('batchCourseId');
                 }
@@ -1043,106 +1335,21 @@
             });
         }
 
-        document.getElementById('studentStatus').addEventListener('change', function() {
-                const reasonGroup = document.getElementById('reasonGroup');
-                const checkinReason = document.getElementById('checkinReason');
-                if (this.value === '4') {
-                    reasonGroup.style.display = 'block';
-                    checkinReason.required = true;
-                } else {
-                    reasonGroup.style.display = 'none';
-                    checkinReason.required = false;
-                    checkinReason.value = '';
-                }
-            });
-
-        async function doCheckin() {
-            const studentId = document.getElementById('studentId').value.trim();
-            const studentName = document.getElementById('studentName').value.trim();
-            const courseId = document.getElementById('courseId').value;
-            const studentStatus = parseInt(document.getElementById('studentStatus').value);
-            const reason = document.getElementById('checkinReason').value.trim();
-            const checkinBtn = document.getElementById('checkinBtn');
-
-            if (!studentId) {
-                showAlert('checkinAlert', '请输入学号', 'error');
-                return;
-            }
-
-            if (!studentName) {
-                showAlert('checkinAlert', '请输入姓名', 'error');
-                return;
-            }
-
-            if (!courseId) {
-                showAlert('checkinAlert', '请选择课程', 'error');
-                return;
-            }
-
-            if (studentStatus === 4 && !reason) {
-                showAlert('checkinAlert', '请输入请假理由', 'error');
-                return;
-            }
-
-            checkinBtn.disabled = true;
-            checkinBtn.textContent = '⏳ 提交中...';
-
-            const statusNames = {
-                1: '签到',
-                2: '迟到',
-                3: '早退',
-                4: '请假'
-            };
-
-            try {
-                const response = await fetch(API_URLS.checkinWithStatus, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `studentId=${encodeURIComponent(studentId)}&studentName=${encodeURIComponent(studentName)}&courseId=${encodeURIComponent(courseId)}&studentStatus=${studentStatus}&reason=${encodeURIComponent(reason)}`
-                });
-
-                const result = await response.json();
-
-                if (result.code === 200) {
-                    document.getElementById('checkinForm').style.display = 'none';
-                    document.getElementById('successMessage').textContent = `您的${statusNames[studentStatus]}记录已成功保存`;
-                    document.getElementById('checkinSuccess').style.display = 'block';
-                } else {
-                    showAlert('checkinAlert', result.msg || '考勤登记失败', 'error');
-                }
-            } catch (error) {
-                showAlert('checkinAlert', '考勤登记失败，请稍后重试', 'error');
-            } finally {
-                checkinBtn.disabled = false;
-                checkinBtn.textContent = '🎯 确认提交';
-            }
-        }
-
-        function resetCheckin() {
-            document.getElementById('checkinSuccess').style.display = 'none';
-            document.getElementById('checkinForm').style.display = 'block';
-            document.getElementById('studentName').value = '';
-            document.getElementById('courseId').value = '';
-            document.getElementById('studentStatus').value = '1';
-        }
-
         function getAttendanceStatusClass(status) {
             const classes = {
-                1: 'status-present',
+                1: 'status-normal',
                 2: 'status-late',
-                3: 'status-leave',
-                4: 'status-absent'
+                3: 'status-absent',
+                4: 'status-request'
             };
             return classes[status] || 'status-absent';
         }
 
         function getAttendanceStatusText(status) {
             const texts = {
-                1: '已签到',
+                1: '正常',
                 2: '迟到',
-                3: '早退',
+                3: '缺勤',
                 4: '请假'
             };
             return texts[status] || '未签到';
@@ -1207,7 +1414,7 @@
             if (attendanceRecords.length === 0) {
                 document.getElementById('recordsTableBody').innerHTML = `
                     <tr>
-                        <td colspan="6" class="empty-state">
+                        <td colspan="${currentUserRole === 'STUDENT' || currentUserRole === 'USER' ? '5' : '6'}" class="empty-state">
                             <div class="icon">📋</div>
                             <p>暂无考勤记录</p>
                         </td>
@@ -1222,13 +1429,13 @@
                     <td>${record.studentName || '-'}</td>
                     <td>${record.courseId || '-'}</td>
                     <td>${record.checkInTime ? new Date(record.checkInTime).toLocaleString('zh-CN') : '-'}</td>
-                    <td><span class="status-badge ${getAttendanceStatusClass(record.studentStatus)}">${getAttendanceStatusText(record.studentStatus)}</span></td>
+                    <td><span class="status-badge ${getAttendanceStatusClass(record.checkStatus)}">${getAttendanceStatusText(record.checkStatus)}</span></td>
+                    ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
                     <td>
-                        ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
-                            <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
-                        ` : '-'}
+                        <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
                     </td>
+                    ` : ''}
                 </tr>
             `).join('');
         }
@@ -1292,7 +1499,7 @@
             }
 
             if (statusFilter) {
-                filtered = filtered.filter(record => record.studentStatus === parseInt(statusFilter));
+                filtered = filtered.filter(record => record.checkStatus === parseInt(statusFilter));
             }
 
             renderFilteredRecords(filtered);
@@ -1302,7 +1509,7 @@
             if (filtered.length === 0) {
                 document.getElementById('recordsTableBody').innerHTML = `
                     <tr>
-                        <td colspan="6" class="empty-state">
+                        <td colspan="${currentUserRole === 'STUDENT' || currentUserRole === 'USER' ? '5' : '6'}" class="empty-state">
                             <div class="icon">📋</div>
                             <p>没有找到匹配的记录</p>
                         </td>
@@ -1317,13 +1524,13 @@
                     <td>${record.studentName || '-'}</td>
                     <td>${record.courseId || '-'}</td>
                     <td>${record.checkInTime ? new Date(record.checkInTime).toLocaleString('zh-CN') : '-'}</td>
-                    <td><span class="status-badge ${getAttendanceStatusClass(record.studentStatus)}">${getAttendanceStatusText(record.studentStatus)}</span></td>
+                    <td><span class="status-badge ${getAttendanceStatusClass(record.checkStatus)}">${getAttendanceStatusText(record.checkStatus)}</span></td>
+                    ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
                     <td>
-                        ${currentUserRole === 'ADMIN' || currentUserRole === 'TEACHER' ? `
-                            <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
-                        ` : '-'}
+                        <button class="btn btn-sm btn-secondary" onclick="editRecord('${record.id}')">编辑</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRecord('${record.id}')">删除</button>
                     </td>
+                    ` : ''}
                 </tr>
             `).join('');
         }
@@ -1362,10 +1569,10 @@
                                     <div class="form-group">
                                         <label>考勤状态:</label>
                                         <select id="editStatus" class="form-control">
-                                            <option value="1" ${record.studentStatus === 1 ? 'selected' : ''}>签到</option>
-                                            <option value="2" ${record.studentStatus === 2 ? 'selected' : ''}>迟到</option>
-                                            <option value="3" ${record.studentStatus === 3 ? 'selected' : ''}>早退</option>
-                                            <option value="4" ${record.studentStatus === 4 ? 'selected' : ''}>请假</option>
+                                            <option value="1" ${record.checkStatus === 1 ? 'selected' : ''}>正常</option>
+                                            <option value="2" ${record.checkStatus === 2 ? 'selected' : ''}>迟到</option>
+                                            <option value="3" ${record.checkStatus === 3 ? 'selected' : ''}>缺勤</option>
+                                            <option value="4" ${record.checkStatus === 4 ? 'selected' : ''}>请假</option>
                                         </select>
                                     </div>
                                 </div>

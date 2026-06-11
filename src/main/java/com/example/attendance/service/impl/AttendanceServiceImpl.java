@@ -47,7 +47,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public Page<Attendance> getAttendancePageByConditions(String studentId, String courseId, Integer studentStatus, List<String> courseIds, Pageable pageable) {
-        logger.debug("按条件查询考勤记录，学生ID: {}, 课程ID: {}, 状态: {}, courseIds: {}", studentId, courseId, studentStatus, courseIds);
+        return getAttendancePageByConditions(studentId, null, courseId, null, studentStatus, courseIds, pageable);
+    }
+
+    @Override
+    public Page<Attendance> getAttendancePageByConditions(String studentId, String studentName, String courseId, Integer checkStatus, Integer studentStatus, List<String> courseIds, Pageable pageable) {
+        logger.debug("按条件查询考勤记录，学生ID: {}, 姓名: {}, 课程ID: {}, 考勤状态: {}, 旧状态: {}, courseIds: {}", studentId, studentName, courseId, checkStatus, studentStatus, courseIds);
         // 防御：courseIds 非 null 但为空，说明教师无课程，直接返回空页
         if (courseIds != null && courseIds.isEmpty()) {
             return Page.empty();
@@ -59,8 +64,16 @@ public class AttendanceServiceImpl implements AttendanceService {
                 predicates.add(cb.equal(root.get("studentId"), studentId));
             }
 
+            if (studentName != null && !studentName.isBlank()) {
+                predicates.add(cb.like(root.get("studentName"), "%" + studentName + "%"));
+            }
+
             if (courseId != null && !courseId.isBlank()) {
                 predicates.add(cb.equal(root.get("courseId"), courseId));
+            }
+
+            if (checkStatus != null) {
+                predicates.add(cb.equal(root.get("checkStatus"), checkStatus));
             }
 
             if (studentStatus != null) {
@@ -166,7 +179,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         return attendanceRepository.findById(id)
             .map(attendance -> {
                 attendance.setStudentStatus(studentStatus);
-                attendance.setUpdateTime(LocalDateTime.now());
                 attendanceRepository.save(attendance);
                 
                 String statusMsg = switch (studentStatus) {
@@ -178,6 +190,34 @@ public class AttendanceServiceImpl implements AttendanceService {
                 };
                 logger.info("考勤状态更新成功，记录ID: {}, 状态: {}", id, statusMsg);
                 return statusMsg;
+            })
+            .orElseGet(() -> {
+                logger.warn("更新考勤失败，记录不存在，记录ID: {}", id);
+                return "考勤记录不存在";
+            });
+    }
+
+    @Override
+    @Transactional
+    public String updateAttendanceStatus(Long id, Integer checkStatus, String reason) {
+        logger.info("更新考勤记录，记录ID: {}, 考勤状态: {}, 原因: {}", id, checkStatus, reason);
+        return attendanceRepository.findById(id)
+            .map(attendance -> {
+                attendance.setCheckStatus(checkStatus);
+                if (reason != null && !reason.isBlank()) {
+                    attendance.setReason(reason);
+                }
+                attendanceRepository.save(attendance);
+                
+                String statusMsg = switch (checkStatus) {
+                    case 1 -> "已修改为正常签到";
+                    case 2 -> "已修改为迟到";
+                    case 3 -> "已修改为缺勤";
+                    case 4 -> "已修改为请假";
+                    default -> "考勤状态已更新";
+                };
+                logger.info("考勤记录更新成功，记录ID: {}, 状态: {}", id, statusMsg);
+                return "更新成功";
             })
             .orElseGet(() -> {
                 logger.warn("更新考勤失败，记录不存在，记录ID: {}", id);
