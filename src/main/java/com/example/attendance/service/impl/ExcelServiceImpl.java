@@ -109,7 +109,7 @@ public class ExcelServiceImpl implements ExcelService {
         return switch (status) {
             case 1 -> "签到";
             case 2 -> "迟到";
-            case 3 -> "早退";
+            case 3 -> "缺勤";
             case 4 -> "请假";
             default -> "未知";
         };

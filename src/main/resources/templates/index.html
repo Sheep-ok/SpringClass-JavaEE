@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -1095,6 +1095,66 @@
         </div>
     </div>
 
+    <!-- 批量上传考勤模态框 -->
+    <div class="modal-overlay" id="batchUploadModal">
+        <div class="modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>批量上传打卡信息</h3>
+                <button class="close-btn" id="closeBatchUploadBtn">×</button>
+            </div>
+            <div class="alert" id="batchUploadAlert"></div>
+            <div id="batchUploadForm">
+                <div class="form-group">
+                    <label for="batchUploadCourseId">选择课程 *</label>
+                    <select id="batchUploadCourseId" required>
+                        <option value="">请选择课程</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="batchUploadFile">选择Excel文件 *</label>
+                    <input type="file" id="batchUploadFile" accept=".xls,.xlsx" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%;">
+                    <p style="color: #A4ACB8; font-size: 12px; margin-top: 5px;">支持 .xls 和 .xlsx 格式，Excel表头应为：学号、姓名、性别、班级、状态、原因</p>
+                </div>
+                <div class="form-group">
+                    <label>状态说明</label>
+                    <div style="font-size: 12px; color: #6E7986; background: #F4F7FA; padding: 10px; border-radius: 5px;">
+                        <p>1 - 签到&nbsp;&nbsp;2 - 迟到&nbsp;&nbsp;3 - 缺勤&nbsp;&nbsp;4 - 请假</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="previewBatchUpload()">
+                    📋 预览数据
+                </button>
+            </div>
+            <div id="batchUploadPreview" style="display: none;">
+                <div style="max-height: 300px; overflow-y: auto; margin: 15px 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                        <thead style="background: #F4F7FA; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 8px; border: 1px solid #ddd;">学号</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">姓名</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">状态</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">原因</th>
+                            </tr>
+                        </thead>
+                        <tbody id="batchUploadPreviewBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="batchUploadSummary" style="padding: 10px; background: #E8F5E9; border-radius: 5px; margin-bottom: 10px; font-size: 13px;"></div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="backToBatchUploadForm()">← 返回</button>
+                    <button class="btn btn-primary" style="flex: 1;" onclick="confirmBatchImport()">✓ 确认导入</button>
+                </div>
+            </div>
+            <div id="batchUploadSuccess" style="display: none; text-align: center; padding: 30px;">
+                <div class="icon" style="font-size: 48px;">🎉</div>
+                <h4 style="margin-top: 15px;">导入成功</h4>
+                <p id="batchUploadSuccessMsg" style="color: #6E7986; margin-top: 10px;"></p>
+                <button class="btn btn-primary" onclick="closeBatchUploadModal()" style="margin-top: 20px;">确定</button>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="studentModal">
         <div class="modal">
             <div class="modal-header">
@@ -1399,6 +1459,13 @@
                 }
             });
 
+            document.getElementById('closeBatchUploadBtn').addEventListener('click', closeBatchUploadModal);
+            document.getElementById('batchUploadModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('batchUploadModal')) {
+                    closeBatchUploadModal();
+                }
+            });
+
             document.getElementById('closeStudentModalBtn').addEventListener('click', closeStudentModal);
             document.getElementById('studentModal').addEventListener('click', (e) => {
                 if (e.target === document.getElementById('studentModal')) {
@@ -1460,6 +1527,8 @@
             checkin: `${API_BASE}/attendance/checkin`,
             attendanceStudent: `${API_BASE}/attendance/page/student`,
             attendanceUpdate: `${API_BASE}/attendance/update`,
+            attendanceUploadPreview: `${API_BASE}/attendance/upload/preview`,
+            attendanceUploadImport: `${API_BASE}/attendance/upload/import`,
             students: `${API_BASE}/student`,
             studentsAll: `${API_BASE}/student/all`,
             studentsTeacherAll: `${API_BASE}/student/teacher-all`,
@@ -1667,6 +1736,7 @@
             } else if (role === 'TEACHER') {
                 actions = [
                     { icon: '🎯', text: '发布考勤', desc: '发布考勤任务', color: 'blue', action: 'openPublishTaskModal' },
+                    { icon: '📤', text: '批量上传', desc: 'Excel导入打卡', color: 'green', action: 'openBatchUploadModal' },
                     { icon: '📋', text: '考勤记录', desc: '查看与管理考勤', color: 'purple', action: 'showAttendanceList' },
                     { icon: '👥', text: '学生管理', desc: '管理学生信息', color: 'orange', action: 'manageStudents' }
                 ];
@@ -1835,6 +1905,168 @@
             document.getElementById('checkinModal').classList.remove('show');
             document.getElementById('checkinContent').style.display = 'block';
             document.getElementById('checkinSuccess').style.display = 'none';
+        }
+
+        // 批量上传考勤相关函数
+        function openBatchUploadModal() {
+            document.getElementById('batchUploadModal').classList.add('show');
+            document.getElementById('batchUploadForm').style.display = 'block';
+            document.getElementById('batchUploadPreview').style.display = 'none';
+            document.getElementById('batchUploadSuccess').style.display = 'none';
+            document.getElementById('batchUploadAlert').style.display = 'none';
+            document.getElementById('batchUploadFile').value = '';
+            // 加载教师的课程列表
+            loadTeacherCoursesForBatchUpload();
+        }
+
+        function closeBatchUploadModal() {
+            document.getElementById('batchUploadModal').classList.remove('show');
+        }
+
+        function loadTeacherCoursesForBatchUpload() {
+            const courseSelect = document.getElementById('batchUploadCourseId');
+            courseSelect.innerHTML = '<option value="">请选择课程</option>';
+
+            // 获取当前用户的角色
+            const role = currentUserRole;
+            let url = API_URLS.coursesAll;
+
+            if (role === 'TEACHER') {
+                url = `${API_URLS.courses}?username=${encodeURIComponent(currentUsername)}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.code === 200) {
+                        const courses = result.data.courses || result.data || [];
+                        courses.forEach(course => {
+                            const option = document.createElement('option');
+                            option.value = course.courseId;
+                            option.textContent = `${course.courseName} (${course.courseId})`;
+                            courseSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('加载课程失败:', error);
+                });
+        }
+
+        async function previewBatchUpload() {
+            const alertDiv = document.getElementById('batchUploadAlert');
+            alertDiv.style.display = 'none';
+
+            const courseId = document.getElementById('batchUploadCourseId').value;
+            const fileInput = document.getElementById('batchUploadFile');
+            const file = fileInput.files[0];
+
+            if (!courseId) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">请选择课程</div>';
+                alertDiv.style.display = 'block';
+                return;
+            }
+
+            if (!file) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">请选择Excel文件</div>';
+                alertDiv.style.display = 'block';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('courseId', courseId);
+
+            try {
+                const response = await fetch(API_URLS.attendanceUploadPreview, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    // 显示预览
+                    document.getElementById('batchUploadForm').style.display = 'none';
+                    document.getElementById('batchUploadPreview').style.display = 'block';
+
+                    const previewBody = document.getElementById('batchUploadPreviewBody');
+                    previewBody.innerHTML = '';
+
+                    const statusNames = {1: '签到', 2: '迟到', 3: '缺勤', 4: '请假'};
+                    (result.data.previewData || []).forEach(item => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td style="padding: 8px; border: 1px solid #ddd;">${item.studentId}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">${item.studentName}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">${statusNames[item.status] || item.status}</td>
+                            <td style="padding: 8px; border: 1px solid #ddd;">${item.reason || '-'}</td>
+                        `;
+                        previewBody.appendChild(tr);
+                    });
+
+                    // 显示汇总信息
+                    const summary = document.getElementById('batchUploadSummary');
+                    summary.innerHTML = `总计: ${result.data.totalCount} 条, 成功解析: ${result.data.successCount} 条, 失败: ${result.data.failCount} 条`;
+                    if (result.data.failCount > 0) {
+                        summary.style.background = '#FFF3E0';
+                        const failInfo = result.data.failRecords.slice(0, 3).map(f => `第${f.rowNumber}行: ${f.reason}`).join('<br>');
+                        summary.innerHTML += `<br><span style="color: #E65100;">失败详情: ${failInfo}${result.data.failCount > 3 ? '...' : ''}</span>`;
+                    }
+                } else {
+                    alertDiv.innerHTML = `<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">${result.msg || '预览失败'}</div>`;
+                    alertDiv.style.display = 'block';
+                }
+            } catch (error) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">网络错误，请稍后重试</div>';
+                alertDiv.style.display = 'block';
+            }
+        }
+
+        function backToBatchUploadForm() {
+            document.getElementById('batchUploadForm').style.display = 'block';
+            document.getElementById('batchUploadPreview').style.display = 'none';
+        }
+
+        async function confirmBatchImport() {
+            const alertDiv = document.getElementById('batchUploadAlert');
+            alertDiv.style.display = 'none';
+
+            const courseId = document.getElementById('batchUploadCourseId').value;
+            const fileInput = document.getElementById('batchUploadFile');
+            const file = fileInput.files[0];
+
+            if (!courseId || !file) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">请选择课程和文件</div>';
+                alertDiv.style.display = 'block';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('courseId', courseId);
+
+            try {
+                const response = await fetch(API_URLS.attendanceUploadImport, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.code === 200) {
+                    document.getElementById('batchUploadPreview').style.display = 'none';
+                    document.getElementById('batchUploadSuccess').style.display = 'block';
+                    document.getElementById('batchUploadSuccessMsg').textContent =
+                        `成功导入 ${result.data.successCount} 条记录${result.data.failCount > 0 ? `，失败 ${result.data.failCount} 条` : ''}`;
+                } else {
+                    alertDiv.innerHTML = `<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">${result.msg || '导入失败'}</div>`;
+                    alertDiv.style.display = 'block';
+                }
+            } catch (error) {
+                alertDiv.innerHTML = '<div style="padding: 10px; background: #FFEBEE; color: #C62828; border-radius: 5px;">网络错误，请稍后重试</div>';
+                alertDiv.style.display = 'block';
+            }
         }
 
         // 发布考勤任务相关函数
@@ -3483,6 +3715,11 @@
                             <div class="icon-wrapper">📝</div>
                             <span class="btn-text">添加考勤记录</span>
                             <span class="btn-desc">手动添加考勤</span>
+                        </button>
+                        <button class="action-btn color-purple" onclick="openBatchUploadModal()">
+                            <div class="icon-wrapper">📤</div>
+                            <span class="btn-text">批量上传</span>
+                            <span class="btn-desc">Excel批量导入打卡</span>
                         </button>
                         <button class="action-btn color-orange" onclick="showReports()">
                             <div class="icon-wrapper">📊</div>
